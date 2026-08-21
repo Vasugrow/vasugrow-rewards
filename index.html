@@ -1,253 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VasuGrow Rewards</title>
+<title>VasuGrow Rewards</title>
 
-  <style>
+<style>
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #f5f1e8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #f5f1e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-    .card {
-      width: 100%;
-      max-width: 430px;
-      background: #ffffff;
-      border-radius: 22px;
-      padding: 30px 24px;
-      text-align: center;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
-    }
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+}
 
-    .brand {
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #174d32;
-    }
+.brand {
+  font-size: 32px;
+  font-weight: bold;
+  color: #174d32;
+  margin-bottom: 5px;
+}
 
-    .tagline {
-      margin-top: 4px;
-      color: #9b7525;
-      font-size: 13px;
-      letter-spacing: .5px;
-    }
+.tagline {
+  color: #9b7525;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
 
-    h1 {
-      margin: 25px 0 8px;
-      color: #174d32;
-      font-size: 25px;
-    }
+h1 {
+  color: #174d32;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
 
-    p {
-      color: #555;
-      line-height: 1.5;
-      margin: 8px 0;
-    }
+p {
+  color: #555;
+  line-height: 1.5;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 15px;
-      border: 1px solid #d0d0d0;
-      border-radius: 11px;
-      font-size: 16px;
-      outline: none;
-      text-align: center;
-    }
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
 
-    input:focus {
-      border-color: #174d32;
-    }
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #174d32;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 14px;
-      border: none;
-      border-radius: 11px;
-      background: #174d32;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button:hover {
+  background: #0f3b25;
+}
 
-    button:disabled {
-      background: #999;
-      cursor: not-allowed;
-    }
+button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
 
-    .hidden {
-      display: none !important;
-    }
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.5;
+  display: none;
+}
 
-    .message {
-      margin-top: 18px;
-      padding: 14px;
-      border-radius: 11px;
-      line-height: 1.5;
-    }
+.success {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
 
-    .success {
-      background: #e8f5e9;
-      color: #1b5e20;
-    }
+.error {
+  background: #ffebee;
+  color: #b71c1c;
+}
 
-    .error {
-      background: #ffebee;
-      color: #b71c1c;
-    }
+.reward {
+  font-size: 26px;
+  font-weight: bold;
+  color: #9b7525;
+  margin-top: 10px;
+}
 
-    .choices {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-    }
+.option-box {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
 
-    .choice {
-      min-height: 145px;
-      padding: 18px 10px;
-      border: 2px solid #d8c99b;
-      border-radius: 16px;
-      background: #fffdf7;
-      color: #174d32;
-      cursor: pointer;
-      transition: .15s ease;
-    }
+.option-box button {
+  margin-top: 0;
+  background: #174d32;
+}
 
-    .choice:hover {
-      transform: translateY(-2px);
-      border-color: #9b7525;
-    }
+.option-box button:last-child {
+  background: #9b7525;
+}
 
-    .choice-icon {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+.preview {
+  margin-top: 20px;
+  padding: 15px;
+  background: #faf7ee;
+  border-radius: 10px;
+  color: #555;
+  display: none;
+}
 
-    .choice-title {
-      font-size: 17px;
-      font-weight: bold;
-    }
+.preview strong {
+  color: #9b7525;
+}
 
-    .choice-sub {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #777;
-    }
+.details {
+  margin-top: 20px;
+  display: none;
+}
 
-    .scratch-box {
-      margin-top: 20px;
-      padding: 22px 15px;
-      border-radius: 17px;
-      background: #f5f1e8;
-    }
+.footer {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #888;
+}
 
-    .scratch-title {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 8px;
-    }
-
-    .reward {
-      font-size: 32px;
-      font-weight: 800;
-      color: #9b7525;
-      margin: 8px 0;
-    }
-
-    .reward-code {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: #174d32;
-      color: #fff;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .other-offer {
-      margin-top: 22px;
-      padding: 15px;
-      border-radius: 12px;
-      background: #faf8f1;
-      border: 1px solid #e4dcc6;
-      color: #555;
-      cursor: pointer;
-    }
-
-    .other-offer:hover {
-      background: #f4efdf;
-    }
-
-    .other-result {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #9b7525;
-    }
-
-    .details {
-      margin-top: 22px;
-      text-align: left;
-    }
-
-    .details h2 {
-      text-align: center;
-      font-size: 19px;
-      color: #174d32;
-    }
-
-    .details label {
-      display: block;
-      margin-top: 12px;
-      font-size: 13px;
-      color: #555;
-    }
-
-    .details input {
-      text-align: left;
-      margin-top: 6px;
-    }
-
-    .footer {
-      margin-top: 25px;
-      font-size: 12px;
-      color: #888;
-    }
-
-    .loading {
-      font-size: 14px;
-      color: #777;
-      margin-top: 15px;
-    }
-
-  </style>
+</style>
 </head>
 
 
 <body>
 
 <div class="card">
-
-  <!-- BRAND -->
 
   <div class="brand">
     VASUGROW
@@ -258,9 +170,9 @@
   </div>
 
 
-  <!-- STEP 1 -->
+  <!-- ORDER ID -->
 
-  <section id="orderSection">
+  <div id="orderSection">
 
     <h1>🎁 Your Surprise Is Ready!</h1>
 
@@ -269,141 +181,116 @@
     </p>
 
     <input
-      id="orderId"
       type="text"
-      placeholder="VG-ORD-001"
+      id="orderId"
+      placeholder="Enter Order ID"
       autocomplete="off"
     >
 
     <button
-      id="verifyButton"
-      onclick="verifyOrder()"
+      id="checkButton"
+      onclick="checkOrder()"
     >
       CHECK MY SURPRISE
     </button>
 
     <div
-      id="loading"
-      class="loading hidden"
-    >
-      Checking your surprise...
-    </div>
-
-    <div
       id="orderMessage"
-      class="message hidden"
+      class="message"
     ></div>
 
-  </section>
+  </div>
 
 
-  <!-- STEP 2 -->
+  <!-- CHOOSE OPTION -->
 
-  <section
-    id="choiceSection"
-    class="hidden"
+  <div
+    id="optionSection"
+    style="display:none;"
   >
 
-    <h1>Choose Your Surprise</h1>
+    <h1>
+      Choose Your Surprise
+    </h1>
 
     <p>
-      You can scratch only <strong>ONE</strong> option.
+      Scratch only <strong>one</strong> option.
     </p>
 
-    <div class="choices">
+    <div class="option-box">
 
       <button
-        class="choice"
-        id="discountChoice"
-        onclick="chooseOption('DISCOUNT')"
+        id="discountButton"
+        onclick="selectOption('DISCOUNT')"
       >
-
-        <div class="choice-icon">
-          💰
-        </div>
-
-        <div class="choice-title">
-          Special Discount
-        </div>
-
-        <div class="choice-sub">
-          Scratch to reveal your discount
-        </div>
-
+        💰<br>
+        SPECIAL<br>
+        DISCOUNT
       </button>
 
-
       <button
-        class="choice"
-        id="giftChoice"
-        onclick="chooseOption('GIFT')"
+        id="giftButton"
+        onclick="selectOption('GIFT')"
       >
-
-        <div class="choice-icon">
-          🎁
-        </div>
-
-        <div class="choice-title">
-          Special Gift
-        </div>
-
-        <div class="choice-sub">
-          Scratch to reveal your gift
-        </div>
-
+        🎁<br>
+        SPECIAL<br>
+        GIFT
       </button>
 
     </div>
 
     <div
-      id="choiceLoading"
-      class="loading hidden"
-    >
-      Revealing your surprise...
-    </div>
+      id="selectMessage"
+      class="message"
+    ></div>
 
-  </section>
+  </div>
 
 
-  <!-- STEP 3 -->
+  <!-- RESULT -->
 
-  <section
+  <div
     id="resultSection"
-    class="hidden"
+    style="display:none;"
   >
 
-    <h1>🎉 Congratulations!</h1>
+    <h1>
+      🎉 Congratulations!
+    </h1>
 
-    <div class="scratch-box">
+    <p>
+      You selected the
+      <strong id="selectedText"></strong>.
+    </p>
 
-      <div class="scratch-title">
-        Your selected reward
-      </div>
 
-      <div
-        id="reward"
-        class="reward"
-      >
-      </div>
-
-      <div
-        id="rewardCode"
-        class="reward-code"
-      >
-      </div>
-
-      <p style="font-size:13px;margin-top:12px;">
-        Keep this code safely. You may need it to claim your reward.
-      </p>
-
+    <div class="reward">
+      <span id="rewardText"></span>
     </div>
 
 
-    <!-- OTHER OFFER -->
+    <div
+      id="codeText"
+      style="
+        margin-top:10px;
+        font-weight:bold;
+        color:#174d32;
+      "
+    >
+    </div>
+
+
+    <p style="font-size:13px;">
+      Keep this code safely. You may need it to claim your reward.
+    </p>
+
+
+    <!-- OTHER OPTION -->
 
     <div
-      id="otherOfferButton"
-      class="other-offer"
+      id="otherOffer"
+      class="preview"
+      style="display:block;cursor:pointer;"
       onclick="showOtherOffer()"
     >
 
@@ -413,46 +300,41 @@
 
 
     <div
-      id="otherOfferResult"
-      class="other-result hidden"
-    ></div>
+      id="otherResult"
+      class="preview"
+    >
+    </div>
 
 
     <!-- CUSTOMER DETAILS -->
 
-    <div class="details">
+    <div
+      id="detailsSection"
+      class="details"
+      style="display:block;"
+    >
 
-      <h2>
+      <h1 style="font-size:21px;">
         📱 Claim Your Reward
-      </h2>
+      </h1>
 
-      <p style="font-size:13px;text-align:center;">
+      <p style="font-size:14px;">
         Enter your details so we can process your reward.
       </p>
 
-      <label>
-        Your Name
-      </label>
 
       <input
-        id="customerName"
         type="text"
-        placeholder="Enter your name"
-        autocomplete="name"
+        id="customerName"
+        placeholder="Your Name"
       >
 
 
-      <label>
-        Mobile Number
-      </label>
-
       <input
-        id="customerMobile"
         type="tel"
-        inputmode="numeric"
+        id="customerMobile"
+        placeholder="Mobile Number"
         maxlength="10"
-        placeholder="10-digit mobile number"
-        autocomplete="tel"
       >
 
 
@@ -463,14 +345,15 @@
         SUBMIT DETAILS
       </button>
 
+
       <div
         id="detailsMessage"
-        class="message hidden"
+        class="message"
       ></div>
 
     </div>
 
-  </section>
+  </div>
 
 
   <div class="footer">
@@ -484,87 +367,46 @@
 
 
 /* =====================================================
-   VASUGROW API
+   GOOGLE APPS SCRIPT API
    ===================================================== */
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbwaV7o7f_Wik_WnYLVrneabpMGgCmi-dZzJD5gQ8mOygvWJlIoftRQE4_Be-u0P4jdY/exec";
+"https://script.google.com/macros/s/AKfycbwaV7o7f_Wik_WnYLVrneabpMGgCmi-dZzJD5gQ8mOygvWJlIoftRQE4_Be-u0P4jdY/exec";
 
-
-/* =====================================================
-   CURRENT ORDER
-   ===================================================== */
 
 let currentOrderId = "";
 
 let selectedOption = "";
 
-let rewardCode = "";
-
 
 /* =====================================================
-   API REQUEST HELPER
+   CHECK ORDER
    ===================================================== */
 
-async function apiRequest(action, params = {}) {
-
-  const query =
-    new URLSearchParams({
-      action,
-      ...params
-    });
-
-
-  const response =
-    await fetch(
-      API_URL + "?" + query.toString(),
-      {
-        method: "GET",
-        cache: "no-store"
-      }
-    );
-
-
-  if (!response.ok) {
-    throw new Error("Server error");
-  }
-
-
-  return await response.json();
-
-}
-
-
-/* =====================================================
-   VERIFY ORDER
-   ===================================================== */
-
-async function verifyOrder() {
-
-  const input =
-    document.getElementById("orderId");
-
-  const button =
-    document.getElementById("verifyButton");
-
-  const message =
-    document.getElementById("orderMessage");
-
-  const loading =
-    document.getElementById("loading");
-
+async function checkOrder() {
 
   const orderId =
-    input.value
+    document
+      .getElementById("orderId")
+      .value
       .trim()
       .toUpperCase();
 
 
-  message.className =
-    "message hidden";
+  const button =
+    document.getElementById(
+      "checkButton"
+    );
 
-  message.innerHTML =
-    "";
+
+  const message =
+    document.getElementById(
+      "orderMessage"
+    );
+
+
+  message.style.display =
+    "none";
 
 
   if (!orderId) {
@@ -582,18 +424,22 @@ async function verifyOrder() {
 
   button.disabled = true;
 
-  loading.classList.remove("hidden");
+  button.innerText =
+    "CHECKING...";
 
 
   try {
 
-    const data =
-      await apiRequest(
-        "checkOrder",
-        {
-          orderId
-        }
+    const response =
+      await fetch(
+        API_URL +
+        "?action=checkOrder&orderId=" +
+        encodeURIComponent(orderId)
       );
+
+
+    const data =
+      await response.json();
 
 
     if (!data.success) {
@@ -624,17 +470,23 @@ async function verifyOrder() {
 
 
     currentOrderId =
-      data.orderId;
+      orderId;
 
 
     document
-      .getElementById("orderSection")
-      .classList.add("hidden");
+      .getElementById(
+        "orderSection"
+      )
+      .style.display =
+      "none";
 
 
     document
-      .getElementById("choiceSection")
-      .classList.remove("hidden");
+      .getElementById(
+        "optionSection"
+      )
+      .style.display =
+      "block";
 
 
   }
@@ -645,17 +497,19 @@ async function verifyOrder() {
 
     showMessage(
       message,
-      "Unable to connect. Please try again.",
+      "Unable to connect to the reward system. Please try again.",
       false
     );
 
   }
 
+
   finally {
 
     button.disabled = false;
 
-    loading.classList.add("hidden");
+    button.innerText =
+      "CHECK MY SURPRISE";
 
   }
 
@@ -663,10 +517,10 @@ async function verifyOrder() {
 
 
 /* =====================================================
-   CHOOSE OFFER
+   SELECT OPTION
    ===================================================== */
 
-async function chooseOption(option) {
+async function selectOption(option) {
 
   if (!currentOrderId) {
     return;
@@ -679,79 +533,140 @@ async function chooseOption(option) {
 
   const discountButton =
     document.getElementById(
-      "discountChoice"
+      "discountButton"
     );
+
 
   const giftButton =
     document.getElementById(
-      "giftChoice"
-    );
-
-  const loading =
-    document.getElementById(
-      "choiceLoading"
+      "giftButton"
     );
 
 
-  discountButton.disabled = true;
+  discountButton.disabled =
+    true;
 
-  giftButton.disabled = true;
-
-  loading.classList.remove("hidden");
+  giftButton.disabled =
+    true;
 
 
   try {
 
-    const data =
-      await apiRequest(
-        "selectOption",
-        {
-          orderId:
-            currentOrderId,
-
-          option:
-            option
-        }
+    const response =
+      await fetch(
+        API_URL +
+        "?action=selectOption" +
+        "&orderId=" +
+        encodeURIComponent(
+          currentOrderId
+        ) +
+        "&option=" +
+        encodeURIComponent(
+          option
+        )
       );
+
+
+    const data =
+      await response.json();
 
 
     if (!data.success) {
 
       alert(
         data.message ||
-        "Unable to select this offer."
+        "Unable to select offer."
       );
 
-      discountButton.disabled = false;
+      discountButton.disabled =
+        false;
 
-      giftButton.disabled = false;
+      giftButton.disabled =
+        false;
 
       return;
 
     }
 
 
-    rewardCode =
-      data.rewardCode ||
-      "";
+    document
+      .getElementById(
+        "optionSection"
+      )
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "resultSection"
+      )
+      .style.display =
+      "block";
+
+
+    document
+      .getElementById(
+        "selectedText"
+      )
+      .innerText =
+      option === "DISCOUNT"
+        ? "Special Discount"
+        : "Special Gift";
 
 
     /*
-     * Move immediately to result page.
+     * DISCOUNT RESULT
      */
 
-    document
-      .getElementById("choiceSection")
-      .classList.add("hidden");
+    if (option === "DISCOUNT") {
+
+      const discount =
+        formatDiscount(
+          data.discount
+        );
+
+
+      document
+        .getElementById(
+          "rewardText"
+        )
+        .innerText =
+        discount + "% OFF";
+
+    }
+
+
+    /*
+     * GIFT RESULT
+     */
+
+    else {
+
+      document
+        .getElementById(
+          "rewardText"
+        )
+        .innerText =
+        "🎁 " +
+        (
+          data.gift ||
+          "Premium VasuGrow Gift"
+        );
+
+    }
 
 
     document
-      .getElementById("resultSection")
-      .classList.remove("hidden");
-
-
-    displayReward(data);
-
+      .getElementById(
+        "codeText"
+      )
+      .innerText =
+      "Code: " +
+      (
+        data.rewardCode ||
+        ""
+      );
 
   }
 
@@ -760,19 +675,14 @@ async function chooseOption(option) {
     console.error(error);
 
     alert(
-      "Unable to connect. Please try again."
+      "Unable to connect to the reward system."
     );
 
+    discountButton.disabled =
+      false;
 
-    discountButton.disabled = false;
-
-    giftButton.disabled = false;
-
-  }
-
-  finally {
-
-    loading.classList.add("hidden");
+    giftButton.disabled =
+      false;
 
   }
 
@@ -780,105 +690,46 @@ async function chooseOption(option) {
 
 
 /* =====================================================
-   DISPLAY SELECTED REWARD
-   ===================================================== */
-
-function displayReward(data) {
-
-  const reward =
-    document.getElementById(
-      "reward"
-    );
-
-  const code =
-    document.getElementById(
-      "rewardCode"
-    );
-
-
-  if (
-    data.selectedOption ===
-    "DISCOUNT"
-  ) {
-
-    reward.innerHTML =
-      formatDiscount(
-        data.discount
-      ) +
-      " OFF";
-
-  }
-
-  else {
-
-    reward.innerHTML =
-      "🎁 " +
-      escapeHtml(
-        data.gift ||
-        "Premium VasuGrow Gift"
-      );
-
-  }
-
-
-  code.innerHTML =
-    "Code: " +
-    escapeHtml(
-      data.rewardCode ||
-      ""
-    );
-
-}
-
-
-/* =====================================================
-   OTHER OFFER
+   SHOW OTHER OPTION
    ===================================================== */
 
 async function showOtherOffer() {
 
-  const button =
-    document.getElementById(
-      "otherOfferButton"
-    );
-
   const result =
     document.getElementById(
-      "otherOfferResult"
+      "otherResult"
     );
 
 
-  button.style.pointerEvents =
-    "none";
+  result.style.display =
+    "block";
 
 
-  button.innerHTML =
-    "Checking the other option...";
+  result.innerHTML =
+    "Checking other option...";
 
 
   try {
 
-    const data =
-      await apiRequest(
-        "otherOffer",
-        {
-          orderId:
-            currentOrderId
-        }
+    const response =
+      await fetch(
+        API_URL +
+        "?action=otherOffer&orderId=" +
+        encodeURIComponent(
+          currentOrderId
+        )
       );
+
+
+    const data =
+      await response.json();
 
 
     if (!data.success) {
 
       result.innerHTML =
-        escapeHtml(
-          data.message ||
-          "Unable to show preview."
-        );
-
-      result.classList.remove(
-        "hidden"
-      );
+        data.message ||
+        "Unable to show preview.";
 
       return;
 
@@ -886,58 +737,45 @@ async function showOtherOffer() {
 
 
     /*
-     * CUSTOMER SELECTED DISCOUNT
+     * IF CUSTOMER SELECTED DISCOUNT
      */
 
     if (
-      data.option ===
-      "GIFT"
+      selectedOption ===
+      "DISCOUNT"
     ) {
 
       result.innerHTML =
-        "🎁 The other option could have been a " +
-        "<strong>" +
-        escapeHtml(
+        "🎁 The other option could have been a <strong>" +
+        (
           data.gift ||
           "Premium VasuGrow Gift"
         ) +
-        "</strong>.";
+        "</strong>.<br><br>" +
+        "<small>This is only a preview. Your selected reward remains unchanged.</small>";
 
     }
 
 
     /*
-     * CUSTOMER SELECTED GIFT
-     *
-     * IMPORTANT:
-     * Show 20% OFF, NOT 0.2%.
+     * IF CUSTOMER SELECTED GIFT
      */
 
-    else if (
-      data.option ===
-      "DISCOUNT"
-    ) {
+    else {
 
-      result.innerHTML =
-        "💰 The other option could have been " +
-        "<strong>" +
+      const highestDiscount =
         formatDiscount(
           data.discount
-        ) +
-        "% OFF</strong>.";
+        );
+
+
+      result.innerHTML =
+        "💰 The other option could have been <strong>" +
+        highestDiscount +
+        "% OFF</strong> on your next order.<br><br>" +
+        "<small>This is only a preview. Your selected reward remains unchanged.</small>";
 
     }
-
-
-    result.innerHTML +=
-      "<div style='font-size:12px;font-weight:normal;color:#777;margin-top:6px;'>" +
-      "This is only a preview. Your selected reward remains unchanged." +
-      "</div>";
-
-
-    result.classList.remove(
-      "hidden"
-    );
 
   }
 
@@ -947,17 +785,6 @@ async function showOtherOffer() {
 
     result.innerHTML =
       "Unable to load preview.";
-
-    result.classList.remove(
-      "hidden"
-    );
-
-  }
-
-  finally {
-
-    button.innerHTML =
-      "Want to see what the other option could have offered?";
 
   }
 
@@ -971,15 +798,21 @@ async function showOtherOffer() {
 async function submitDetails() {
 
   const name =
-    document.getElementById(
-      "customerName"
-    ).value.trim();
+    document
+      .getElementById(
+        "customerName"
+      )
+      .value
+      .trim();
 
 
   const mobile =
-    document.getElementById(
-      "customerMobile"
-    ).value.trim();
+    document
+      .getElementById(
+        "customerMobile"
+      )
+      .value
+      .trim();
 
 
   const button =
@@ -994,8 +827,8 @@ async function submitDetails() {
     );
 
 
-  message.className =
-    "message hidden";
+  message.style.display =
+    "none";
 
 
   if (!name) {
@@ -1024,7 +857,8 @@ async function submitDetails() {
   }
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
 
   button.innerText =
     "SUBMITTING...";
@@ -1032,20 +866,27 @@ async function submitDetails() {
 
   try {
 
-    const data =
-      await apiRequest(
-        "submitDetails",
-        {
-          orderId:
-            currentOrderId,
-
-          name:
-            name,
-
-          mobile:
-            mobile
-        }
+    const response =
+      await fetch(
+        API_URL +
+        "?action=submitDetails" +
+        "&orderId=" +
+        encodeURIComponent(
+          currentOrderId
+        ) +
+        "&name=" +
+        encodeURIComponent(
+          name
+        ) +
+        "&mobile=" +
+        encodeURIComponent(
+          mobile
+        )
       );
+
+
+    const data =
+      await response.json();
 
 
     if (!data.success) {
@@ -1056,6 +897,12 @@ async function submitDetails() {
         "Unable to submit details.",
         false
       );
+
+      button.disabled =
+        false;
+
+      button.innerText =
+        "SUBMIT DETAILS";
 
       return;
 
@@ -1072,6 +919,7 @@ async function submitDetails() {
     button.innerText =
       "DETAILS SUBMITTED";
 
+
   }
 
   catch (error) {
@@ -1084,12 +932,47 @@ async function submitDetails() {
       false
     );
 
-    button.disabled = false;
+    button.disabled =
+      false;
 
     button.innerText =
       "SUBMIT DETAILS";
 
   }
+
+}
+
+
+/* =====================================================
+   DISCOUNT FORMAT
+   ===================================================== */
+
+function formatDiscount(value) {
+
+  let number =
+    Number(value);
+
+
+  /*
+   * Fix:
+   * 0.2  → 20
+   * 0.15 → 15
+   * 0.10 → 10
+   * 0.05 → 5
+   */
+
+  if (
+    number > 0 &&
+    number < 1
+  ) {
+
+    number =
+      number * 100;
+
+  }
+
+
+  return number;
 
 }
 
@@ -1110,90 +993,24 @@ function showMessage(
       : "message error";
 
 
-  element.innerHTML =
-    escapeHtml(text);
+  element.innerText =
+    text;
 
 
-  element.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-/* =====================================================
-   DISCOUNT FORMATTER
-   ===================================================== */
-
-function formatDiscount(value) {
-
-  let number =
-    Number(value);
-
-
-  /*
-   * Protect against the old 0.2 display problem.
-   *
-   * 20 → 20%
-   * 0.2 → 20%
-   * 0.05 → 5%
-   */
-
-  if (
-    number > 0 &&
-    number < 1
-  ) {
-
-    number =
-      number * 100;
-
-  }
-
-
-  return Number(
-    number.toFixed(2)
-  );
+  element.style.display =
+    "block";
 
 }
 
 
 /* =====================================================
-   HTML ESCAPE
-   ===================================================== */
-
-function escapeHtml(value) {
-
-  return String(value || "")
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =====================================================
-   ENTER KEY SUPPORT
+   ENTER KEY
    ===================================================== */
 
 document
-  .getElementById("orderId")
+  .getElementById(
+    "orderId"
+  )
   .addEventListener(
     "keydown",
     function(event) {
@@ -1203,7 +1020,7 @@ document
         "Enter"
       ) {
 
-        verifyOrder();
+        checkOrder();
 
       }
 
