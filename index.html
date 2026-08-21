@@ -7,6 +7,7 @@
   <title>VasuGrow Rewards</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -14,80 +15,56 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top, #315f43 0%, #174d32 35%, #0d3020 100%);
+      font-family: Arial, sans-serif;
+      background: #f5f1e8;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      color: #222;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 430px;
+      padding: 18px;
     }
 
     .card {
-      background: #fff;
-      border-radius: 24px;
+      width: 100%;
+      max-width: 430px;
+      background: #ffffff;
+      border-radius: 22px;
       padding: 30px 24px;
       text-align: center;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
-      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
     }
 
     .brand {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: #174d32;
     }
 
     .tagline {
+      margin-top: 4px;
       color: #9b7525;
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-top: 5px;
-    }
-
-    .step {
-      display: none;
-    }
-
-    .step.active {
-      display: block;
+      letter-spacing: .5px;
     }
 
     h1 {
+      margin: 25px 0 8px;
       color: #174d32;
       font-size: 25px;
-      margin: 25px 0 10px;
-    }
-
-    h2 {
-      color: #174d32;
-      font-size: 21px;
-      margin: 20px 0 10px;
     }
 
     p {
-      color: #666;
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .order-box {
-      margin-top: 22px;
+      color: #555;
+      line-height: 1.5;
+      margin: 8px 0;
     }
 
     input {
       width: 100%;
-      padding: 15px;
-      border: 1px solid #d4d4d4;
-      border-radius: 12px;
+      padding: 14px;
+      margin-top: 15px;
+      border: 1px solid #d0d0d0;
+      border-radius: 11px;
       font-size: 16px;
       outline: none;
       text-align: center;
@@ -95,44 +72,48 @@
 
     input:focus {
       border-color: #174d32;
-      box-shadow: 0 0 0 3px rgba(23,77,50,0.1);
     }
 
     button {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       margin-top: 14px;
       border: none;
-      border-radius: 12px;
+      border-radius: 11px;
       background: #174d32;
       color: white;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      background: #0e3b25;
-      transform: translateY(-1px);
     }
 
     button:disabled {
       background: #999;
       cursor: not-allowed;
-      transform: none;
     }
 
-    .order-confirm {
-      background: #f4f8f4;
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 20px;
-      color: #174d32;
-      font-weight: bold;
+    .hidden {
+      display: none !important;
     }
 
-    .choice-area {
+    .message {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 11px;
+      line-height: 1.5;
+    }
+
+    .success {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #b71c1c;
+    }
+
+    .choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -140,464 +121,360 @@
     }
 
     .choice {
-      min-height: 155px;
-      border: 2px solid #e0e0e0;
-      background: #fff;
-      border-radius: 18px;
+      min-height: 145px;
       padding: 18px 10px;
+      border: 2px solid #d8c99b;
+      border-radius: 16px;
+      background: #fffdf7;
+      color: #174d32;
       cursor: pointer;
-      transition: 0.25s;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      transition: .15s ease;
     }
 
     .choice:hover {
+      transform: translateY(-2px);
       border-color: #9b7525;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
 
     .choice-icon {
-      font-size: 45px;
+      font-size: 38px;
       margin-bottom: 10px;
     }
 
     .choice-title {
-      color: #174d32;
-      font-weight: 800;
-      font-size: 16px;
+      font-size: 17px;
+      font-weight: bold;
     }
 
-    .choice-subtitle {
-      color: #777;
+    .choice-sub {
+      margin-top: 6px;
       font-size: 12px;
-      margin-top: 5px;
+      color: #777;
     }
 
     .scratch-box {
-      margin-top: 22px;
-      padding: 25px 18px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #f5f1e8, #fff);
-      border: 1px solid #e3dccb;
+      margin-top: 20px;
+      padding: 22px 15px;
+      border-radius: 17px;
+      background: #f5f1e8;
     }
 
     .scratch-title {
-      color: #9b7525;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .reward {
+      font-size: 32px;
       font-weight: 800;
-      font-size: 18px;
-    }
-
-    .scratch {
-      position: relative;
-      height: 90px;
-      margin-top: 18px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #c9c9c9;
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .scratch-cover {
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          45deg,
-          #b9b9b9,
-          #b9b9b9 8px,
-          #d0d0d0 8px,
-          #d0d0d0 16px
-        );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-weight: bold;
-      font-size: 17px;
-      transition: opacity 0.5s;
-    }
-
-    .scratch.revealed .scratch-cover {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .reward-result {
-      font-size: 28px;
-      font-weight: 900;
       color: #9b7525;
-      margin-top: 10px;
+      margin: 8px 0;
     }
 
     .reward-code {
-      margin-top: 14px;
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
       background: #174d32;
-      color: white;
-      padding: 12px;
-      border-radius: 10px;
+      color: #fff;
       font-weight: bold;
       letter-spacing: 1px;
-      word-break: break-all;
     }
 
-    .details-box {
+    .other-offer {
+      margin-top: 22px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #faf8f1;
+      border: 1px solid #e4dcc6;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .other-offer:hover {
+      background: #f4efdf;
+    }
+
+    .other-result {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #9b7525;
+    }
+
+    .details {
       margin-top: 22px;
       text-align: left;
     }
 
-    .details-box label {
+    .details h2 {
+      text-align: center;
+      font-size: 19px;
+      color: #174d32;
+    }
+
+    .details label {
       display: block;
       margin-top: 12px;
-      margin-bottom: 6px;
-      color: #174d32;
-      font-weight: 700;
       font-size: 13px;
-    }
-
-    .details-box input {
-      text-align: left;
-    }
-
-    .success-box {
-      margin-top: 20px;
-      padding: 18px;
-      background: #e8f5e9;
-      border-radius: 14px;
-      color: #1b5e20;
-      line-height: 1.5;
-    }
-
-    .preview-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: #9b7525;
-      text-decoration: underline;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .preview-box {
-      display: none;
-      margin-top: 15px;
-      padding: 14px;
-      background: #faf7ef;
-      border: 1px solid #e7ddc6;
-      border-radius: 12px;
       color: #555;
-      font-size: 13px;
-      line-height: 1.5;
     }
 
-    .message {
-      display: none;
-      margin-top: 18px;
-      padding: 13px;
-      border-radius: 10px;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .error {
-      display: block;
-      background: #ffebee;
-      color: #b71c1c;
-    }
-
-    .info {
-      display: block;
-      background: #eef5f0;
-      color: #174d32;
+    .details input {
+      text-align: left;
+      margin-top: 6px;
     }
 
     .footer {
       margin-top: 25px;
-      color: #999;
-      font-size: 11px;
-    }
-
-    .small {
       font-size: 12px;
       color: #888;
-      margin-top: 10px;
     }
 
-    @media (max-width: 370px) {
-      .choice-area {
-        grid-template-columns: 1fr;
-      }
+    .loading {
+      font-size: 14px;
+      color: #777;
+      margin-top: 15px;
     }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="container">
+<div class="card">
 
-  <div class="card">
+  <!-- BRAND -->
 
-    <div class="brand">VASUGROW</div>
+  <div class="brand">
+    VASUGROW
+  </div>
 
-    <div class="tagline">
-      HARVEST TO HEALTH
+  <div class="tagline">
+    HARVEST TO HEALTH
+  </div>
+
+
+  <!-- STEP 1 -->
+
+  <section id="orderSection">
+
+    <h1>🎁 Your Surprise Is Ready!</h1>
+
+    <p>
+      Enter your Order ID to unlock your VasuGrow surprise.
+    </p>
+
+    <input
+      id="orderId"
+      type="text"
+      placeholder="VG-ORD-001"
+      autocomplete="off"
+    >
+
+    <button
+      id="verifyButton"
+      onclick="verifyOrder()"
+    >
+      CHECK MY SURPRISE
+    </button>
+
+    <div
+      id="loading"
+      class="loading hidden"
+    >
+      Checking your surprise...
     </div>
 
+    <div
+      id="orderMessage"
+      class="message hidden"
+    ></div>
 
-    <!-- =========================================
-         STEP 1 — ORDER ID
-         ========================================= -->
-
-    <div id="step1" class="step active">
-
-      <h1>🎁 Your Special Reward</h1>
-
-      <p>
-        Thank you for choosing VasuGrow.
-        Enter your Order ID to unlock your special surprise.
-      </p>
-
-      <div class="order-box">
-
-        <input
-          type="text"
-          id="orderId"
-          placeholder="Enter Order ID"
-          autocomplete="off"
-          autocapitalize="characters"
-        >
-
-        <button
-          id="verifyButton"
-          onclick="verifyOrder()"
-        >
-          UNLOCK MY REWARD
-        </button>
-
-      </div>
-
-      <div id="message1" class="message"></div>
-
-    </div>
+  </section>
 
 
-    <!-- =========================================
-         STEP 2 — CHOOSE OPTION
-         ========================================= -->
+  <!-- STEP 2 -->
 
-    <div id="step2" class="step">
+  <section
+    id="choiceSection"
+    class="hidden"
+  >
 
-      <h1>✨ Choose Your Surprise</h1>
+    <h1>Choose Your Surprise</h1>
 
-      <p>
-        You can choose <strong>ONE</strong> option.
-        Once selected, the other option will be locked.
-      </p>
+    <p>
+      You can scratch only <strong>ONE</strong> option.
+    </p>
 
-      <div class="order-confirm">
-        Order ID: <span id="displayOrderId"></span>
-      </div>
+    <div class="choices">
 
-      <div class="choice-area">
+      <button
+        class="choice"
+        id="discountChoice"
+        onclick="chooseOption('DISCOUNT')"
+      >
 
-        <div
-          class="choice"
-          id="giftChoice"
-          onclick="selectOffer('GIFT')"
-        >
-
-          <div class="choice-icon">🎁</div>
-
-          <div class="choice-title">
-            SURPRISE GIFT
-          </div>
-
-          <div class="choice-subtitle">
-            Scratch to reveal
-          </div>
-
+        <div class="choice-icon">
+          💰
         </div>
 
-
-        <div
-          class="choice"
-          id="discountChoice"
-          onclick="selectOffer('DISCOUNT')"
-        >
-
-          <div class="choice-icon">💰</div>
-
-          <div class="choice-title">
-            SPECIAL DISCOUNT
-          </div>
-
-          <div class="choice-subtitle">
-            Scratch to reveal
-          </div>
-
+        <div class="choice-title">
+          Special Discount
         </div>
 
-      </div>
-
-      <div id="message2" class="message"></div>
-
-    </div>
-
-
-    <!-- =========================================
-         STEP 3 — SCRATCH / REVEAL
-         ========================================= -->
-
-    <div id="step3" class="step">
-
-      <h1>🎉 Your Surprise Is Ready!</h1>
-
-      <p id="selectedText"></p>
-
-      <div class="scratch-box">
-
-        <div class="scratch-title">
-          SCRATCH TO REVEAL
+        <div class="choice-sub">
+          Scratch to reveal your discount
         </div>
 
-        <div
-          class="scratch"
-          id="scratchArea"
-          onclick="revealReward()"
-        >
+      </button>
 
-          <div id="hiddenReward">
-            Your reward is hidden
-          </div>
 
-          <div class="scratch-cover">
-            ✨ SCRATCH HERE ✨
-          </div>
+      <button
+        class="choice"
+        id="giftChoice"
+        onclick="chooseOption('GIFT')"
+      >
 
+        <div class="choice-icon">
+          🎁
         </div>
 
-      </div>
-
-
-      <div id="rewardDisplay" style="display:none;">
-
-        <div class="reward-result" id="rewardText"></div>
-
-        <div class="reward-code">
-          Code: <span id="rewardCode"></span>
+        <div class="choice-title">
+          Special Gift
         </div>
 
-        <div class="small">
-          Keep this code safely. You may need it to claim your reward.
+        <div class="choice-sub">
+          Scratch to reveal your gift
         </div>
 
-
-        <!-- OTHER OFFER PREVIEW -->
-
-        <span
-          class="preview-link"
-          onclick="showOtherOffer()"
-        >
-          Want to see what the other option could have offered?
-        </span>
-
-        <div
-          class="preview-box"
-          id="previewBox"
-        ></div>
-
-
-        <!-- CUSTOMER DETAILS -->
-
-        <div class="details-box">
-
-          <h2>📱 Claim Your Reward</h2>
-
-          <p>
-            Enter your details so we can process your reward.
-          </p>
-
-          <label for="customerName">
-            Your Name
-          </label>
-
-          <input
-            type="text"
-            id="customerName"
-            placeholder="Enter your name"
-          >
-
-
-          <label for="customerMobile">
-            Mobile Number
-          </label>
-
-          <input
-            type="tel"
-            id="customerMobile"
-            placeholder="Enter mobile number"
-            maxlength="10"
-          >
-
-
-          <button
-            id="detailsButton"
-            onclick="submitDetails()"
-          >
-            SUBMIT DETAILS
-          </button>
-
-        </div>
-
-        <div id="message3" class="message"></div>
-
-      </div>
+      </button>
 
     </div>
 
+    <div
+      id="choiceLoading"
+      class="loading hidden"
+    >
+      Revealing your surprise...
+    </div>
 
-    <!-- =========================================
-         STEP 4 — COMPLETE
-         ========================================= -->
+  </section>
 
-    <div id="step4" class="step">
 
-      <h1>🎉 Congratulations!</h1>
+  <!-- STEP 3 -->
 
-      <div class="success-box">
+  <section
+    id="resultSection"
+    class="hidden"
+  >
 
-        Your reward has been successfully registered.
+    <h1>🎉 Congratulations!</h1>
 
-        <br><br>
+    <div class="scratch-box">
 
-        <strong>
-          VasuGrow will process your reward.
-        </strong>
-
+      <div class="scratch-title">
+        Your selected reward
       </div>
 
-      <div class="reward-result" id="finalReward"></div>
-
-      <div class="reward-code">
-        Code: <span id="finalCode"></span>
+      <div
+        id="reward"
+        class="reward"
+      >
       </div>
 
-      <p>
-        Please keep your reward code for your records.
+      <div
+        id="rewardCode"
+        class="reward-code"
+      >
+      </div>
+
+      <p style="font-size:13px;margin-top:12px;">
+        Keep this code safely. You may need it to claim your reward.
       </p>
 
     </div>
 
 
-    <div class="footer">
-      © VasuGrow Nuts · Harvest to Health
+    <!-- OTHER OFFER -->
+
+    <div
+      id="otherOfferButton"
+      class="other-offer"
+      onclick="showOtherOffer()"
+    >
+
+      Want to see what the other option could have offered?
+
     </div>
 
+
+    <div
+      id="otherOfferResult"
+      class="other-result hidden"
+    ></div>
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <div class="details">
+
+      <h2>
+        📱 Claim Your Reward
+      </h2>
+
+      <p style="font-size:13px;text-align:center;">
+        Enter your details so we can process your reward.
+      </p>
+
+      <label>
+        Your Name
+      </label>
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Enter your name"
+        autocomplete="name"
+      >
+
+
+      <label>
+        Mobile Number
+      </label>
+
+      <input
+        id="customerMobile"
+        type="tel"
+        inputmode="numeric"
+        maxlength="10"
+        placeholder="10-digit mobile number"
+        autocomplete="tel"
+      >
+
+
+      <button
+        id="submitButton"
+        onclick="submitDetails()"
+      >
+        SUBMIT DETAILS
+      </button>
+
+      <div
+        id="detailsMessage"
+        class="message hidden"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <div class="footer">
+    © VasuGrow Nuts · Harvest to Health
   </div>
 
 </div>
@@ -605,69 +482,62 @@
 
 <script>
 
-/* =================================================
+
+/* =====================================================
    VASUGROW API
-   ================================================= */
+   ===================================================== */
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbwaV7o7f_Wik_WnYLVrneabpMGgCmi-dZzJD5gQ8mOygvWJlIoftRQE4_Be-u0P4jdY/exec";
+  "https://script.google.com/macros/s/AKfycbwaV7o7f_Wik_WnYLVrneabpMGgCmi-dZzJD5gQ8mOygvWJlIoftRQE4_Be-u0P4jdY/exec";
 
 
-/* =================================================
-   GLOBAL VARIABLES
-   ================================================= */
+/* =====================================================
+   CURRENT ORDER
+   ===================================================== */
 
 let currentOrderId = "";
 
 let selectedOption = "";
 
-let rewardData = null;
-
-let rewardRevealed = false;
+let rewardCode = "";
 
 
-/* =================================================
-   STEP CONTROL
-   ================================================= */
+/* =====================================================
+   API REQUEST HELPER
+   ===================================================== */
 
-function showStep(stepNumber) {
+async function apiRequest(action, params = {}) {
 
-  document
-    .querySelectorAll(".step")
-    .forEach(function(step) {
-
-      step.classList.remove("active");
-
+  const query =
+    new URLSearchParams({
+      action,
+      ...params
     });
 
 
-  document
-    .getElementById("step" + stepNumber)
-    .classList.add("active");
+  const response =
+    await fetch(
+      API_URL + "?" + query.toString(),
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+
+  if (!response.ok) {
+    throw new Error("Server error");
+  }
+
+
+  return await response.json();
 
 }
 
 
-/* =================================================
-   MESSAGE
-   ================================================= */
-
-function showMessage(elementId, text, type) {
-
-  const element =
-    document.getElementById(elementId);
-
-  element.className =
-    "message " + type;
-
-  element.innerHTML = text;
-
-}
-
-
-/* =================================================
+/* =====================================================
    VERIFY ORDER
-   ================================================= */
+   ===================================================== */
 
 async function verifyOrder() {
 
@@ -677,16 +547,32 @@ async function verifyOrder() {
   const button =
     document.getElementById("verifyButton");
 
+  const message =
+    document.getElementById("orderMessage");
+
+  const loading =
+    document.getElementById("loading");
+
+
   const orderId =
-    input.value.trim().toUpperCase();
+    input.value
+      .trim()
+      .toUpperCase();
+
+
+  message.className =
+    "message hidden";
+
+  message.innerHTML =
+    "";
 
 
   if (!orderId) {
 
     showMessage(
-      "message1",
+      message,
       "Please enter your Order ID.",
-      "error"
+      false
     );
 
     return;
@@ -696,428 +582,428 @@ async function verifyOrder() {
 
   button.disabled = true;
 
-  button.innerText = "VERIFYING...";
+  loading.classList.remove("hidden");
 
 
   try {
 
-    const url =
-      API_URL +
-      "?action=checkOrder&orderId=" +
-      encodeURIComponent(orderId);
-
-
-    const response =
-      await fetch(url);
-
-
     const data =
-      await response.json();
+      await apiRequest(
+        "checkOrder",
+        {
+          orderId
+        }
+      );
 
 
     if (!data.success) {
 
       showMessage(
-        "message1",
+        message,
         data.message ||
         "Invalid Order ID.",
-        "error"
+        false
       );
-
-      button.disabled = false;
-
-      button.innerText =
-        "UNLOCK MY REWARD";
 
       return;
 
     }
 
-
-    /* ---------------------------------------------
-       ALREADY SELECTED
-       --------------------------------------------- */
 
     if (data.alreadySelected) {
 
       showMessage(
-        "message1",
-        "This Order ID has already been used to select an offer.",
-        "error"
+        message,
+        "This Order ID has already been used.",
+        false
       );
-
-      button.disabled = false;
-
-      button.innerText =
-        "UNLOCK MY REWARD";
 
       return;
 
     }
 
 
-    /* ---------------------------------------------
-       VALID ORDER
-       --------------------------------------------- */
-
     currentOrderId =
-      orderId;
+      data.orderId;
 
 
     document
-      .getElementById("displayOrderId")
-      .innerText =
-        orderId;
+      .getElementById("orderSection")
+      .classList.add("hidden");
 
 
-    showStep(2);
+    document
+      .getElementById("choiceSection")
+      .classList.remove("hidden");
 
 
-  } catch (error) {
+  }
+
+  catch (error) {
 
     console.error(error);
 
     showMessage(
-      "message1",
-      "Unable to connect to the reward system. Please try again.",
-      "error"
+      message,
+      "Unable to connect. Please try again.",
+      false
     );
 
   }
 
+  finally {
 
-  button.disabled = false;
+    button.disabled = false;
 
-  button.innerText =
-    "UNLOCK MY REWARD";
+    loading.classList.add("hidden");
+
+  }
 
 }
 
 
-/* =================================================
-   SELECT OFFER
-   ================================================= */
+/* =====================================================
+   CHOOSE OFFER
+   ===================================================== */
 
-async function selectOffer(option) {
+async function chooseOption(option) {
 
   if (!currentOrderId) {
-
     return;
-
   }
 
 
-  const giftChoice =
-    document.getElementById("giftChoice");
-
-  const discountChoice =
-    document.getElementById("discountChoice");
+  selectedOption =
+    option;
 
 
-  giftChoice.style.pointerEvents =
-    "none";
+  const discountButton =
+    document.getElementById(
+      "discountChoice"
+    );
 
-  discountChoice.style.pointerEvents =
-    "none";
+  const giftButton =
+    document.getElementById(
+      "giftChoice"
+    );
+
+  const loading =
+    document.getElementById(
+      "choiceLoading"
+    );
 
 
-  showMessage(
-    "message2",
-    "Opening your surprise...",
-    "info"
-  );
+  discountButton.disabled = true;
+
+  giftButton.disabled = true;
+
+  loading.classList.remove("hidden");
 
 
   try {
 
-    const url =
-      API_URL +
-      "?action=selectOption" +
-      "&orderId=" +
-      encodeURIComponent(currentOrderId) +
-      "&option=" +
-      encodeURIComponent(option);
-
-
-    const response =
-      await fetch(url);
-
-
     const data =
-      await response.json();
+      await apiRequest(
+        "selectOption",
+        {
+          orderId:
+            currentOrderId,
+
+          option:
+            option
+        }
+      );
 
 
     if (!data.success) {
 
-      showMessage(
-        "message2",
+      alert(
         data.message ||
-        "This offer is no longer available.",
-        "error"
+        "Unable to select this offer."
       );
 
-      giftChoice.style.pointerEvents =
-        "auto";
+      discountButton.disabled = false;
 
-      discountChoice.style.pointerEvents =
-        "auto";
+      giftButton.disabled = false;
 
       return;
 
     }
 
 
-    selectedOption =
-      option;
+    rewardCode =
+      data.rewardCode ||
+      "";
 
 
-    rewardData =
-      data;
+    /*
+     * Move immediately to result page.
+     */
+
+    document
+      .getElementById("choiceSection")
+      .classList.add("hidden");
 
 
-    /* ---------------------------------------------
-       SET REWARD INFORMATION
-       --------------------------------------------- */
-
-    if (option === "DISCOUNT") {
-
-      document
-        .getElementById("selectedText")
-        .innerHTML =
-        "You selected the <strong>Special Discount</strong>.";
-
-      document
-        .getElementById("hiddenReward")
-        .innerText =
-        "Your discount is waiting...";
-
-    }
+    document
+      .getElementById("resultSection")
+      .classList.remove("hidden");
 
 
-    if (option === "GIFT") {
-
-      document
-        .getElementById("selectedText")
-        .innerHTML =
-        "You selected the <strong>Surprise Gift</strong>.";
-
-      document
-        .getElementById("hiddenReward")
-        .innerText =
-        "Your gift is waiting...";
-
-    }
+    displayReward(data);
 
 
-    showStep(3);
+  }
 
-
-  } catch (error) {
+  catch (error) {
 
     console.error(error);
 
-    showMessage(
-      "message2",
-      "Unable to connect to the reward system. Please try again.",
-      "error"
+    alert(
+      "Unable to connect. Please try again."
     );
 
-    giftChoice.style.pointerEvents =
-      "auto";
 
-    discountChoice.style.pointerEvents =
-      "auto";
+    discountButton.disabled = false;
+
+    giftButton.disabled = false;
+
+  }
+
+  finally {
+
+    loading.classList.add("hidden");
 
   }
 
 }
 
 
-/* =================================================
-   REVEAL REWARD
-   ================================================= */
+/* =====================================================
+   DISPLAY SELECTED REWARD
+   ===================================================== */
 
-function revealReward() {
+function displayReward(data) {
 
-  if (!rewardData || rewardRevealed) {
+  const reward =
+    document.getElementById(
+      "reward"
+    );
 
-    return;
+  const code =
+    document.getElementById(
+      "rewardCode"
+    );
+
+
+  if (
+    data.selectedOption ===
+    "DISCOUNT"
+  ) {
+
+    reward.innerHTML =
+      formatDiscount(
+        data.discount
+      ) +
+      " OFF";
+
+  }
+
+  else {
+
+    reward.innerHTML =
+      "🎁 " +
+      escapeHtml(
+        data.gift ||
+        "Premium VasuGrow Gift"
+      );
 
   }
 
 
-  rewardRevealed = true;
-
-
-  const scratchArea =
-    document.getElementById("scratchArea");
-
-
-  scratchArea
-    .classList
-    .add("revealed");
-
-
-  let rewardText = "";
-
-
-  if (selectedOption === "DISCOUNT") {
-
-    rewardText =
-      rewardData.discount + "% OFF";
-
-  }
-
-
-  if (selectedOption === "GIFT") {
-
-    rewardText =
-      rewardData.gift;
-
-  }
-
-
-  document
-    .getElementById("rewardText")
-    .innerText =
-      rewardText;
-
-
-  document
-    .getElementById("rewardCode")
-    .innerText =
-      rewardData.rewardCode;
-
-
-  document
-    .getElementById("rewardDisplay")
-    .style.display =
-      "block";
-
-
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth"
-  });
+  code.innerHTML =
+    "Code: " +
+    escapeHtml(
+      data.rewardCode ||
+      ""
+    );
 
 }
 
 
-/* =================================================
-   SHOW OTHER OFFER
-   ================================================= */
+/* =====================================================
+   OTHER OFFER
+   ===================================================== */
 
 async function showOtherOffer() {
 
-  const box =
-    document.getElementById("previewBox");
+  const button =
+    document.getElementById(
+      "otherOfferButton"
+    );
+
+  const result =
+    document.getElementById(
+      "otherOfferResult"
+    );
 
 
-  box.style.display =
-    "block";
+  button.style.pointerEvents =
+    "none";
 
 
-  box.innerHTML =
-    "Checking the other offer...";
+  button.innerHTML =
+    "Checking the other option...";
 
 
   try {
 
-    const url =
-      API_URL +
-      "?action=otherOffer&orderId=" +
-      encodeURIComponent(currentOrderId);
-
-
-    const response =
-      await fetch(url);
-
-
     const data =
-      await response.json();
+      await apiRequest(
+        "otherOffer",
+        {
+          orderId:
+            currentOrderId
+        }
+      );
 
 
     if (!data.success) {
 
-      box.innerHTML =
-        data.message ||
-        "Other offer is unavailable.";
+      result.innerHTML =
+        escapeHtml(
+          data.message ||
+          "Unable to show preview."
+        );
+
+      result.classList.remove(
+        "hidden"
+      );
 
       return;
 
     }
 
 
-    if (data.option === "DISCOUNT") {
+    /*
+     * CUSTOMER SELECTED DISCOUNT
+     */
 
-      box.innerHTML =
-        "💰 The highest possible discount was " +
-        "<strong>" +
-        data.discount +
-        "</strong>." +
-        "<br><br>" +
-        "<small>This is only a preview. " +
-        "Your selected reward remains unchanged.</small>";
+    if (
+      data.option ===
+      "GIFT"
+    ) {
 
-    }
-
-
-    else if (data.option === "GIFT") {
-
-      box.innerHTML =
+      result.innerHTML =
         "🎁 The other option could have been a " +
         "<strong>" +
-        data.gift +
-        "</strong>." +
-        "<br><br>" +
-        "<small>This is only a preview. " +
-        "Your selected reward remains unchanged.</small>";
+        escapeHtml(
+          data.gift ||
+          "Premium VasuGrow Gift"
+        ) +
+        "</strong>.";
 
     }
 
 
-  } catch (error) {
+    /*
+     * CUSTOMER SELECTED GIFT
+     *
+     * IMPORTANT:
+     * Show 20% OFF, NOT 0.2%.
+     */
+
+    else if (
+      data.option ===
+      "DISCOUNT"
+    ) {
+
+      result.innerHTML =
+        "💰 The other option could have been " +
+        "<strong>" +
+        formatDiscount(
+          data.discount
+        ) +
+        "% OFF</strong>.";
+
+    }
+
+
+    result.innerHTML +=
+      "<div style='font-size:12px;font-weight:normal;color:#777;margin-top:6px;'>" +
+      "This is only a preview. Your selected reward remains unchanged." +
+      "</div>";
+
+
+    result.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  catch (error) {
 
     console.error(error);
 
-    box.innerHTML =
-      "Unable to load the preview.";
+    result.innerHTML =
+      "Unable to load preview.";
+
+    result.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  finally {
+
+    button.innerHTML =
+      "Want to see what the other option could have offered?";
 
   }
 
 }
 
 
-/* =================================================
+/* =====================================================
    SUBMIT CUSTOMER DETAILS
-   ================================================= */
+   ===================================================== */
 
 async function submitDetails() {
 
   const name =
-    document
-      .getElementById("customerName")
-      .value
-      .trim();
+    document.getElementById(
+      "customerName"
+    ).value.trim();
 
 
   const mobile =
-    document
-      .getElementById("customerMobile")
-      .value
-      .trim();
+    document.getElementById(
+      "customerMobile"
+    ).value.trim();
 
 
   const button =
-    document.getElementById("detailsButton");
+    document.getElementById(
+      "submitButton"
+    );
+
+
+  const message =
+    document.getElementById(
+      "detailsMessage"
+    );
+
+
+  message.className =
+    "message hidden";
 
 
   if (!name) {
 
     showMessage(
-      "message3",
+      message,
       "Please enter your name.",
-      "error"
+      false
     );
 
     return;
@@ -1128,9 +1014,9 @@ async function submitDetails() {
   if (!/^[0-9]{10}$/.test(mobile)) {
 
     showMessage(
-      "message3",
+      message,
       "Please enter a valid 10-digit mobile number.",
-      "error"
+      false
     );
 
     return;
@@ -1141,98 +1027,62 @@ async function submitDetails() {
   button.disabled = true;
 
   button.innerText =
-    "SAVING...";
+    "SUBMITTING...";
 
 
   try {
 
-    const url =
-      API_URL +
-      "?action=submitDetails" +
-      "&orderId=" +
-      encodeURIComponent(currentOrderId) +
-      "&name=" +
-      encodeURIComponent(name) +
-      "&mobile=" +
-      encodeURIComponent(mobile);
-
-
-    const response =
-      await fetch(url);
-
-
     const data =
-      await response.json();
+      await apiRequest(
+        "submitDetails",
+        {
+          orderId:
+            currentOrderId,
+
+          name:
+            name,
+
+          mobile:
+            mobile
+        }
+      );
 
 
     if (!data.success) {
 
       showMessage(
-        "message3",
+        message,
         data.message ||
-        "Unable to save your details.",
-        "error"
+        "Unable to submit details.",
+        false
       );
-
-      button.disabled = false;
-
-      button.innerText =
-        "SUBMIT DETAILS";
 
       return;
 
     }
 
 
-    /* ---------------------------------------------
-       FINAL SUCCESS
-       --------------------------------------------- */
-
-    let finalReward = "";
-
-
-    if (selectedOption === "DISCOUNT") {
-
-      finalReward =
-        rewardData.discount +
-        "% OFF";
-
-    }
+    showMessage(
+      message,
+      "🎉 Your reward details have been successfully registered!",
+      true
+    );
 
 
-    if (selectedOption === "GIFT") {
+    button.innerText =
+      "DETAILS SUBMITTED";
 
-      finalReward =
-        rewardData.gift;
+  }
 
-    }
-
-
-    document
-      .getElementById("finalReward")
-      .innerText =
-        finalReward;
-
-
-    document
-      .getElementById("finalCode")
-      .innerText =
-        rewardData.rewardCode;
-
-
-    showStep(4);
-
-
-  } catch (error) {
+  catch (error) {
 
     console.error(error);
 
     showMessage(
-      "message3",
-      "Unable to connect to the reward system. Please try again.",
-      "error"
+      message,
+      "Unable to connect. Please try again.",
+      false
     );
-
 
     button.disabled = false;
 
@@ -1244,9 +1094,103 @@ async function submitDetails() {
 }
 
 
-/* =================================================
+/* =====================================================
+   MESSAGE
+   ===================================================== */
+
+function showMessage(
+  element,
+  text,
+  success
+) {
+
+  element.className =
+    success
+      ? "message success"
+      : "message error";
+
+
+  element.innerHTML =
+    escapeHtml(text);
+
+
+  element.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =====================================================
+   DISCOUNT FORMATTER
+   ===================================================== */
+
+function formatDiscount(value) {
+
+  let number =
+    Number(value);
+
+
+  /*
+   * Protect against the old 0.2 display problem.
+   *
+   * 20 → 20%
+   * 0.2 → 20%
+   * 0.05 → 5%
+   */
+
+  if (
+    number > 0 &&
+    number < 1
+  ) {
+
+    number =
+      number * 100;
+
+  }
+
+
+  return Number(
+    number.toFixed(2)
+  );
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+   ===================================================== */
+
+function escapeHtml(value) {
+
+  return String(value || "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =====================================================
    ENTER KEY SUPPORT
-   ================================================= */
+   ===================================================== */
 
 document
   .getElementById("orderId")
@@ -1254,7 +1198,10 @@ document
     "keydown",
     function(event) {
 
-      if (event.key === "Enter") {
+      if (
+        event.key ===
+        "Enter"
+      ) {
 
         verifyOrder();
 
@@ -1262,6 +1209,7 @@ document
 
     }
   );
+
 
 </script>
 
