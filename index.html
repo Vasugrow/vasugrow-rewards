@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VasuGrow Rewards</title>
+
+<title>VasuGrow Reward</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -13,8 +15,8 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
   background:#f5f1e8;
+  font-family:Arial,Helvetica,sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -25,44 +27,48 @@ body{
   width:100%;
   max-width:420px;
   background:#fff;
-  border-radius:20px;
-  padding:30px 25px;
-  text-align:center;
+  border-radius:22px;
+  padding:30px 24px;
   box-shadow:0 10px 35px rgba(0,0,0,.12);
+  text-align:center;
 }
 
-.brand{
-  font-size:32px;
-  font-weight:bold;
+.logo{
+  font-size:31px;
+  font-weight:800;
   color:#174d32;
-  margin-bottom:5px;
+  letter-spacing:1px;
 }
 
 .tagline{
   color:#9b7525;
-  font-size:14px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:1px;
+  margin-top:4px;
   margin-bottom:25px;
 }
 
 h1{
   color:#174d32;
-  font-size:25px;
-  margin-bottom:10px;
+  font-size:24px;
+  margin:15px 0 10px;
 }
 
 p{
-  color:#555;
+  color:#666;
+  font-size:14px;
   line-height:1.5;
 }
 
 input{
   width:100%;
   padding:14px;
-  margin-top:15px;
-  border:1px solid #ccc;
+  border:1px solid #d4d4d4;
   border-radius:10px;
   font-size:16px;
   outline:none;
+  margin-top:10px;
 }
 
 input:focus{
@@ -71,64 +77,97 @@ input:focus{
 
 button{
   width:100%;
+  border:0;
+  border-radius:10px;
   padding:14px;
   margin-top:15px;
-  border:none;
-  border-radius:10px;
   background:#174d32;
   color:#fff;
-  font-size:16px;
-  font-weight:bold;
+  font-size:15px;
+  font-weight:700;
   cursor:pointer;
-}
-
-button:hover{
-  background:#0f3b25;
 }
 
 button:disabled{
   background:#999;
-  cursor:not-allowed;
 }
+
+.hidden{
+  display:none!important;
+}
+
+
+/* MESSAGE */
 
 .message{
-  margin-top:20px;
-  padding:15px;
-  border-radius:10px;
   display:none;
-  line-height:1.5;
-}
-
-.success{
-  background:#e8f5e9;
-  color:#1b5e20;
+  margin-top:18px;
+  padding:13px;
+  border-radius:10px;
+  font-size:14px;
+  line-height:1.45;
 }
 
 .error{
+  display:block;
   background:#ffebee;
   color:#b71c1c;
 }
 
-/* SCRATCH CARDS */
+.info{
+  display:block;
+  background:#eef5f0;
+  color:#174d32;
+}
 
-.scratch-options{
+
+/* CHOICE */
+
+.choice-area{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:20px;
+  margin-top:25px;
 }
 
-.scratch-card{
+.choice-card{
   position:relative;
-  height:180px;
+  height:190px;
   border-radius:15px;
   overflow:hidden;
-  background:#f7f1df;
-  border:2px solid #d5bd72;
-  box-shadow:0 5px 15px rgba(0,0,0,.10);
+  border:1px solid #d9c99b;
+  background:#faf7ef;
 }
 
-.scratch-card canvas{
+.choice-content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+  padding:12px;
+}
+
+.choice-icon{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.choice-title{
+  color:#174d32;
+  font-weight:800;
+  font-size:15px;
+}
+
+.choice-small{
+  color:#888;
+  font-size:11px;
+  margin-top:8px;
+}
+
+.choice-card canvas{
   position:absolute;
   inset:0;
   width:100%;
@@ -137,224 +176,219 @@ button:disabled{
   cursor:crosshair;
 }
 
-.scratch-content{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:10px;
-}
-
-.scratch-icon{
-  font-size:38px;
-  margin-bottom:8px;
-}
-
-.scratch-title{
-  font-size:16px;
-  font-weight:bold;
-  color:#174d32;
-}
-
-.scratch-small{
-  font-size:11px;
-  color:#777;
-  margin-top:7px;
-}
-
-.scratch-heading{
-  margin-top:20px;
-  color:#555;
-  font-size:14px;
-}
 
 /* RESULT */
 
 .reward-box{
   margin-top:20px;
   padding:20px 15px;
+  background:#f8f4e9;
   border-radius:14px;
-  background:#f5f1e8;
 }
 
-.reward{
-  font-size:27px;
-  font-weight:bold;
+.reward-label{
+  color:#666;
+  font-size:13px;
+}
+
+.reward-value{
+  margin-top:8px;
   color:#9b7525;
-  margin-top:10px;
+  font-size:27px;
+  font-weight:800;
 }
 
-.reward-code{
-  margin-top:12px;
+.code{
   display:inline-block;
+  margin-top:12px;
+  padding:9px 14px;
   background:#174d32;
   color:#fff;
-  padding:9px 13px;
   border-radius:8px;
-  font-weight:bold;
-  letter-spacing:1px;
+  font-weight:700;
   font-size:14px;
+  letter-spacing:.7px;
 }
 
-.other-offer{
+
+/* OTHER OFFER */
+
+.preview-link{
+  display:inline-block;
   margin-top:20px;
-  padding:15px;
-  background:#faf7ee;
-  border:1px solid #e2d8bd;
-  border-radius:10px;
-  color:#555;
+  color:#9b7525;
+  text-decoration:underline;
+  font-size:13px;
   cursor:pointer;
-  font-size:14px;
 }
 
-.other-offer:hover{
-  background:#f2ecdc;
-}
-
-.other-result{
-  margin-top:12px;
-  padding:15px;
-  background:#faf7ee;
-  border-radius:10px;
-  color:#555;
+.preview-box{
   display:none;
+  margin-top:15px;
+  padding:14px;
+  background:#faf7ef;
+  border:1px solid #e7ddc6;
+  border-radius:12px;
+  color:#555;
+  font-size:13px;
   line-height:1.5;
 }
 
-.other-result strong{
+.preview-box strong{
   color:#9b7525;
-  font-size:18px;
+  font-size:17px;
 }
 
-.details{
+
+/* DETAILS */
+
+.details-box{
   margin-top:22px;
+  text-align:left;
 }
 
-.details-title{
+.details-box label{
+  display:block;
+  margin-top:12px;
+  margin-bottom:6px;
   color:#174d32;
-  font-size:20px;
-  font-weight:bold;
+  font-weight:700;
+  font-size:13px;
+}
+
+.details-box input{
+  text-align:left;
+  margin-top:0;
+}
+
+.success-box{
+  margin-top:20px;
+  padding:18px;
+  background:#e8f5e9;
+  border-radius:14px;
+  color:#1b5e20;
+  line-height:1.5;
 }
 
 .footer{
   margin-top:25px;
+  color:#999;
+  font-size:11px;
+}
+
+.small{
   font-size:12px;
   color:#888;
+  margin-top:10px;
 }
 
-.hidden{
-  display:none!important;
+@media(max-width:370px){
+
+  .choice-area{
+    grid-template-columns:1fr;
+  }
+
 }
 
-@media(max-width:380px){
-  .card{
-    padding:25px 17px;
-  }
-
-  .scratch-options{
-    gap:8px;
-  }
-
-  .scratch-card{
-    height:165px;
-  }
-
-  .scratch-title{
-    font-size:14px;
-  }
-}
 </style>
 </head>
+
 
 <body>
 
 <div class="card">
 
-<div class="brand">VASUGROW</div>
-<div class="tagline">HARVEST TO HEALTH</div>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="logo">
+VASUGROW
+</div>
+
+<div class="tagline">
+HARVEST TO HEALTH
+</div>
 
 
-<!-- ORDER -->
+<!-- =========================
+     ORDER SECTION
+========================= -->
 
 <div id="orderSection">
 
-<h1>🎉 Your Surprise Is Ready!</h1>
+<h1>🎁 Your VasuGrow Reward</h1>
 
 <p>
-Enter your Order ID below to unlock your VasuGrow surprise.
+Enter the Order ID printed on your VasuGrow order.
 </p>
 
 <input
   type="text"
   id="orderId"
-  placeholder="Enter Order ID"
+  placeholder="e.g. VG-ORD-002"
   autocomplete="off"
 >
 
-<button id="checkButton" onclick="checkOrder()">
-CHECK MY SURPRISE
+<button
+  id="continueButton"
+  onclick="checkOrder()"
+>
+CONTINUE
 </button>
 
-<div id="orderMessage" class="message"></div>
-
-</div>
-
-
-<!-- SCRATCH -->
-
-<div id="scratchSection" class="hidden">
-
-<h1>🎁 Choose Your Surprise</h1>
-
-<p>
-Scratch <strong>ONE</strong> card only.
+<p class="small">
+Thank you for choosing VasuGrow.
+Enter your Order ID to unlock your special surprise.
 </p>
 
-<div class="scratch-heading">
-Scratch to reveal your offer
-</div>
-
-<div id="scratchOptions" class="scratch-options">
-
-<!-- DISCOUNT -->
-
-<div id="discountCard" class="scratch-card">
-
-<div class="scratch-content">
-
-<div class="scratch-icon">💰</div>
-
-<div class="scratch-title">
-SPECIAL DISCOUNT
-</div>
-
-<div class="scratch-small">
-Scratch to reveal
-</div>
+<div
+  id="orderMessage"
+  class="message"
+></div>
 
 </div>
 
-<canvas id="discountCanvas"></canvas>
 
-</div>
+<!-- =========================
+     CHOICE SECTION
+========================= -->
+
+<div
+  id="choiceSection"
+  class="hidden"
+>
+
+<h1>🎁 Your Special Reward</h1>
+
+<p>
+You can reveal <strong>one</strong> reward.
+Choose carefully!
+</p>
+
+
+<div class="choice-area">
 
 
 <!-- GIFT -->
 
-<div id="giftCard" class="scratch-card">
+<div
+  id="giftChoice"
+  class="choice-card"
+>
 
-<div class="scratch-content">
+<div class="choice-content">
 
-<div class="scratch-icon">🎁</div>
-
-<div class="scratch-title">
-SPECIAL GIFT
+<div class="choice-icon">
+🎁
 </div>
 
-<div class="scratch-small">
+<div class="choice-title">
+SURPRISE GIFT
+</div>
+
+<div class="choice-small">
 Scratch to reveal
 </div>
 
@@ -364,34 +398,80 @@ Scratch to reveal
 
 </div>
 
+
+<!-- DISCOUNT -->
+
+<div
+  id="discountChoice"
+  class="choice-card"
+>
+
+<div class="choice-content">
+
+<div class="choice-icon">
+🏷️
 </div>
 
-<div id="scratchMessage" class="message"></div>
+<div class="choice-title">
+DISCOUNT
+</div>
+
+<div class="choice-small">
+Scratch to reveal
+</div>
+
+</div>
+
+<canvas id="discountCanvas"></canvas>
+
+</div>
 
 </div>
 
 
-<!-- RESULT -->
+<div
+  id="choiceMessage"
+  class="message"
+></div>
 
-<div id="resultSection" class="hidden">
+</div>
 
-<h1>🎉 Congratulations!</h1>
+
+<!-- =========================
+     RESULT SECTION
+========================= -->
+
+<div
+  id="resultSection"
+  class="hidden"
+>
+
+<h1>
+🎉 Congratulations!
+</h1>
 
 <p>
-You selected the
-<strong id="selectedOptionText"></strong>.
+Your VasuGrow reward is
 </p>
 
 
 <div class="reward-box">
 
-<div>Your Reward</div>
+<div class="reward-label">
+YOUR REWARD
+</div>
 
-<div id="rewardText" class="reward"></div>
+<div
+  id="rewardValue"
+  class="reward-value"
+></div>
 
-<div id="rewardCode" class="reward-code"></div>
+<div
+  id="rewardCode"
+  class="code"
+></div>
 
-<p style="font-size:12px;">
+<p class="small">
 Keep this code safely. You may need it to claim your reward.
 </p>
 
@@ -401,47 +481,79 @@ Keep this code safely. You may need it to claim your reward.
 <!-- OTHER OPTION -->
 
 <div
-  id="otherOfferButton"
-  class="other-offer"
+  class="preview-link"
   onclick="showOtherOffer()"
 >
-Want to see what your other option could have offered?
+Want to see what the other option could have offered?
 </div>
 
-<div id="otherResult" class="other-result"></div>
+<div
+  id="previewBox"
+  class="preview-box"
+></div>
 
 
-<!-- DETAILS -->
+<!-- =========================
+     CUSTOMER DETAILS
+========================= -->
 
-<div class="details">
+<div class="details-box">
 
-<div class="details-title">
+<h1>
 📱 Claim Your Reward
-</div>
+</h1>
 
-<p style="font-size:13px;">
+<p>
 Enter your details so we can process your reward.
 </p>
+
+
+<label for="customerName">
+Your Name
+</label>
 
 <input
   type="text"
   id="customerName"
-  placeholder="Your Name"
+  placeholder="Enter your name"
 >
+
+
+<label for="customerMobile">
+Mobile Number
+</label>
 
 <input
   type="tel"
   id="customerMobile"
-  placeholder="Mobile Number"
+  placeholder="10-digit mobile number"
   maxlength="10"
   inputmode="numeric"
 >
 
-<button id="submitButton" onclick="submitDetails()">
+
+<button
+  id="submitButton"
+  onclick="submitDetails()"
+>
 SUBMIT DETAILS
 </button>
 
-<div id="detailsMessage" class="message"></div>
+
+<div
+  id="detailsMessage"
+  class="message"
+></div>
+
+
+<div
+  id="successBox"
+  class="success-box hidden"
+>
+🎉 Your reward details have been successfully registered.
+<br><br>
+Please keep your reward code safely.
+</div>
 
 </div>
 
@@ -458,8 +570,8 @@ SUBMIT DETAILS
 <script>
 
 /* =====================================================
-   GOOGLE APPS SCRIPT API
-   ===================================================== */
+   GOOGLE APPS SCRIPT
+===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwaV7o7f_Wik_WnYLVrneabpMGgCmi-dZzJD5gQ8mOygvWJlIoftRQE4_Be-u0P4jdY/exec";
@@ -467,13 +579,12 @@ const API_URL =
 
 let currentOrderId = "";
 let selectedOption = "";
-let scratchFinished = false;
-let lastScratchCheck = 0;
+let scratchCompleted = false;
 
 
 /* =====================================================
    CHECK ORDER
-   ===================================================== */
+===================================================== */
 
 async function checkOrder(){
 
@@ -484,26 +595,31 @@ document.getElementById("orderId")
 .toUpperCase();
 
 const button =
-document.getElementById("checkButton");
+document.getElementById("continueButton");
 
 const message =
 document.getElementById("orderMessage");
 
+
 message.style.display="none";
+
 
 if(!orderId){
 
 showMessage(
 message,
 "Please enter your Order ID.",
-false
+"error"
 );
 
 return;
+
 }
+
 
 button.disabled=true;
 button.innerText="CHECKING...";
+
 
 try{
 
@@ -514,40 +630,50 @@ API_URL+
 encodeURIComponent(orderId)
 );
 
+
 const data =
 await response.json();
+
 
 if(!data.success){
 
 showMessage(
 message,
 data.message || "Invalid Order ID.",
-false
+"error"
 );
 
 return;
+
 }
+
 
 if(data.alreadySelected){
 
 showMessage(
 message,
 "This Order ID has already been used.",
-false
+"error"
 );
 
 return;
+
 }
 
-currentOrderId=data.orderId;
+
+currentOrderId =
+data.orderId || orderId;
+
 
 document
 .getElementById("orderSection")
 .classList.add("hidden");
 
+
 document
-.getElementById("scratchSection")
+.getElementById("choiceSection")
 .classList.remove("hidden");
+
 
 setTimeout(
 initializeScratchCards,
@@ -563,7 +689,7 @@ console.error(error);
 showMessage(
 message,
 "Unable to connect to the reward system. Please try again.",
-false
+"error"
 );
 
 }
@@ -571,7 +697,7 @@ false
 finally{
 
 button.disabled=false;
-button.innerText="CHECK MY SURPRISE";
+button.innerText="CONTINUE";
 
 }
 
@@ -579,21 +705,19 @@ button.innerText="CHECK MY SURPRISE";
 
 
 /* =====================================================
-   SCRATCH CARD INITIALIZATION
-   ===================================================== */
+   SCRATCH CARDS
+===================================================== */
 
 function initializeScratchCards(){
-
-scratchFinished=false;
-
-createScratchCard(
-"discountCanvas",
-"DISCOUNT"
-);
 
 createScratchCard(
 "giftCanvas",
 "GIFT"
+);
+
+createScratchCard(
+"discountCanvas",
+"DISCOUNT"
 );
 
 }
@@ -601,15 +725,21 @@ createScratchCard(
 
 /* =====================================================
    CREATE SCRATCH CARD
-   ===================================================== */
+===================================================== */
 
-function createScratchCard(canvasId,option){
+function createScratchCard(
+canvasId,
+option
+){
 
 const canvas =
 document.getElementById(canvasId);
 
+const parent =
+canvas.parentElement;
+
 const rect =
-canvas.parentElement.getBoundingClientRect();
+parent.getBoundingClientRect();
 
 const width =
 Math.floor(rect.width);
@@ -620,11 +750,19 @@ Math.floor(rect.height);
 const ratio =
 window.devicePixelRatio || 1;
 
-canvas.width=width*ratio;
-canvas.height=height*ratio;
 
-canvas.style.width=width+"px";
-canvas.style.height=height+"px";
+canvas.width =
+width * ratio;
+
+canvas.height =
+height * ratio;
+
+canvas.style.width =
+width+"px";
+
+canvas.style.height =
+height+"px";
+
 
 const ctx =
 canvas.getContext("2d");
@@ -632,21 +770,24 @@ canvas.getContext("2d");
 ctx.scale(ratio,ratio);
 
 
-/* Scratch surface */
+/* Scratch coating */
 
 const gradient =
 ctx.createLinearGradient(
-0,0,width,height
+0,
+0,
+width,
+height
 );
 
 gradient.addColorStop(
 0,
-"#a5a5a5"
+"#9d9d9d"
 );
 
 gradient.addColorStop(
 0.5,
-"#eeeeee"
+"#e8e8e8"
 );
 
 gradient.addColorStop(
@@ -664,27 +805,28 @@ height
 );
 
 
-/* Scratch text */
-
-ctx.fillStyle="#174d32";
-
-ctx.font="bold 16px Arial";
+/* Scratch message */
 
 ctx.textAlign="center";
 ctx.textBaseline="middle";
 
+ctx.font="bold 15px Arial";
+
+ctx.fillStyle="#174d32";
+
 ctx.fillText(
-"SCRATCH HERE",
+"SCRATCH TO REVEAL",
 width/2,
 height/2
 );
 
-ctx.font="12px Arial";
+
+ctx.font="11px Arial";
 
 ctx.fillStyle="#555";
 
 ctx.fillText(
-"Reveal your surprise",
+"Your surprise is waiting",
 width/2,
 height/2+25
 );
@@ -698,33 +840,22 @@ function getPosition(event){
 const rect =
 canvas.getBoundingClientRect();
 
-if(
+const point =
 event.touches &&
 event.touches.length
-){
+?
+event.touches[0]
+:
+event;
 
 return{
 
 x:
-event.touches[0].clientX-
+point.clientX-
 rect.left,
 
 y:
-event.touches[0].clientY-
-rect.top
-
-};
-
-}
-
-return{
-
-x:
-event.clientX-
-rect.left,
-
-y:
-event.clientY-
+point.clientY-
 rect.top
 
 };
@@ -734,12 +865,12 @@ rect.top
 
 function scratch(event){
 
-if(scratchFinished)
+if(scratchCompleted)
 return;
 
 event.preventDefault();
 
-const pos =
+const position =
 getPosition(event);
 
 ctx.globalCompositeOperation=
@@ -748,8 +879,8 @@ ctx.globalCompositeOperation=
 ctx.beginPath();
 
 ctx.arc(
-pos.x,
-pos.y,
+position.x,
+position.y,
 20,
 0,
 Math.PI*2
@@ -757,9 +888,21 @@ Math.PI*2
 
 ctx.fill();
 
-checkScratchPercentage(
+
+/*
+   Check after enough scratching
+*/
+
+setTimeout(
+function(){
+
+checkScratch(
 canvas,
 option
+);
+
+},
+0
 );
 
 }
@@ -772,6 +915,7 @@ canvas.addEventListener(
 function(event){
 
 drawing=true;
+
 scratch(event);
 
 }
@@ -813,6 +957,7 @@ canvas.addEventListener(
 function(event){
 
 drawing=true;
+
 scratch(event);
 
 },
@@ -843,30 +988,33 @@ drawing=false;
 
 
 /* =====================================================
-   SCRATCH DETECTION
-   ===================================================== */
+   CHECK SCRATCH %
+===================================================== */
 
-function checkScratchPercentage(
+function checkScratch(
 canvas,
 option
 ){
 
-const now=Date.now();
-
-if(
-now-lastScratchCheck<300
-)
+if(scratchCompleted)
 return;
 
-lastScratchCheck=now;
 
 const ctx =
 canvas.getContext("2d");
 
-const width=canvas.width;
-const height=canvas.height;
+const width =
+canvas.width;
 
-const pixels =
+const height =
+canvas.height;
+
+
+/*
+   Sample pixels
+*/
+
+const image =
 ctx.getImageData(
 0,
 0,
@@ -877,27 +1025,30 @@ height
 let transparent=0;
 let total=0;
 
-const step=16;
+
+/*
+   Sampling every 12 pixels
+*/
 
 for(
 let y=0;
 y<height;
-y+=step
+y+=12
 ){
 
 for(
 let x=0;
 x<width;
-x+=step
+x+=12
 ){
 
-const index=
+const index =
 (y*width+x)*4;
 
 total++;
 
 if(
-pixels[index+3]<100
+image[index+3]<100
 ){
 
 transparent++;
@@ -908,22 +1059,20 @@ transparent++;
 
 }
 
-const percentage =
+
+const percent =
 (transparent/total)*100;
 
 
 /*
- * 35% scratch required
- */
+   Reveal after 30%
+*/
 
-if(
-percentage>=35 &&
-!scratchFinished
-){
+if(percent>=30){
 
-scratchFinished=true;
+scratchCompleted=true;
 
-revealSelectedOption(option);
+revealReward(option);
 
 }
 
@@ -932,36 +1081,32 @@ revealSelectedOption(option);
 
 /* =====================================================
    REVEAL REWARD
-   ===================================================== */
+===================================================== */
 
-async function revealSelectedOption(option){
+async function revealReward(option){
 
 selectedOption=option;
 
 
-/*
- * Remove the other card
- */
-
-const otherCard =
-option==="DISCOUNT"
+const other =
+option==="GIFT"
 ?
-document.getElementById("giftCard")
+document.getElementById("discountChoice")
 :
-document.getElementById("discountCard");
+document.getElementById("giftChoice");
 
-otherCard.style.display="none";
+
+other.style.display="none";
 
 
 const message =
-document.getElementById("scratchMessage");
+document.getElementById("choiceMessage");
 
-message.style.display="block";
-
-message.className="message";
-
-message.innerText=
-"Revealing your surprise...";
+showMessage(
+message,
+"Revealing your surprise...",
+"info"
+);
 
 
 try{
@@ -976,68 +1121,65 @@ encodeURIComponent(currentOrderId)+
 encodeURIComponent(option)
 );
 
+
 const data =
 await response.json();
 
 
 if(!data.success){
 
-message.className=
-"message error";
-
-message.innerText=
+showMessage(
+message,
 data.message ||
-"Unable to select reward.";
+"Unable to reveal reward.",
+"error"
+);
 
-scratchFinished=false;
+scratchCompleted=false;
+
+other.style.display="block";
 
 return;
+
 }
 
 
-/* Show result */
+/*
+   Hide scratch section
+*/
 
 document
-.getElementById("scratchSection")
+.getElementById("choiceSection")
 .classList.add("hidden");
+
 
 document
 .getElementById("resultSection")
 .classList.remove("hidden");
 
 
-document
-.getElementById("selectedOptionText")
-.innerText=
-option==="DISCOUNT"
-?
-"Special Discount"
-:
-"Special Gift";
-
-
-/* Discount */
+/*
+   Display actual reward
+*/
 
 if(option==="DISCOUNT"){
 
-const discount=
+const discount =
 formatDiscount(data.discount);
 
+
 document
-.getElementById("rewardText")
-.innerText=
+.getElementById("rewardValue")
+.innerText =
 discount+"% OFF";
 
 }
 
-
-/* Gift */
-
 else{
 
 document
-.getElementById("rewardText")
-.innerText=
+.getElementById("rewardValue")
+.innerText =
 "🎁 "+
 (
 data.gift ||
@@ -1049,10 +1191,11 @@ data.gift ||
 
 document
 .getElementById("rewardCode")
-.innerText=
+.innerText =
 "Code: "+
 (
-data.rewardCode || ""
+data.rewardCode ||
+""
 );
 
 }
@@ -1061,11 +1204,11 @@ catch(error){
 
 console.error(error);
 
-message.className=
-"message error";
-
-message.innerText=
-"Unable to connect to the reward system.";
+showMessage(
+message,
+"Unable to connect to the reward system.",
+"error"
+);
 
 }
 
@@ -1073,29 +1216,18 @@ message.innerText=
 
 
 /* =====================================================
-   OTHER OPTION PREVIEW
-   ===================================================== */
+   OTHER OFFER PREVIEW
+===================================================== */
 
 async function showOtherOffer(){
 
-const button =
-document.getElementById(
-"otherOfferButton"
-);
+const box =
+document.getElementById("previewBox");
 
-const result =
-document.getElementById(
-"otherResult"
-);
+box.style.display="block";
 
-button.style.pointerEvents="none";
-
-button.innerText=
-"Checking other option...";
-
-result.style.display="block";
-
-result.innerText="Please wait...";
+box.innerHTML=
+"Loading preview...";
 
 
 try{
@@ -1103,9 +1235,11 @@ try{
 const response =
 await fetch(
 API_URL+
-"?action=otherOffer&orderId="+
+"?action=otherOffer"+
+"&orderId="+
 encodeURIComponent(currentOrderId)
 );
+
 
 const data =
 await response.json();
@@ -1113,54 +1247,52 @@ await response.json();
 
 if(!data.success){
 
-result.innerText=
+box.innerText =
 data.message ||
 "Unable to show preview.";
 
 return;
+
 }
 
 
 /*
- * Discount selected
- * → show gift preview
- */
+   Customer selected DISCOUNT
+   Show highest gift
+*/
 
 if(selectedOption==="DISCOUNT"){
 
-result.innerHTML=
-"🎁 The other option could have been a <strong>"+
+box.innerHTML =
+"🎁 The other option could have been a "+
+"<strong>"+
 escapeHtml(
 data.gift ||
 "Premium VasuGrow Gift"
 )+
 "</strong>."+
 "<br><br>"+
-"<small>"+
+"<span>"+
 "This is only a preview. Your selected reward remains unchanged."+
-"</small>";
+"</span>";
 
 }
 
 
 /*
- * Gift selected
- * → show highest discount
- */
+   Customer selected GIFT
+   Show 20% OFF
+*/
 
 else{
 
-const discount=
-formatDiscount(data.discount);
-
-result.innerHTML=
-"💰 The other option could have been <strong>"+
-discount+
-"% OFF</strong> on your next order."+
+box.innerHTML =
+"💰 The other option could have been "+
+"<strong>20% OFF</strong> on your next order."+
 "<br><br>"+
-"<small>"+
+"<span>"+
 "This is only a preview. Your selected reward remains unchanged."+
-"</small>";
+"</span>";
 
 }
 
@@ -1170,17 +1302,8 @@ catch(error){
 
 console.error(error);
 
-result.innerText=
+box.innerText =
 "Unable to load preview.";
-
-}
-
-finally{
-
-button.style.pointerEvents="auto";
-
-button.innerText=
-"Want to see what your other option could have offered?";
 
 }
 
@@ -1188,8 +1311,8 @@ button.innerText=
 
 
 /* =====================================================
-   CUSTOMER DETAILS
-   ===================================================== */
+   SUBMIT DETAILS
+===================================================== */
 
 async function submitDetails(){
 
@@ -1211,6 +1334,7 @@ document.getElementById("submitButton");
 const message =
 document.getElementById("detailsMessage");
 
+
 message.style.display="none";
 
 
@@ -1219,10 +1343,11 @@ if(!name){
 showMessage(
 message,
 "Please enter your name.",
-false
+"error"
 );
 
 return;
+
 }
 
 
@@ -1231,10 +1356,11 @@ if(!/^[0-9]{10}$/.test(mobile)){
 showMessage(
 message,
 "Please enter a valid 10-digit mobile number.",
-false
+"error"
 );
 
 return;
+
 }
 
 
@@ -1256,6 +1382,7 @@ encodeURIComponent(name)+
 encodeURIComponent(mobile)
 );
 
+
 const data =
 await response.json();
 
@@ -1266,21 +1393,34 @@ showMessage(
 message,
 data.message ||
 "Unable to submit details.",
-false
+"error"
 );
 
 button.disabled=false;
 button.innerText="SUBMIT DETAILS";
 
 return;
+
 }
 
 
-showMessage(
-message,
-"🎉 Your reward details have been successfully registered!",
-true
-);
+/*
+   Hide normal message
+*/
+
+message.style.display="none";
+
+
+/*
+   Show success box
+*/
+
+document
+.getElementById("successBox")
+.classList.remove("hidden");
+
+
+button.disabled=true;
 
 button.innerText=
 "DETAILS SUBMITTED";
@@ -1293,12 +1433,14 @@ console.error(error);
 
 showMessage(
 message,
-"Unable to connect to the reward system. Please try again.",
-false
+"Unable to connect to the reward system.",
+"error"
 );
 
 button.disabled=false;
-button.innerText="SUBMIT DETAILS";
+
+button.innerText=
+"SUBMIT DETAILS";
 
 }
 
@@ -1307,34 +1449,30 @@ button.innerText="SUBMIT DETAILS";
 
 /* =====================================================
    FORMAT DISCOUNT
-   ===================================================== */
+===================================================== */
 
 function formatDiscount(value){
 
-let number=Number(value);
+let number =
+Number(value);
 
 
 /*
- * 5 → 5%
- * 10 → 10%
- * 15 → 15%
- * 20 → 20%
- *
- * Also handles:
- * 0.05 → 5%
- * 0.10 → 10%
- * 0.15 → 15%
- * 0.20 → 20%
- */
+   Handles both:
+   20 → 20%
+   0.20 → 20%
+*/
 
 if(
 number>0 &&
 number<1
 ){
 
-number*=100;
+number =
+number*100;
 
 }
+
 
 return Number(
 number.toFixed(2)
@@ -1345,20 +1483,16 @@ number.toFixed(2)
 
 /* =====================================================
    MESSAGE
-   ===================================================== */
+===================================================== */
 
 function showMessage(
 element,
 text,
-success
+type
 ){
 
-element.className=
-success
-?
-"message success"
-:
-"message error";
+element.className =
+"message "+type;
 
 element.innerText=text;
 
@@ -1368,8 +1502,8 @@ element.style.display="block";
 
 
 /* =====================================================
-   SECURITY
-   ===================================================== */
+   HTML ESCAPE
+===================================================== */
 
 function escapeHtml(value){
 
@@ -1385,7 +1519,7 @@ return String(value || "")
 
 /* =====================================================
    ENTER KEY
-   ===================================================== */
+===================================================== */
 
 document
 .getElementById("orderId")
