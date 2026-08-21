@@ -1,8 +1,12 @@
+# VasuGrow Rewards — Final `index.html`
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VasuGrow Rewards</title>
 
 <style>
@@ -115,9 +119,9 @@ button:disabled{
   color:#174d32;
 }
 
-/* =========================
-   SCRATCH OPTIONS
-========================= */
+/* =====================================================
+   REWARD CHOICES
+===================================================== */
 
 .choice-area{
   display:grid;
@@ -126,27 +130,27 @@ button:disabled{
   margin-top:25px;
 }
 
-.scratch-card{
+.reward-choice{
   position:relative;
-  height:210px;
-  overflow:hidden;
+  height:205px;
   border-radius:17px;
   background:#faf7ee;
   border:1px solid #dfcfaa;
+  overflow:hidden;
 }
 
-.card-content{
+.choice-content{
   position:absolute;
   inset:0;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:12px;
+  padding:15px;
 }
 
 .icon{
-  font-size:42px;
+  font-size:44px;
   margin-bottom:12px;
 }
 
@@ -160,43 +164,33 @@ button:disabled{
   color:#888;
   font-size:11px;
   margin-top:8px;
+  line-height:1.4;
 }
 
-.scratch-card canvas{
+/* GIFT BUTTON */
+
+.gift-button{
+  margin-top:17px;
+  width:auto;
+  padding:10px 17px;
+  font-size:12px;
+  background:#174d32;
+}
+
+/* DISCOUNT SCRATCH */
+
+.discount-card canvas{
   position:absolute;
-  left:0;
-  top:0;
+  inset:0;
   width:100%;
   height:100%;
   z-index:5;
   touch-action:none;
 }
 
-/* LOCKED CARD */
-
-.locked{
-  opacity:.35;
-  pointer-events:none;
-}
-
-.lock-overlay{
-  position:absolute;
-  inset:0;
-  z-index:10;
-  background:rgba(23,77,50,.82);
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:15px;
-  font-weight:700;
-  font-size:13px;
-}
-
-/* =========================
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
 .reward-box{
   margin-top:20px;
@@ -217,6 +211,7 @@ button:disabled{
   font-size:27px;
   font-weight:800;
   margin-top:8px;
+  line-height:1.3;
 }
 
 .reward-code{
@@ -231,6 +226,10 @@ button:disabled{
   letter-spacing:1px;
 }
 
+/* =====================================================
+   OTHER OFFER
+===================================================== */
+
 .preview-link{
   display:inline-block;
   margin-top:20px;
@@ -242,7 +241,7 @@ button:disabled{
 
 .preview-box{
   display:none;
-  margin-top:15px;
+  margin-top:14px;
   padding:15px;
   background:#faf7ef;
   border:1px solid #e7ddc6;
@@ -257,9 +256,9 @@ button:disabled{
   font-size:18px;
 }
 
-/* =========================
+/* =====================================================
    DETAILS
-========================= */
+===================================================== */
 
 .details-box{
   margin-top:24px;
@@ -308,9 +307,11 @@ button:disabled{
 }
 
 @media(max-width:370px){
+
   .choice-area{
     grid-template-columns:1fr;
   }
+
 }
 </style>
 </head>
@@ -319,201 +320,235 @@ button:disabled{
 
 <div class="container">
 
-<div class="logo">VASUGROW</div>
-<div class="tagline">HARVEST TO HEALTH</div>
+  <div class="logo">VASUGROW</div>
+  <div class="tagline">HARVEST TO HEALTH</div>
 
 
-<!-- =========================
-     ORDER SECTION
-========================= -->
+  <!-- =================================================
+       ORDER SECTION
+  ================================================== -->
 
-<section id="orderSection">
+  <section id="orderSection">
 
-<h1>🎁 Your VasuGrow Reward</h1>
+    <h1>🎁 Your VasuGrow Reward</h1>
 
-<p>
-Enter the Order ID printed on your VasuGrow order.
-</p>
+    <p>
+      Enter the Order ID printed on your VasuGrow order.
+    </p>
 
-<input
-id="orderId"
-type="text"
-placeholder="VG-ORD-002"
-autocomplete="off"
->
+    <input
+      id="orderId"
+      type="text"
+      placeholder="VG-ORD-002"
+      autocomplete="off"
+    >
 
-<button id="continueBtn">
-CONTINUE
-</button>
+    <button id="continueBtn">
+      CONTINUE
+    </button>
 
-<p class="small">
-Thank you for choosing VasuGrow.<br>
-Enter your Order ID to unlock your special surprise.
-</p>
+    <p class="small">
+      Thank you for choosing VasuGrow.
+      Enter your Order ID to unlock your special surprise.
+    </p>
 
-<div id="orderMessage" class="message"></div>
+    <div id="orderMessage" class="message"></div>
 
-</section>
+  </section>
 
 
-<!-- =========================
-     CHOICE SECTION
-========================= -->
+  <!-- =================================================
+       REWARD CHOICE
+  ================================================== -->
 
-<section id="choiceSection" class="hidden">
+  <section id="choiceSection" class="hidden">
 
-<h1>🎁 Your Special Reward</h1>
+    <h1>🎁 Your Special Reward</h1>
 
-<p>
-You can reveal <strong>ONE</strong> reward.<br>
-Choose carefully!
-</p>
+    <p>
+      You can reveal <strong>one</strong> reward.
+      Choose carefully!
+    </p>
 
-<div class="choice-area">
+    <div class="choice-area">
 
 
-<!-- GIFT -->
+      <!-- ================================
+           SURPRISE GIFT
+      ================================= -->
 
-<div class="scratch-card" id="giftCard">
+      <div class="reward-choice">
 
-<div class="card-content">
+        <div class="choice-content">
 
-<div class="icon">🎁</div>
+          <div class="icon">🎁</div>
 
-<div class="card-title">
-SURPRISE GIFT
-</div>
+          <div class="card-title">
+            SURPRISE GIFT
+          </div>
 
-<div class="card-subtitle">
-Scratch to reveal
-</div>
+          <div class="card-subtitle">
+            Choose this option<br>
+            for a special VasuGrow gift
+          </div>
 
-</div>
+          <button
+            id="giftButton"
+            class="gift-button"
+          >
+            CHOOSE GIFT
+          </button>
 
-<canvas id="giftCanvas"></canvas>
+        </div>
 
-</div>
+      </div>
 
 
-<!-- DISCOUNT -->
+      <!-- ================================
+           DISCOUNT SCRATCH CARD
+      ================================= -->
 
-<div class="scratch-card" id="discountCard">
+      <div
+        class="reward-choice discount-card"
+      >
 
-<div class="card-content">
+        <div class="choice-content">
 
-<div class="icon">🏷️</div>
+          <div class="icon">🏷️</div>
 
-<div class="card-title">
-DISCOUNT
-</div>
+          <div class="card-title">
+            DISCOUNT
+          </div>
 
-<div class="card-subtitle">
-Scratch to reveal
-</div>
+          <div class="card-subtitle">
+            Scratch to reveal<br>
+            your special discount
+          </div>
 
-</div>
+        </div>
 
-<canvas id="discountCanvas"></canvas>
+        <canvas id="discountCanvas"></canvas>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-<div id="choiceMessage" class="message"></div>
+    <div id="choiceMessage" class="message"></div>
 
-</section>
+  </section>
 
 
-<!-- =========================
-     RESULT
-========================= -->
+  <!-- =================================================
+       RESULT SECTION
+  ================================================== -->
 
-<section id="resultSection" class="hidden">
+  <section id="resultSection" class="hidden">
 
-<h1>🎉 Your Surprise Is Ready!</h1>
+    <h1>🎉 Your Surprise Is Ready!</h1>
 
-<p>
-Your selected VasuGrow reward is:
-</p>
+    <p>
+      Your selected VasuGrow reward is:
+    </p>
 
-<div class="reward-box">
 
-<div class="reward-title">
-YOUR REWARD
-</div>
+    <div class="reward-box">
 
-<div id="rewardValue" class="reward-value"></div>
+      <div class="reward-title">
+        YOUR REWARD
+      </div>
 
-<div id="rewardCode" class="reward-code"></div>
+      <div
+        id="rewardValue"
+        class="reward-value"
+      ></div>
 
-<p class="small">
-Keep this code safely. You may need it to claim your reward.
-</p>
+      <div
+        id="rewardCode"
+        class="reward-code"
+      ></div>
 
-</div>
+      <p class="small">
+        Keep this code safely. You may need it to claim your reward.
+      </p>
 
+    </div>
 
-<!-- OTHER OFFER -->
 
-<div id="previewLink" class="preview-link">
-Want to see what the other option could have offered?
-</div>
+    <!-- OTHER OPTION -->
 
-<div id="previewBox" class="preview-box"></div>
+    <div
+      id="previewLink"
+      class="preview-link"
+    >
+      Want to see what the other option could have offered?
+      <br>
+      <strong>Check the other offer</strong>
+    </div>
 
+    <div
+      id="previewBox"
+      class="preview-box"
+    ></div>
 
-<!-- CUSTOMER DETAILS -->
 
-<div class="details-box">
+    <!-- CUSTOMER DETAILS -->
 
-<h1>📱 Claim Your Reward</h1>
+    <div class="details-box">
 
-<p>
-Enter your details so we can process your reward.
-</p>
+      <h1>📱 Claim Your Reward</h1>
 
-<label>Your Name</label>
+      <p>
+        Enter your details so we can process your reward.
+      </p>
 
-<input
-id="customerName"
-type="text"
-placeholder="Enter your name"
->
+      <label>Your Name</label>
 
-<label>Mobile Number</label>
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Enter your name"
+      >
 
-<input
-id="customerMobile"
-type="tel"
-maxlength="10"
-inputmode="numeric"
-placeholder="10-digit mobile number"
->
+      <label>Mobile Number</label>
 
-<button id="submitBtn">
-SUBMIT DETAILS
-</button>
+      <input
+        id="customerMobile"
+        type="tel"
+        maxlength="10"
+        inputmode="numeric"
+        placeholder="10-digit mobile number"
+      >
 
-<div id="detailsMessage" class="message"></div>
+      <button id="submitBtn">
+        SUBMIT DETAILS
+      </button>
 
-<div id="successBox" class="success-box hidden">
+      <div
+        id="detailsMessage"
+        class="message"
+      ></div>
 
-🎉 Your reward details have been successfully registered.
+      <div
+        id="successBox"
+        class="success-box hidden"
+      >
 
-<br><br>
+        🎉 Your reward details have been successfully registered.
 
-Please keep your reward code safely.
+        <br><br>
 
-</div>
+        Please keep your reward code safely.
 
-</div>
+      </div>
 
-</section>
+    </div>
 
+  </section>
 
-<div class="footer">
-© VasuGrow Nuts · Harvest to Health
-</div>
+
+  <div class="footer">
+    © VasuGrow Nuts · Harvest to Health
+  </div>
 
 </div>
 
@@ -521,15 +556,23 @@ Please keep your reward code safely.
 <script>
 
 /* =====================================================
-   VASUGROW API
+   VASUGROW GOOGLE APPS SCRIPT API
+
+   NEW WORKING URL
 ===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbydP4ASjn_UYXK3cjGkkPVQ3JkcUnoiu-GSkrQRtkJniTKMe84v398ZUw8XPxHCwZ7a/exec";
 
 
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
 let currentOrderId = "";
+
 let selectedOption = "";
+
 let rewardRevealed = false;
 
 
@@ -551,6 +594,12 @@ document.getElementById("orderId");
 
 const continueBtn =
 document.getElementById("continueBtn");
+
+const giftButton =
+document.getElementById("giftButton");
+
+const discountCanvas =
+document.getElementById("discountCanvas");
 
 const orderMessage =
 document.getElementById("orderMessage");
@@ -585,12 +634,6 @@ document.getElementById("detailsMessage");
 const successBox =
 document.getElementById("successBox");
 
-const giftCard =
-document.getElementById("giftCard");
-
-const discountCard =
-document.getElementById("discountCard");
-
 
 /* =====================================================
    MESSAGE
@@ -598,14 +641,14 @@ document.getElementById("discountCard");
 
 function showMessage(element,text,type){
 
-element.className =
-"message " + type;
+  element.className =
+  "message " + type;
 
-element.innerText =
-text;
+  element.innerText =
+  text;
 
-element.style.display =
-"block";
+  element.style.display =
+  "block";
 
 }
 
@@ -615,402 +658,465 @@ element.style.display =
 ===================================================== */
 
 continueBtn.addEventListener(
-"click",
-checkOrder
+  "click",
+  checkOrder
 );
 
+
 orderIdInput.addEventListener(
-"keydown",
-function(e){
+  "keydown",
+  function(e){
 
-if(e.key === "Enter"){
-checkOrder();
-}
+    if(e.key === "Enter"){
+      checkOrder();
+    }
 
-});
+  }
+);
 
 
 async function checkOrder(){
 
-const orderId =
-orderIdInput.value
-.trim()
-.toUpperCase();
+  const orderId =
+  orderIdInput.value
+  .trim()
+  .toUpperCase();
 
 
-orderMessage.style.display =
-"none";
+  orderMessage.style.display =
+  "none";
 
 
-if(!orderId){
+  if(!orderId){
 
-showMessage(
-orderMessage,
-"Please enter your Order ID.",
-"error"
-);
+    showMessage(
+      orderMessage,
+      "Please enter your Order ID.",
+      "error"
+    );
 
-return;
+    return;
 
-}
-
-
-continueBtn.disabled = true;
-continueBtn.innerText = "CHECKING...";
+  }
 
 
-try{
+  continueBtn.disabled =
+  true;
 
-const url =
-API_URL +
-"?action=checkOrder&orderId=" +
-encodeURIComponent(orderId);
-
-
-const response =
-await fetch(url);
+  continueBtn.innerText =
+  "CHECKING...";
 
 
-if(!response.ok){
+  try{
 
-throw new Error(
-"HTTP " + response.status
-);
-
-}
-
-
-const data =
-await response.json();
+    const url =
+    API_URL +
+    "?action=checkOrder&orderId=" +
+    encodeURIComponent(orderId);
 
 
-console.log("CHECK ORDER:",data);
+    const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+        redirect:"follow"
+      }
+    );
 
 
-if(!data.success){
+    if(!response.ok){
 
-showMessage(
-orderMessage,
-data.message || "Invalid Order ID.",
-"error"
-);
+      throw new Error(
+        "HTTP " + response.status
+      );
 
-return;
-
-}
+    }
 
 
-if(data.alreadySelected){
-
-showMessage(
-orderMessage,
-"This Order ID has already been used.",
-"error"
-);
-
-return;
-
-}
+    const data =
+    await response.json();
 
 
-currentOrderId =
-data.orderId || orderId;
+    console.log(
+      "CHECK ORDER:",
+      data
+    );
 
 
-/* RESET */
+    if(!data.success){
 
-rewardRevealed = false;
-selectedOption = "";
+      showMessage(
+        orderMessage,
+        data.message ||
+        "Invalid Order ID.",
+        "error"
+      );
 
-choiceMessage.style.display = "none";
+      return;
 
-giftCard.classList.remove("locked");
-discountCard.classList.remove("locked");
-
-
-orderSection.classList.add("hidden");
-
-choiceSection.classList.remove("hidden");
+    }
 
 
-setTimeout(
-createScratchCards,
-150
-);
+    if(data.alreadySelected){
 
-}
-catch(error){
+      showMessage(
+        orderMessage,
+        "This Order ID has already been used.",
+        "error"
+      );
 
-console.error(error);
+      return;
 
-showMessage(
-orderMessage,
-"Unable to connect to VasuGrow Reward System.",
-"error"
-);
-
-}
-finally{
-
-continueBtn.disabled = false;
-continueBtn.innerText = "CONTINUE";
-
-}
-
-}
+    }
 
 
-/* =====================================================
-   CREATE SCRATCH CARDS
-===================================================== */
+    currentOrderId =
+    data.orderId ||
+    orderId;
 
-function createScratchCards(){
 
-createScratchCard(
-document.getElementById("giftCanvas"),
-"GIFT"
-);
+    orderSection
+    .classList
+    .add("hidden");
 
-createScratchCard(
-document.getElementById("discountCanvas"),
-"DISCOUNT"
-);
+
+    choiceSection
+    .classList
+    .remove("hidden");
+
+
+    setTimeout(
+      createDiscountScratch,
+      100
+    );
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    showMessage(
+      orderMessage,
+      "Unable to connect to VasuGrow Reward System.",
+      "error"
+    );
+
+  }
+
+  finally{
+
+    continueBtn.disabled =
+    false;
+
+    continueBtn.innerText =
+    "CONTINUE";
+
+  }
 
 }
 
 
 /* =====================================================
-   SCRATCH CARD
+   GIFT SELECTION
 ===================================================== */
 
-function createScratchCard(canvas,option){
+giftButton.addEventListener(
+  "click",
+  function(){
 
-const parent =
-canvas.parentElement;
+    if(rewardRevealed){
+      return;
+    }
 
-const width =
-parent.clientWidth;
+    revealReward("GIFT");
 
-const height =
-parent.clientHeight;
-
-const ratio =
-window.devicePixelRatio || 1;
-
-
-canvas.width =
-width * ratio;
-
-canvas.height =
-height * ratio;
-
-canvas.style.width =
-width + "px";
-
-canvas.style.height =
-height + "px";
-
-
-const ctx =
-canvas.getContext("2d");
-
-ctx.scale(ratio,ratio);
-
-
-/* SCRATCH SURFACE */
-
-const gradient =
-ctx.createLinearGradient(
-0,0,width,height
-);
-
-gradient.addColorStop(
-0,
-"#777"
-);
-
-gradient.addColorStop(
-0.5,
-"#e6e6e6"
-);
-
-gradient.addColorStop(
-1,
-"#777"
-);
-
-ctx.fillStyle =
-gradient;
-
-ctx.fillRect(
-0,0,width,height
+  }
 );
 
 
-/* TEXT */
+/* =====================================================
+   DISCOUNT SCRATCH CARD
+===================================================== */
 
-ctx.textAlign = "center";
-ctx.textBaseline = "middle";
+function createDiscountScratch(){
 
-ctx.font =
-"bold 15px Arial";
+  const canvas =
+  discountCanvas;
 
-ctx.fillStyle =
-"#174d32";
-
-ctx.fillText(
-"SCRATCH TO REVEAL",
-width/2,
-height/2-10
-);
-
-ctx.font =
-"11px Arial";
-
-ctx.fillStyle =
-"#555";
-
-ctx.fillText(
-"Your surprise is waiting",
-width/2,
-height/2+16
-);
+  const parent =
+  canvas.parentElement;
 
 
-let scratching = false;
+  const width =
+  parent.clientWidth;
+
+  const height =
+  parent.clientHeight;
 
 
-function getPosition(e){
-
-const rect =
-canvas.getBoundingClientRect();
-
-const point =
-e.touches && e.touches.length
-? e.touches[0]
-: e;
-
-return{
-
-x:
-point.clientX - rect.left,
-
-y:
-point.clientY - rect.top
-
-};
-
-}
+  const ratio =
+  window.devicePixelRatio || 1;
 
 
-function scratch(e){
+  canvas.width =
+  width * ratio;
 
-if(rewardRevealed)
-return;
-
-e.preventDefault();
-
-const pos =
-getPosition(e);
-
-ctx.globalCompositeOperation =
-"destination-out";
-
-ctx.beginPath();
-
-ctx.arc(
-pos.x,
-pos.y,
-24,
-0,
-Math.PI*2
-);
-
-ctx.fill();
-
-checkScratch(
-canvas,
-option
-);
-
-}
+  canvas.height =
+  height * ratio;
 
 
-/* MOUSE */
+  canvas.style.width =
+  width + "px";
 
-canvas.addEventListener(
-"mousedown",
-function(e){
-
-scratching = true;
-scratch(e);
-
-}
-);
-
-canvas.addEventListener(
-"mousemove",
-function(e){
-
-if(scratching){
-scratch(e);
-}
-
-}
-);
-
-canvas.addEventListener(
-"mouseup",
-function(){
-
-scratching = false;
-
-}
-);
-
-canvas.addEventListener(
-"mouseleave",
-function(){
-
-scratching = false;
-
-}
-);
+  canvas.style.height =
+  height + "px";
 
 
-/* TOUCH */
+  const ctx =
+  canvas.getContext("2d");
 
-canvas.addEventListener(
-"touchstart",
-function(e){
 
-scratching = true;
-scratch(e);
+  ctx.scale(
+    ratio,
+    ratio
+  );
 
-},
-{passive:false}
-);
 
-canvas.addEventListener(
-"touchmove",
-function(e){
+  /* SCRATCH COATING */
 
-if(scratching){
-scratch(e);
-}
+  const gradient =
+  ctx.createLinearGradient(
+    0,
+    0,
+    width,
+    height
+  );
 
-},
-{passive:false}
-);
 
-canvas.addEventListener(
-"touchend",
-function(){
+  gradient.addColorStop(
+    0,
+    "#999999"
+  );
 
-scratching = false;
+  gradient.addColorStop(
+    0.5,
+    "#eeeeee"
+  );
 
-}
-);
+  gradient.addColorStop(
+    1,
+    "#888888"
+  );
+
+
+  ctx.fillStyle =
+  gradient;
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /* SCRATCH TEXT */
+
+  ctx.textAlign =
+  "center";
+
+  ctx.textBaseline =
+  "middle";
+
+
+  ctx.font =
+  "bold 15px Arial";
+
+  ctx.fillStyle =
+  "#174d32";
+
+
+  ctx.fillText(
+    "SCRATCH TO REVEAL",
+    width / 2,
+    height / 2 - 10
+  );
+
+
+  ctx.font =
+  "11px Arial";
+
+  ctx.fillStyle =
+  "#555";
+
+
+  ctx.fillText(
+    "Your discount is waiting",
+    width / 2,
+    height / 2 + 16
+  );
+
+
+  let scratching =
+  false;
+
+
+  function getPosition(e){
+
+    const rect =
+    canvas.getBoundingClientRect();
+
+
+    const point =
+    e.touches &&
+    e.touches.length
+      ? e.touches[0]
+      : e;
+
+
+    return {
+
+      x:
+      point.clientX -
+      rect.left,
+
+      y:
+      point.clientY -
+      rect.top
+
+    };
+
+  }
+
+
+  function scratch(e){
+
+    if(rewardRevealed){
+      return;
+    }
+
+
+    e.preventDefault();
+
+
+    const pos =
+    getPosition(e);
+
+
+    ctx.globalCompositeOperation =
+    "destination-out";
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      pos.x,
+      pos.y,
+      22,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+
+    checkScratch(canvas);
+
+  }
+
+
+  /* MOUSE */
+
+  canvas.addEventListener(
+    "mousedown",
+    function(e){
+
+      scratching =
+      true;
+
+      scratch(e);
+
+    }
+  );
+
+
+  canvas.addEventListener(
+    "mousemove",
+    function(e){
+
+      if(scratching){
+        scratch(e);
+      }
+
+    }
+  );
+
+
+  canvas.addEventListener(
+    "mouseup",
+    function(){
+
+      scratching =
+      false;
+
+    }
+  );
+
+
+  canvas.addEventListener(
+    "mouseleave",
+    function(){
+
+      scratching =
+      false;
+
+    }
+  );
+
+
+  /* TOUCH */
+
+  canvas.addEventListener(
+    "touchstart",
+    function(e){
+
+      scratching =
+      true;
+
+      scratch(e);
+
+    },
+    {passive:false}
+  );
+
+
+  canvas.addEventListener(
+    "touchmove",
+    function(e){
+
+      if(scratching){
+        scratch(e);
+      }
+
+    },
+    {passive:false}
+  );
+
+
+  canvas.addEventListener(
+    "touchend",
+    function(){
+
+      scratching =
+      false;
+
+    }
+  );
 
 }
 
@@ -1019,73 +1125,85 @@ scratching = false;
    SCRATCH DETECTION
 ===================================================== */
 
-function checkScratch(canvas,option){
+function checkScratch(canvas){
 
-if(rewardRevealed)
-return;
-
-const ctx =
-canvas.getContext("2d");
-
-const image =
-ctx.getImageData(
-0,
-0,
-canvas.width,
-canvas.height
-).data;
-
-let transparent = 0;
-let total = 0;
+  if(rewardRevealed){
+    return;
+  }
 
 
-/*
- * Sample pixels.
- */
-
-for(
-let y=0;
-y<canvas.height;
-y+=12
-){
-
-for(
-let x=0;
-x<canvas.width;
-x+=12
-){
-
-const index =
-(y*canvas.width+x)*4;
-
-total++;
-
-if(
-image[index+3] < 100
-){
-
-transparent++;
-
-}
-
-}
-
-}
+  const ctx =
+  canvas.getContext("2d");
 
 
-const percent =
-transparent / total * 100;
+  const image =
+  ctx.getImageData(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  ).data;
 
 
-/*
- * Only 20% scratch required.
- */
+  let transparent =
+  0;
 
-if(percent >= 20){
+  let total =
+  0;
 
-revealReward(option);
 
-}
+  /*
+   * Sample pixels instead of
+   * checking every single pixel.
+   */
+
+  for(
+    let y = 0;
+    y < canvas.height;
+    y += 16
+  ){
+
+    for(
+      let x = 0;
+      x < canvas.width;
+      x += 16
+    ){
+
+      const index =
+      (y * canvas.width + x) * 4;
+
+
+      total++;
+
+
+      if(
+        image[index + 3] < 100
+      ){
+
+        transparent++;
+
+      }
+
+    }
+
+  }
+
+
+  const percent =
+  transparent /
+  total *
+  100;
+
+
+  /*
+   * Reveal after 25% scratching.
+   */
+
+  if(percent >= 25){
+
+    revealReward("DISCOUNT");
+
+  }
 
 }
 
@@ -1096,180 +1214,177 @@ revealReward(option);
 
 async function revealReward(option){
 
-if(rewardRevealed)
-return;
+  if(rewardRevealed){
+    return;
+  }
 
 
-/*
- * Immediately lock both cards.
- */
+  rewardRevealed =
+  true;
 
-rewardRevealed = true;
-selectedOption = option;
-
-
-/*
- * Visually lock the other card.
- */
-
-if(option === "GIFT"){
-
-discountCard.classList.add("locked");
-
-}
-else{
-
-giftCard.classList.add("locked");
-
-}
+  selectedOption =
+  option;
 
 
-showMessage(
-choiceMessage,
-"Revealing your reward...",
-"info"
-);
+  showMessage(
+    choiceMessage,
+    "Revealing your reward...",
+    "info"
+  );
 
 
-try{
+  /*
+   * Disable gift button immediately.
+   */
 
-const url =
-API_URL +
-"?action=selectOption" +
-"&orderId=" +
-encodeURIComponent(currentOrderId) +
-"&option=" +
-encodeURIComponent(option);
+  giftButton.disabled =
+  true;
 
 
-const response =
-await fetch(url);
+  try{
+
+    const url =
+    API_URL +
+    "?action=selectOption" +
+    "&orderId=" +
+    encodeURIComponent(
+      currentOrderId
+    ) +
+    "&option=" +
+    encodeURIComponent(
+      option
+    );
 
 
-if(!response.ok){
-
-throw new Error(
-"HTTP " + response.status
-);
-
-}
-
-
-const data =
-await response.json();
+    const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+        redirect:"follow"
+      }
+    );
 
 
-console.log(
-"REWARD:",
-data
-);
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
 
 
-if(!data.success){
-
-rewardRevealed = false;
-
-giftCard.classList.remove("locked");
-discountCard.classList.remove("locked");
-
-showMessage(
-choiceMessage,
-data.message ||
-"Unable to reveal reward.",
-"error"
-);
-
-return;
-
-}
+    const data =
+    await response.json();
 
 
-/*
- * HIDE CHOICE
- */
-
-choiceSection.classList.add("hidden");
-
-
-/*
- * SHOW RESULT
- */
-
-resultSection.classList.remove("hidden");
+    console.log(
+      "REWARD:",
+      data
+    );
 
 
-/*
- * DISCOUNT
- */
+    if(!data.success){
 
-if(option === "DISCOUNT"){
+      rewardRevealed =
+      false;
 
-let discount =
-Number(data.discount);
-
-
-if(
-discount > 0 &&
-discount < 1
-){
-
-discount *= 100;
-
-}
+      giftButton.disabled =
+      false;
 
 
-rewardValue.innerText =
-Number(
-discount.toFixed(2)
-) + "% OFF";
+      showMessage(
+        choiceMessage,
+        data.message ||
+        "Unable to reveal reward.",
+        "error"
+      );
 
-}
+      return;
 
-
-/*
- * GIFT
- */
-
-else{
-
-rewardValue.innerText =
-"🎁 " +
-(
-data.gift ||
-"VasuGrow Premium Gift"
-);
-
-}
+    }
 
 
-/*
- * CODE
- */
+    choiceSection
+    .classList
+    .add("hidden");
 
-rewardCode.innerText =
-"Code: " +
-(
-data.rewardCode ||
-""
-);
 
-}
-catch(error){
+    resultSection
+    .classList
+    .remove("hidden");
 
-console.error(error);
 
-rewardRevealed = false;
+    /* DISCOUNT */
 
-giftCard.classList.remove("locked");
-discountCard.classList.remove("locked");
+    if(option === "DISCOUNT"){
 
-showMessage(
-choiceMessage,
-"Unable to connect to VasuGrow Reward System.",
-"error"
-);
+      let discount =
+      Number(data.discount);
 
-}
+
+      if(
+        discount > 0 &&
+        discount < 1
+      ){
+
+        discount *= 100;
+
+      }
+
+
+      rewardValue.innerText =
+      Number(
+        discount.toFixed(2)
+      ) +
+      "% OFF";
+
+    }
+
+
+    /* GIFT */
+
+    else{
+
+      rewardValue.innerText =
+      "🎁 " +
+      (
+        data.gift ||
+        "VasuGrow Premium Gift"
+      );
+
+    }
+
+
+    rewardCode.innerText =
+    "Code: " +
+    (
+      data.rewardCode ||
+      ""
+    );
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    rewardRevealed =
+    false;
+
+    giftButton.disabled =
+    false;
+
+
+    showMessage(
+      choiceMessage,
+      "Unable to connect to VasuGrow Reward System.",
+      "error"
+    );
+
+  }
 
 }
 
@@ -1279,109 +1394,117 @@ choiceMessage,
 ===================================================== */
 
 previewLink.addEventListener(
-"click",
-showOtherOffer
+  "click",
+  showOtherOffer
 );
 
 
 async function showOtherOffer(){
 
-previewBox.style.display = "block";
-
-previewBox.innerHTML =
-"Loading preview...";
+  previewBox.style.display =
+  "block";
 
 
-try{
-
-const url =
-API_URL +
-"?action=otherOffer&orderId=" +
-encodeURIComponent(currentOrderId);
+  previewBox.innerHTML =
+  "Loading preview...";
 
 
-const response =
-await fetch(url);
+  try{
+
+    const url =
+    API_URL +
+    "?action=otherOffer" +
+    "&orderId=" +
+    encodeURIComponent(
+      currentOrderId
+    );
 
 
-if(!response.ok){
-
-throw new Error(
-"HTTP " + response.status
-);
-
-}
-
-
-const data =
-await response.json();
+    const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+        redirect:"follow"
+      }
+    );
 
 
-console.log(
-"OTHER OFFER:",
-data
-);
+    const data =
+    await response.json();
 
 
-if(!data.success){
-
-previewBox.innerText =
-data.message ||
-"Unable to show preview.";
-
-return;
-
-}
+    console.log(
+      "OTHER OFFER:",
+      data
+    );
 
 
-/*
- * CUSTOMER SELECTED DISCOUNT
- * Show highest-value gift.
- */
+    if(!data.success){
 
-if(selectedOption === "DISCOUNT"){
+      previewBox.innerText =
+      data.message ||
+      "Unable to show preview.";
 
-previewBox.innerHTML =
-"🎁 The other option could have been " +
-"<strong>" +
-escapeHTML(
-data.gift ||
-"Premium VasuGrow Gift"
-) +
-"</strong>." +
-"<br><br>" +
-"This is only a preview. " +
-"Your selected reward remains unchanged.";
+      return;
 
-}
+    }
 
 
-/*
- * CUSTOMER SELECTED GIFT
- * Show 20% OFF on next order.
- */
+    /*
+     * CUSTOMER SELECTED DISCOUNT
+     *
+     * Show highest-value gift.
+     */
 
-else{
+    if(
+      selectedOption ===
+      "DISCOUNT"
+    ){
 
-previewBox.innerHTML =
-"💰 The other option could have been " +
-"<strong>20% OFF</strong> " +
-"on your next order." +
-"<br><br>" +
-"This is only a preview. " +
-"Your selected reward remains unchanged.";
+      previewBox.innerHTML =
+      "🎁 The other option could have been " +
+      "<strong>" +
+      escapeHTML(
+        data.gift ||
+        "Premium VasuGrow Gift"
+      ) +
+      "</strong>." +
+      "<br><br>" +
+      "This is only a preview. " +
+      "Your selected reward remains unchanged.";
 
-}
+    }
 
-}
-catch(error){
 
-console.error(error);
+    /*
+     * CUSTOMER SELECTED GIFT
+     *
+     * Show 20% OFF.
+     */
 
-previewBox.innerText =
-"Unable to load preview.";
+    else{
 
-}
+      previewBox.innerHTML =
+      "💰 The other option could have been " +
+      "<strong>20% OFF</strong> " +
+      "on your next order." +
+      "<br><br>" +
+      "This is only a preview. " +
+      "Your selected reward remains unchanged.";
+
+    }
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    previewBox.innerText =
+    "Unable to load preview.";
+
+  }
 
 }
 
@@ -1391,130 +1514,152 @@ previewBox.innerText =
 ===================================================== */
 
 submitBtn.addEventListener(
-"click",
-submitDetails
+  "click",
+  submitDetails
 );
 
 
 async function submitDetails(){
 
-const name =
-customerName.value.trim();
-
-const mobile =
-customerMobile.value.trim();
+  const name =
+  customerName.value
+  .trim();
 
 
-detailsMessage.style.display =
-"none";
+  const mobile =
+  customerMobile.value
+  .trim();
 
 
-if(!name){
-
-showMessage(
-detailsMessage,
-"Please enter your name.",
-"error"
-);
-
-return;
-
-}
+  detailsMessage.style.display =
+  "none";
 
 
-if(
-!/^[0-9]{10}$/.test(mobile)
-){
+  if(!name){
 
-showMessage(
-detailsMessage,
-"Please enter a valid 10-digit mobile number.",
-"error"
-);
+    showMessage(
+      detailsMessage,
+      "Please enter your name.",
+      "error"
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-submitBtn.disabled = true;
-submitBtn.innerText = "SUBMITTING...";
+  if(
+    !/^[0-9]{10}$/.test(
+      mobile
+    )
+  ){
+
+    showMessage(
+      detailsMessage,
+      "Please enter a valid 10-digit mobile number.",
+      "error"
+    );
+
+    return;
+
+  }
 
 
-try{
+  submitBtn.disabled =
+  true;
 
-const url =
-API_URL +
-"?action=submitDetails" +
-"&orderId=" +
-encodeURIComponent(currentOrderId) +
-"&name=" +
-encodeURIComponent(name) +
-"&mobile=" +
-encodeURIComponent(mobile);
+  submitBtn.innerText =
+  "SUBMITTING...";
 
 
-const response =
-await fetch(url);
+  try{
+
+    const url =
+    API_URL +
+    "?action=submitDetails" +
+    "&orderId=" +
+    encodeURIComponent(
+      currentOrderId
+    ) +
+    "&name=" +
+    encodeURIComponent(
+      name
+    ) +
+    "&mobile=" +
+    encodeURIComponent(
+      mobile
+    );
 
 
-if(!response.ok){
-
-throw new Error(
-"HTTP " + response.status
-);
-
-}
-
-
-const data =
-await response.json();
+    const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+        redirect:"follow"
+      }
+    );
 
 
-console.log(
-"DETAILS:",
-data
-);
+    const data =
+    await response.json();
 
 
-if(!data.success){
-
-showMessage(
-detailsMessage,
-data.message ||
-"Unable to submit details.",
-"error"
-);
-
-submitBtn.disabled = false;
-submitBtn.innerText = "SUBMIT DETAILS";
-
-return;
-
-}
+    console.log(
+      "DETAILS:",
+      data
+    );
 
 
-successBox.classList.remove("hidden");
+    if(!data.success){
 
-submitBtn.innerText =
-"DETAILS SUBMITTED";
+      showMessage(
+        detailsMessage,
+        data.message ||
+        "Unable to submit details.",
+        "error"
+      );
 
-}
-catch(error){
 
-console.error(error);
+      submitBtn.disabled =
+      false;
 
-showMessage(
-detailsMessage,
-"Unable to connect to VasuGrow Reward System.",
-"error"
-);
+      submitBtn.innerText =
+      "SUBMIT DETAILS";
 
-submitBtn.disabled = false;
-submitBtn.innerText =
-"SUBMIT DETAILS";
+      return;
 
-}
+    }
+
+
+    successBox
+    .classList
+    .remove("hidden");
+
+
+    submitBtn.innerText =
+    "DETAILS SUBMITTED";
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    showMessage(
+      detailsMessage,
+      "Unable to connect to VasuGrow Reward System.",
+      "error"
+    );
+
+
+    submitBtn.disabled =
+    false;
+
+    submitBtn.innerText =
+    "SUBMIT DETAILS";
+
+  }
 
 }
 
@@ -1525,12 +1670,29 @@ submitBtn.innerText =
 
 function escapeHTML(value){
 
-return String(value || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return String(
+    value || ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
@@ -1538,3 +1700,4 @@ return String(value || "")
 
 </body>
 </html>
+```
