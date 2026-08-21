@@ -1,1 +1,283 @@
-https://script.google.com/macros/s/AKfycbzsZRYg309UINYUL3Az454yUnxDHqb1V8tVp8N8LrAtwMtsfjO9lejq2SMUuYuqN2Ri/exec
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VasuGrow Rewards</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f5f1e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+    }
+
+    .brand {
+      font-size: 32px;
+      font-weight: bold;
+      color: #174d32;
+      margin-bottom: 5px;
+    }
+
+    .tagline {
+      color: #9b7525;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: #174d32;
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #174d32;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0f3b25;
+    }
+
+    button:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .success {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #b71c1c;
+    }
+
+    .reward {
+      font-size: 26px;
+      font-weight: bold;
+      color: #9b7525;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="brand">VASUGROW</div>
+
+    <div class="tagline">
+      Harvest to Health
+    </div>
+
+    <h1>🎁 Your Reward</h1>
+
+    <p>
+      Enter your scratch card code below to check your VasuGrow reward.
+    </p>
+
+    <input
+      type="text"
+      id="code"
+      placeholder="Enter scratch card code"
+      autocomplete="off"
+    >
+
+    <button id="checkButton" onclick="checkReward()">
+      CHECK REWARD
+    </button>
+
+    <div id="message" class="message"></div>
+
+    <div class="footer">
+      © VasuGrow Nuts
+    </div>
+
+  </div>
+
+
+<script>
+
+  /*
+   * GOOGLE APPS SCRIPT API
+   *
+   * This is your deployed Apps Script Web App URL.
+   */
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbzsZRYg309UINYUL3Az454yUnxDHqb1V8tVp8N8LrAtwMtsfjO9lejq2SMUuYuqN2Ri/exec";
+
+
+  async function checkReward() {
+
+    const codeInput = document.getElementById("code");
+    const button = document.getElementById("checkButton");
+    const message = document.getElementById("message");
+
+    const code = codeInput.value.trim();
+
+    message.style.display = "none";
+    message.innerHTML = "";
+
+    if (!code) {
+
+      message.className = "message error";
+      message.innerHTML = "Please enter your scratch card code.";
+      message.style.display = "block";
+
+      return;
+    }
+
+
+    button.disabled = true;
+    button.innerText = "CHECKING...";
+
+
+    try {
+
+      /*
+       * Send the scratch code to Google Apps Script.
+       */
+
+      const response = await fetch(
+        API_URL + "?code=" + encodeURIComponent(code),
+        {
+          method: "GET",
+          redirect: "follow"
+        }
+      );
+
+
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+
+
+      const data = await response.json();
+
+
+      /*
+       * SUCCESS
+       */
+
+      if (data.success) {
+
+        let rewardText =
+          data.reward ||
+          data.message ||
+          "Reward found!";
+
+
+        message.className = "message success";
+
+        message.innerHTML =
+          "<strong>🎉 Congratulations!</strong>" +
+          "<div class='reward'>" +
+          rewardText +
+          "</div>";
+
+
+        message.style.display = "block";
+
+      }
+
+
+      /*
+       * INVALID / USED CODE
+       */
+
+      else {
+
+        message.className = "message error";
+
+        message.innerHTML =
+          data.message ||
+          "Invalid or already used scratch card code.";
+
+        message.style.display = "block";
+      }
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      message.className = "message error";
+
+      message.innerHTML =
+        "Unable to connect to the reward system. " +
+        "Please try again.";
+
+      message.style.display = "block";
+
+    }
+
+
+    button.disabled = false;
+    button.innerText = "CHECK REWARD";
+  }
+
+</script>
+
+</body>
+</html>
