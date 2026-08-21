@@ -6,7 +6,9 @@
 <title>VasuGrow Rewards</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -113,7 +115,9 @@ button:disabled{
   color:#174d32;
 }
 
-/* SCRATCH CARDS */
+/* =========================
+   SCRATCH OPTIONS
+========================= */
 
 .choice-area{
   display:grid;
@@ -124,7 +128,7 @@ button:disabled{
 
 .scratch-card{
   position:relative;
-  height:200px;
+  height:210px;
   overflow:hidden;
   border-radius:17px;
   background:#faf7ee;
@@ -168,7 +172,31 @@ button:disabled{
   touch-action:none;
 }
 
-/* RESULT */
+/* LOCKED CARD */
+
+.locked{
+  opacity:.35;
+  pointer-events:none;
+}
+
+.lock-overlay{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  background:rgba(23,77,50,.82);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:15px;
+  font-weight:700;
+  font-size:13px;
+}
+
+/* =========================
+   RESULT
+========================= */
 
 .reward-box{
   margin-top:20px;
@@ -203,8 +231,6 @@ button:disabled{
   letter-spacing:1px;
 }
 
-/* PREVIEW */
-
 .preview-link{
   display:inline-block;
   margin-top:20px;
@@ -216,7 +242,7 @@ button:disabled{
 
 .preview-box{
   display:none;
-  margin-top:14px;
+  margin-top:15px;
   padding:15px;
   background:#faf7ef;
   border:1px solid #e7ddc6;
@@ -231,7 +257,9 @@ button:disabled{
   font-size:18px;
 }
 
-/* DETAILS */
+/* =========================
+   DETAILS
+========================= */
 
 .details-box{
   margin-top:24px;
@@ -295,7 +323,9 @@ button:disabled{
 <div class="tagline">HARVEST TO HEALTH</div>
 
 
-<!-- ORDER -->
+<!-- =========================
+     ORDER SECTION
+========================= -->
 
 <section id="orderSection">
 
@@ -306,10 +336,10 @@ Enter the Order ID printed on your VasuGrow order.
 </p>
 
 <input
-  id="orderId"
-  type="text"
-  placeholder="VG-ORD-002"
-  autocomplete="off"
+id="orderId"
+type="text"
+placeholder="VG-ORD-002"
+autocomplete="off"
 >
 
 <button id="continueBtn">
@@ -317,7 +347,7 @@ CONTINUE
 </button>
 
 <p class="small">
-Thank you for choosing VasuGrow.
+Thank you for choosing VasuGrow.<br>
 Enter your Order ID to unlock your special surprise.
 </p>
 
@@ -326,14 +356,16 @@ Enter your Order ID to unlock your special surprise.
 </section>
 
 
-<!-- SCRATCH OPTIONS -->
+<!-- =========================
+     CHOICE SECTION
+========================= -->
 
 <section id="choiceSection" class="hidden">
 
 <h1>🎁 Your Special Reward</h1>
 
 <p>
-You can reveal <strong>one</strong> reward.
+You can reveal <strong>ONE</strong> reward.<br>
 Choose carefully!
 </p>
 
@@ -342,7 +374,7 @@ Choose carefully!
 
 <!-- GIFT -->
 
-<div class="scratch-card">
+<div class="scratch-card" id="giftCard">
 
 <div class="card-content">
 
@@ -365,7 +397,7 @@ Scratch to reveal
 
 <!-- DISCOUNT -->
 
-<div class="scratch-card">
+<div class="scratch-card" id="discountCard">
 
 <div class="card-content">
 
@@ -392,7 +424,9 @@ Scratch to reveal
 </section>
 
 
-<!-- RESULT -->
+<!-- =========================
+     RESULT
+========================= -->
 
 <section id="resultSection" class="hidden">
 
@@ -419,7 +453,7 @@ Keep this code safely. You may need it to claim your reward.
 </div>
 
 
-<!-- OTHER OPTION -->
+<!-- OTHER OFFER -->
 
 <div id="previewLink" class="preview-link">
 Want to see what the other option could have offered?
@@ -428,7 +462,7 @@ Want to see what the other option could have offered?
 <div id="previewBox" class="preview-box"></div>
 
 
-<!-- DETAILS -->
+<!-- CUSTOMER DETAILS -->
 
 <div class="details-box">
 
@@ -441,19 +475,19 @@ Enter your details so we can process your reward.
 <label>Your Name</label>
 
 <input
-  id="customerName"
-  type="text"
-  placeholder="Enter your name"
+id="customerName"
+type="text"
+placeholder="Enter your name"
 >
 
 <label>Mobile Number</label>
 
 <input
-  id="customerMobile"
-  type="tel"
-  maxlength="10"
-  inputmode="numeric"
-  placeholder="10-digit mobile number"
+id="customerMobile"
+type="tel"
+maxlength="10"
+inputmode="numeric"
+placeholder="10-digit mobile number"
 >
 
 <button id="submitBtn">
@@ -487,7 +521,7 @@ Please keep your reward code safely.
 <script>
 
 /* =====================================================
-   GOOGLE APPS SCRIPT API
+   VASUGROW API
 ===================================================== */
 
 const API_URL =
@@ -551,6 +585,12 @@ document.getElementById("detailsMessage");
 const successBox =
 document.getElementById("successBox");
 
+const giftCard =
+document.getElementById("giftCard");
+
+const discountCard =
+document.getElementById("discountCard");
+
 
 /* =====================================================
    MESSAGE
@@ -578,7 +618,6 @@ continueBtn.addEventListener(
 "click",
 checkOrder
 );
-
 
 orderIdInput.addEventListener(
 "keydown",
@@ -616,11 +655,8 @@ return;
 }
 
 
-continueBtn.disabled =
-true;
-
-continueBtn.innerText =
-"CHECKING...";
+continueBtn.disabled = true;
+continueBtn.innerText = "CHECKING...";
 
 
 try{
@@ -631,20 +667,8 @@ API_URL +
 encodeURIComponent(orderId);
 
 
-/*
- IMPORTANT:
- mode=no-cors CANNOT be used here
- because we need to read the JSON response.
-*/
-
 const response =
-await fetch(
-url,
-{
-method:"GET",
-redirect:"follow"
-}
-);
+await fetch(url);
 
 
 if(!response.ok){
@@ -660,18 +684,14 @@ const data =
 await response.json();
 
 
-console.log(
-"CHECK ORDER:",
-data
-);
+console.log("CHECK ORDER:",data);
 
 
 if(!data.success){
 
 showMessage(
 orderMessage,
-data.message ||
-"Invalid Order ID.",
+data.message || "Invalid Order ID.",
 "error"
 );
 
@@ -694,25 +714,29 @@ return;
 
 
 currentOrderId =
-data.orderId ||
-orderId;
+data.orderId || orderId;
 
 
-orderSection
-.classList
-.add("hidden");
+/* RESET */
+
+rewardRevealed = false;
+selectedOption = "";
+
+choiceMessage.style.display = "none";
+
+giftCard.classList.remove("locked");
+discountCard.classList.remove("locked");
 
 
-choiceSection
-.classList
-.remove("hidden");
+orderSection.classList.add("hidden");
+
+choiceSection.classList.remove("hidden");
 
 
 setTimeout(
 createScratchCards,
-100
+150
 );
-
 
 }
 catch(error){
@@ -728,11 +752,8 @@ orderMessage,
 }
 finally{
 
-continueBtn.disabled =
-false;
-
-continueBtn.innerText =
-"CONTINUE";
+continueBtn.disabled = false;
+continueBtn.innerText = "CONTINUE";
 
 }
 
@@ -740,7 +761,7 @@ continueBtn.innerText =
 
 
 /* =====================================================
-   SCRATCH CARDS
+   CREATE SCRATCH CARDS
 ===================================================== */
 
 function createScratchCards(){
@@ -759,24 +780,19 @@ document.getElementById("discountCanvas"),
 
 
 /* =====================================================
-   CREATE SCRATCH CARD
+   SCRATCH CARD
 ===================================================== */
 
-function createScratchCard(
-canvas,
-option
-){
+function createScratchCard(canvas,option){
 
 const parent =
 canvas.parentElement;
-
 
 const width =
 parent.clientWidth;
 
 const height =
 parent.clientHeight;
-
 
 const ratio =
 window.devicePixelRatio || 1;
@@ -788,7 +804,6 @@ width * ratio;
 canvas.height =
 height * ratio;
 
-
 canvas.style.width =
 width + "px";
 
@@ -799,60 +814,43 @@ height + "px";
 const ctx =
 canvas.getContext("2d");
 
-
-ctx.scale(
-ratio,
-ratio
-);
+ctx.scale(ratio,ratio);
 
 
-/* SCRATCH COATING */
+/* SCRATCH SURFACE */
 
 const gradient =
 ctx.createLinearGradient(
-0,
-0,
-width,
-height
+0,0,width,height
 );
-
 
 gradient.addColorStop(
 0,
-"#999999"
+"#777"
 );
 
 gradient.addColorStop(
 0.5,
-"#eeeeee"
+"#e6e6e6"
 );
 
 gradient.addColorStop(
 1,
-"#888888"
+"#777"
 );
-
 
 ctx.fillStyle =
 gradient;
 
-
 ctx.fillRect(
-0,
-0,
-width,
-height
+0,0,width,height
 );
 
 
-/* SCRATCH TEXT */
+/* TEXT */
 
-ctx.textAlign =
-"center";
-
-ctx.textBaseline =
-"middle";
-
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
 
 ctx.font =
 "bold 15px Arial";
@@ -860,20 +858,17 @@ ctx.font =
 ctx.fillStyle =
 "#174d32";
 
-
 ctx.fillText(
 "SCRATCH TO REVEAL",
 width/2,
 height/2-10
 );
 
-
 ctx.font =
 "11px Arial";
 
 ctx.fillStyle =
 "#555";
-
 
 ctx.fillText(
 "Your surprise is waiting",
@@ -882,8 +877,7 @@ height/2+16
 );
 
 
-let scratching =
-false;
+let scratching = false;
 
 
 function getPosition(e){
@@ -891,25 +885,18 @@ function getPosition(e){
 const rect =
 canvas.getBoundingClientRect();
 
-
 const point =
-e.touches &&
-e.touches.length
-?
-e.touches[0]
-:
-e;
-
+e.touches && e.touches.length
+? e.touches[0]
+: e;
 
 return{
 
 x:
-point.clientX -
-rect.left,
+point.clientX - rect.left,
 
 y:
-point.clientY -
-rect.top
+point.clientY - rect.top
 
 };
 
@@ -921,32 +908,25 @@ function scratch(e){
 if(rewardRevealed)
 return;
 
-
 e.preventDefault();
-
 
 const pos =
 getPosition(e);
 
-
 ctx.globalCompositeOperation =
 "destination-out";
 
-
 ctx.beginPath();
-
 
 ctx.arc(
 pos.x,
 pos.y,
-22,
+24,
 0,
 Math.PI*2
 );
 
-
 ctx.fill();
-
 
 checkScratch(
 canvas,
@@ -962,13 +942,11 @@ canvas.addEventListener(
 "mousedown",
 function(e){
 
-scratching=true;
-
+scratching = true;
 scratch(e);
 
 }
 );
-
 
 canvas.addEventListener(
 "mousemove",
@@ -981,22 +959,20 @@ scratch(e);
 }
 );
 
-
 canvas.addEventListener(
 "mouseup",
 function(){
 
-scratching=false;
+scratching = false;
 
 }
 );
-
 
 canvas.addEventListener(
 "mouseleave",
 function(){
 
-scratching=false;
+scratching = false;
 
 }
 );
@@ -1008,14 +984,12 @@ canvas.addEventListener(
 "touchstart",
 function(e){
 
-scratching=true;
-
+scratching = true;
 scratch(e);
 
 },
 {passive:false}
 );
-
 
 canvas.addEventListener(
 "touchmove",
@@ -1029,12 +1003,11 @@ scratch(e);
 {passive:false}
 );
 
-
 canvas.addEventListener(
 "touchend",
 function(){
 
-scratching=false;
+scratching = false;
 
 }
 );
@@ -1046,18 +1019,13 @@ scratching=false;
    SCRATCH DETECTION
 ===================================================== */
 
-function checkScratch(
-canvas,
-option
-){
+function checkScratch(canvas,option){
 
 if(rewardRevealed)
 return;
 
-
 const ctx =
 canvas.getContext("2d");
-
 
 const image =
 ctx.getImageData(
@@ -1067,35 +1035,33 @@ canvas.width,
 canvas.height
 ).data;
 
+let transparent = 0;
+let total = 0;
 
-let transparent =
-0;
 
-let total =
-0;
-
+/*
+ * Sample pixels.
+ */
 
 for(
 let y=0;
 y<canvas.height;
-y+=16
+y+=12
 ){
 
 for(
 let x=0;
 x<canvas.width;
-x+=16
+x+=12
 ){
 
 const index =
 (y*canvas.width+x)*4;
 
-
 total++;
 
-
 if(
-image[index+3]<100
+image[index+3] < 100
 ){
 
 transparent++;
@@ -1108,10 +1074,14 @@ transparent++;
 
 
 const percent =
-transparent/total*100;
+transparent / total * 100;
 
 
-if(percent>=25){
+/*
+ * Only 20% scratch required.
+ */
+
+if(percent >= 20){
 
 revealReward(option);
 
@@ -1130,9 +1100,28 @@ if(rewardRevealed)
 return;
 
 
-rewardRevealed=true;
+/*
+ * Immediately lock both cards.
+ */
 
-selectedOption=option;
+rewardRevealed = true;
+selectedOption = option;
+
+
+/*
+ * Visually lock the other card.
+ */
+
+if(option === "GIFT"){
+
+discountCard.classList.add("locked");
+
+}
+else{
+
+giftCard.classList.add("locked");
+
+}
 
 
 showMessage(
@@ -1154,19 +1143,13 @@ encodeURIComponent(option);
 
 
 const response =
-await fetch(
-url,
-{
-method:"GET",
-redirect:"follow"
-}
-);
+await fetch(url);
 
 
 if(!response.ok){
 
 throw new Error(
-"HTTP "+response.status
+"HTTP " + response.status
 );
 
 }
@@ -1184,8 +1167,10 @@ data
 
 if(!data.success){
 
-rewardRevealed=false;
+rewardRevealed = false;
 
+giftCard.classList.remove("locked");
+discountCard.classList.remove("locked");
 
 showMessage(
 choiceMessage,
@@ -1199,31 +1184,33 @@ return;
 }
 
 
-/* HIDE CHOICE */
+/*
+ * HIDE CHOICE
+ */
 
-choiceSection
-.classList
-.add("hidden");
-
-
-/* SHOW RESULT */
-
-resultSection
-.classList
-.remove("hidden");
+choiceSection.classList.add("hidden");
 
 
-/* DISCOUNT */
+/*
+ * SHOW RESULT
+ */
 
-if(option==="DISCOUNT"){
+resultSection.classList.remove("hidden");
+
+
+/*
+ * DISCOUNT
+ */
+
+if(option === "DISCOUNT"){
 
 let discount =
 Number(data.discount);
 
 
 if(
-discount>0 &&
-discount<1
+discount > 0 &&
+discount < 1
 ){
 
 discount *= 100;
@@ -1239,7 +1226,9 @@ discount.toFixed(2)
 }
 
 
-/* GIFT */
+/*
+ * GIFT
+ */
 
 else{
 
@@ -1253,6 +1242,10 @@ data.gift ||
 }
 
 
+/*
+ * CODE
+ */
+
 rewardCode.innerText =
 "Code: " +
 (
@@ -1265,8 +1258,10 @@ catch(error){
 
 console.error(error);
 
-rewardRevealed=false;
+rewardRevealed = false;
 
+giftCard.classList.remove("locked");
+discountCard.classList.remove("locked");
 
 showMessage(
 choiceMessage,
@@ -1280,7 +1275,7 @@ choiceMessage,
 
 
 /* =====================================================
-   OTHER OFFER
+   OTHER OFFER PREVIEW
 ===================================================== */
 
 previewLink.addEventListener(
@@ -1291,9 +1286,7 @@ showOtherOffer
 
 async function showOtherOffer(){
 
-previewBox.style.display =
-"block";
-
+previewBox.style.display = "block";
 
 previewBox.innerHTML =
 "Loading preview...";
@@ -1303,21 +1296,21 @@ try{
 
 const url =
 API_URL +
-"?action=otherOffer" +
-"&orderId=" +
-encodeURIComponent(
-currentOrderId
-);
+"?action=otherOffer&orderId=" +
+encodeURIComponent(currentOrderId);
 
 
 const response =
-await fetch(
-url,
-{
-method:"GET",
-redirect:"follow"
-}
+await fetch(url);
+
+
+if(!response.ok){
+
+throw new Error(
+"HTTP " + response.status
 );
+
+}
 
 
 const data =
@@ -1342,11 +1335,11 @@ return;
 
 
 /*
- If customer selected DISCOUNT:
- show highest gift.
-*/
+ * CUSTOMER SELECTED DISCOUNT
+ * Show highest-value gift.
+ */
 
-if(selectedOption==="DISCOUNT"){
+if(selectedOption === "DISCOUNT"){
 
 previewBox.innerHTML =
 "🎁 The other option could have been " +
@@ -1364,9 +1357,9 @@ data.gift ||
 
 
 /*
- If customer selected GIFT:
- show 20% OFF.
-*/
+ * CUSTOMER SELECTED GIFT
+ * Show 20% OFF on next order.
+ */
 
 else{
 
@@ -1406,13 +1399,10 @@ submitDetails
 async function submitDetails(){
 
 const name =
-customerName.value
-.trim();
-
+customerName.value.trim();
 
 const mobile =
-customerMobile.value
-.trim();
+customerMobile.value.trim();
 
 
 detailsMessage.style.display =
@@ -1447,10 +1437,8 @@ return;
 }
 
 
-submitBtn.disabled=true;
-
-submitBtn.innerText=
-"SUBMITTING...";
+submitBtn.disabled = true;
+submitBtn.innerText = "SUBMITTING...";
 
 
 try{
@@ -1467,13 +1455,16 @@ encodeURIComponent(mobile);
 
 
 const response =
-await fetch(
-url,
-{
-method:"GET",
-redirect:"follow"
-}
+await fetch(url);
+
+
+if(!response.ok){
+
+throw new Error(
+"HTTP " + response.status
 );
+
+}
 
 
 const data =
@@ -1495,22 +1486,17 @@ data.message ||
 "error"
 );
 
-submitBtn.disabled=false;
-
-submitBtn.innerText=
-"SUBMIT DETAILS";
+submitBtn.disabled = false;
+submitBtn.innerText = "SUBMIT DETAILS";
 
 return;
 
 }
 
 
-successBox
-.classList
-.remove("hidden");
+successBox.classList.remove("hidden");
 
-
-submitBtn.innerText=
+submitBtn.innerText =
 "DETAILS SUBMITTED";
 
 }
@@ -1524,9 +1510,8 @@ detailsMessage,
 "error"
 );
 
-submitBtn.disabled=false;
-
-submitBtn.innerText=
+submitBtn.disabled = false;
+submitBtn.innerText =
 "SUBMIT DETAILS";
 
 }
