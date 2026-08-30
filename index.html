@@ -54,34 +54,33 @@ body{
 
 
 /* =====================================================
-   LUXURY GOLD LIGHT REFLECTION
-===================================================== */
-/* =====================================================
-   PREMIUM REWARD STAR BACKGROUND
+   PREMIUM VASUGROW REWARD STARS
 ===================================================== */
 
 .star-field{
   position:fixed;
   inset:0;
-
   pointer-events:none;
   overflow:hidden;
-
   z-index:0;
 }
 
 .reward-star{
   position:absolute;
+  top:-40px;
 
-  top:-30px;
-
-  color:#c9a653;
+  color:#b58a32;
 
   opacity:0;
 
+  font-size:16px;
+
+  line-height:1;
+
   text-shadow:
-    0 0 5px rgba(181,138,50,.35),
-    0 0 12px rgba(181,138,50,.18);
+    0 0 4px rgba(181,138,50,.45),
+    0 0 10px rgba(181,138,50,.28),
+    0 0 18px rgba(181,138,50,.12);
 
   animation:
     premiumStarFall
@@ -94,144 +93,148 @@ body{
 }
 
 
-/* STAR POSITIONS */
+/* =====================================================
+   STAR POSITIONS
+===================================================== */
 
 .star-1{
-  left:7%;
-  --fall-duration:8s;
+  left:6%;
+  --fall-duration:9s;
   --fall-delay:0s;
-  font-size:8px;
+  font-size:17px;
 }
 
 .star-2{
-  left:17%;
+  left:15%;
   --fall-duration:11s;
-  --fall-delay:2.5s;
-  font-size:11px;
+  --fall-delay:1.5s;
+  font-size:13px;
 }
 
 .star-3{
-  left:29%;
-  --fall-duration:9s;
-  --fall-delay:5s;
-  font-size:7px;
+  left:25%;
+  --fall-duration:8s;
+  --fall-delay:3s;
+  font-size:18px;
 }
 
 .star-4{
-  left:41%;
+  left:36%;
   --fall-duration:12s;
-  --fall-delay:1s;
-  font-size:10px;
-}
-
-.star-5{
-  left:53%;
-  --fall-duration:9.5s;
-  --fall-delay:4s;
-  font-size:8px;
-}
-
-.star-6{
-  left:64%;
-  --fall-duration:11.5s;
-  --fall-delay:7s;
+  --fall-delay:.8s;
   font-size:12px;
 }
 
+.star-5{
+  left:47%;
+  --fall-duration:9.5s;
+  --fall-delay:2.2s;
+  font-size:16px;
+}
+
+.star-6{
+  left:58%;
+  --fall-duration:11s;
+  --fall-delay:4s;
+  font-size:14px;
+}
+
 .star-7{
-  left:73%;
+  left:68%;
   --fall-duration:8.5s;
-  --fall-delay:2s;
-  font-size:7px;
+  --fall-delay:1.2s;
+  font-size:18px;
 }
 
 .star-8{
-  left:82%;
+  left:78%;
   --fall-duration:10s;
-  --fall-delay:6s;
-  font-size:10px;
+  --fall-delay:3.5s;
+  font-size:13px;
 }
 
 .star-9{
-  left:91%;
+  left:88%;
   --fall-duration:12s;
-  --fall-delay:3.5s;
-  font-size:8px;
+  --fall-delay:2s;
+  font-size:17px;
 }
 
 .star-10{
-  left:23%;
+  left:20%;
   --fall-duration:13s;
-  --fall-delay:9s;
-  font-size:6px;
+  --fall-delay:5s;
+  font-size:11px;
 }
 
 .star-11{
-  left:58%;
+  left:52%;
   --fall-duration:10.5s;
-  --fall-delay:8s;
-  font-size:7px;
+  --fall-delay:6s;
+  font-size:12px;
 }
 
 .star-12{
-  left:88%;
+  left:94%;
   --fall-duration:14s;
-  --fall-delay:10s;
-  font-size:6px;
+  --fall-delay:4.5s;
+  font-size:11px;
 }
 
 
-/* FALLING + GENTLE SIDE MOVEMENT */
+/* =====================================================
+   PREMIUM STAR MOVEMENT
+===================================================== */
 
 @keyframes premiumStarFall{
 
   0%{
-    top:-30px;
+    top:-40px;
     opacity:0;
 
     transform:
       translateX(0)
       rotate(0deg)
-      scale(.65);
+      scale(.55);
   }
 
-  10%{
-    opacity:.25;
-  }
-
-  25%{
+  8%{
     opacity:.75;
   }
 
-  40%{
-    opacity:.9;
-
-    transform:
-      translateX(10px)
-      rotate(90deg)
-      scale(1);
+  20%{
+    opacity:1;
   }
 
-  55%{
-    opacity:.55;
-
+  35%{
     transform:
-      translateX(-8px)
+      translateX(12px)
+      rotate(90deg)
+      scale(1.05);
+
+    opacity:.9;
+  }
+
+  50%{
+    transform:
+      translateX(-10px)
       rotate(180deg)
       scale(.85);
+
+    opacity:.65;
   }
 
-  72%{
-    opacity:.3;
-
+  68%{
     transform:
-      translateX(7px)
+      translateX(8px)
       rotate(270deg)
-      scale(.7);
+      scale(1);
+
+    opacity:.45;
   }
 
-  88%{
-    opacity:.08;
+  82%{
+    opacity:.22;
   }
 
   100%{
@@ -239,9 +242,9 @@ body{
     opacity:0;
 
     transform:
-      translateX(-5px)
+      translateX(-6px)
       rotate(360deg)
-      scale(.5);
+      scale(.55);
   }
 
 }
@@ -1354,11 +1357,6 @@ button:disabled{
 
 
 <body>
-
-
-<!-- =====================================================
-     LUXURY BACKGROUND LIGHT
-===================================================== -->
 
 <!-- =====================================================
      PREMIUM REWARD STAR BACKGROUND
