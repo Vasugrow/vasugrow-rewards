@@ -7,123 +7,190 @@
 <title>VasuGrow Rewards</title>
 
 <style>
+
+:root{
+  --green:#174d32;
+  --green-2:#216b45;
+  --gold:#b58a32;
+  --gold-light:#f5ead0;
+  --cream:#fbf8f1;
+  --text:#24332b;
+  --muted:#778078;
+  --border:#e7dfcf;
+  --white:#ffffff;
+}
+
 *{
   box-sizing:border-box;
-} 
+}
+
+html{
+  background:var(--cream);
+}
 
 body{
   margin:0;
   min-height:100vh;
   font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at top,#f7f1df 0%,#eee7d5 45%,#e5ddc9 100%);
+    radial-gradient(circle at top,
+      #ffffff 0%,
+      #f7f2e7 48%,
+      #ece4d5 100%);
   display:flex;
   justify-content:center;
   align-items:center;
   padding:20px;
-  color:#333;
+  color:var(--text);
 }
 
 .container{
   width:100%;
-  max-width:440px;
-  background:#fff;
-  border-radius:26px;
-  padding:30px 23px 22px;
+  max-width:450px;
+  background:var(--white);
+  border:1px solid rgba(23,77,50,.08);
+  border-radius:28px;
+  padding:34px 25px 24px;
   box-shadow:
-    0 20px 55px rgba(23,77,50,.14),
-    0 4px 12px rgba(0,0,0,.06);
+    0 24px 70px rgba(23,77,50,.12),
+    0 5px 18px rgba(0,0,0,.04);
   text-align:center;
   position:relative;
   overflow:hidden;
 }
 
-.container:before{
+.container::before{
   content:"";
   position:absolute;
   top:0;
   left:0;
   right:0;
-  height:5px;
+  height:4px;
   background:linear-gradient(
     90deg,
-    #174d32,
-    #c49a3a,
-    #174d32
+    var(--green),
+    var(--gold),
+    var(--green)
   );
 }
 
+.brand{
+  margin-bottom:30px;
+}
+
 .logo{
-  margin-top:4px;
-  font-size:30px;
+  font-size:29px;
   font-weight:900;
-  letter-spacing:3px;
-  color:#174d32;
+  letter-spacing:4px;
+  color:var(--green);
 }
 
 .tagline{
-  margin-top:5px;
-  margin-bottom:28px;
-  color:#a17b28;
-  font-size:11px;
+  margin-top:7px;
+  color:var(--gold);
+  font-size:10px;
   font-weight:800;
-  letter-spacing:2.5px;
+  letter-spacing:2.8px;
 }
 
 h1{
-  margin:8px 0 10px;
-  color:#174d32;
-  font-size:23px;
+  margin:0 0 10px;
+  color:var(--green);
+  font-size:24px;
   line-height:1.25;
 }
 
 p{
-  color:#777;
+  margin:0;
+  color:var(--muted);
   font-size:14px;
-  line-height:1.55;
-  margin:8px 0;
+  line-height:1.6;
 }
+
+.section-kicker{
+  display:inline-block;
+  margin-bottom:10px;
+  color:var(--gold);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.hidden{
+  display:none !important;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  margin:0 0 28px;
+}
+
+.progress span{
+  width:26px;
+  height:3px;
+  border-radius:10px;
+  background:#e5e2da;
+}
+
+.progress span.active{
+  background:var(--gold);
+}
+
+/* =========================
+   INPUT
+========================= */
 
 input{
   width:100%;
-  border:1px solid #ddd5c5;
+  margin-top:20px;
+  border:1px solid var(--border);
   background:#fcfbf7;
-  border-radius:12px;
-  padding:14px 15px;
-  margin-top:10px;
+  border-radius:13px;
+  padding:15px 16px;
   font-size:16px;
+  color:var(--text);
   outline:none;
-  color:#333;
-  transition:.2s;
+  transition:.2s ease;
 }
 
 input:focus{
-  border-color:#174d32;
-  box-shadow:0 0 0 3px rgba(23,77,50,.08);
+  border-color:var(--green);
+  box-shadow:0 0 0 4px rgba(23,77,50,.08);
 }
+
+/* =========================
+   BUTTONS
+========================= */
 
 button{
   width:100%;
   border:0;
-  border-radius:12px;
-  padding:14px;
+  border-radius:13px;
+  padding:15px;
   margin-top:14px;
   background:linear-gradient(
     135deg,
-    #174d32,
-    #216b45
+    var(--green),
+    var(--green-2)
   );
   color:#fff;
-  font-size:15px;
+  font-size:14px;
   font-weight:800;
-  letter-spacing:.3px;
+  letter-spacing:.7px;
   cursor:pointer;
-  box-shadow:0 7px 18px rgba(23,77,50,.18);
-  transition:.2s;
+  transition:.2s ease;
+  box-shadow:0 8px 20px rgba(23,77,50,.16);
 }
 
 button:hover{
-  transform:translateY(-1px);
+  transform:translateY(-2px);
 }
 
 button:disabled{
@@ -132,146 +199,156 @@ button:disabled{
   transform:none;
 }
 
-.hidden{
-  display:none!important;
+.secondary-button{
+  background:#fff;
+  color:var(--green);
+  border:1px solid #d9d5c9;
+  box-shadow:none;
 }
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
   display:none;
-  margin-top:16px;
+  margin-top:15px;
   padding:12px 14px;
-  border-radius:11px;
+  border-radius:12px;
   font-size:13px;
-  line-height:1.45;
+  line-height:1.5;
 }
 
 .error{
   display:block;
-  background:#fff0f0;
+  background:#fff2f1;
   color:#b3261e;
-  border:1px solid #ffd4d4;
+  border:1px solid #f3d2cf;
 }
 
 .info{
   display:block;
   background:#eef7f0;
-  color:#174d32;
+  color:var(--green);
   border:1px solid #d5e9d9;
 }
 
 /* =========================
-   CHOICE PAGE
+   SMALL TEXT
 ========================= */
 
-.choice-intro{
-  margin-bottom:18px;
+.small{
+  margin-top:12px;
+  color:#98a098;
+  font-size:11px;
+  line-height:1.55;
 }
+
+/* =========================
+   CHOICE
+========================= */
 
 .choice-area{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:24px;
+  gap:13px;
+  margin-top:25px;
 }
 
 .choice-card{
-  position:relative;
-  min-height:185px;
-  padding:20px 12px;
-  border-radius:18px;
-  border:1px solid #dfcfaa;
+  min-height:220px;
+  padding:23px 14px 17px;
+  border:1px solid var(--border);
+  border-radius:19px;
   background:
     linear-gradient(
       145deg,
-      #fffdf8,
-      #f8f1df
+      #ffffff,
+      #faf7ef
     );
   cursor:pointer;
-  transition:.25s;
-  overflow:hidden;
+  transition:.25s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 .choice-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 25px rgba(23,77,50,.12);
+  transform:translateY(-4px);
+  border-color:#d2b778;
+  box-shadow:0 14px 30px rgba(23,77,50,.09);
 }
 
-.choice-card:after{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:80px;
-  right:-35px;
-  top:-35px;
+.choice-symbol{
+  width:54px;
+  height:54px;
   border-radius:50%;
-  background:rgba(196,154,58,.08);
-}
-
-.choice-icon{
-  font-size:43px;
-  margin-bottom:14px;
-}
-
-.choice-title{
-  color:#174d32;
-  font-weight:900;
-  font-size:14px;
-  letter-spacing:.4px;
-}
-
- .choice-subtitle{
-  color:#888;
-  font-size:11px;
-  margin-top:8px;
-  line-height:1.4;
-  min-height:31px;
   display:flex;
   align-items:center;
   justify-content:center;
+  margin-bottom:16px;
+  background:var(--gold-light);
+  color:var(--gold);
+  font-size:24px;
 }
 
-.choice-button{
-  margin-top:16px;
-  padding:10px;
-  font-size:12px;
-  box-shadow:none;
+.choice-title{
+  color:var(--green);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.6px;
+}
+
+.choice-text{
+  margin-top:9px;
+  color:#858b85;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.choice-select{
+  margin-top:auto;
+  padding-top:18px;
+  color:var(--gold);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
 /* =========================
-   SCRATCH PAGE
+   SCRATCH
 ========================= */
 
-.scratch-page-title{
-  margin-bottom:5px;
-}
-
-.scratch-page-subtitle{
-  color:#777;
-  font-size:13px;
-}
-
 .scratch-wrapper{
-  margin-top:22px;
-  position:relative;
-  width:100%;
+  margin-top:25px;
 }
 
 .scratch-card{
   position:relative;
   width:100%;
   height:245px;
-  border-radius:21px;
+  border-radius:22px;
   overflow:hidden;
   background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(196,154,58,.12),
+      transparent 35%
+    ),
     linear-gradient(
       145deg,
-      #fffdf7,
-      #f7f0df
+      #174d32,
+      #103d28
     );
-  border:1px solid #ddcda9;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.7),
-    0 12px 28px rgba(23,77,50,.09);
+  box-shadow:0 18px 35px rgba(23,77,50,.18);
+}
+
+.scratch-card::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(196,154,58,.45);
+  border-radius:16px;
 }
 
 .scratch-content{
@@ -279,26 +356,29 @@ button:disabled{
   inset:0;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
-  padding:20px;
+  justify-content:center;
+  padding:25px;
 }
 
-.scratch-icon{
-  font-size:48px;
-  margin-bottom:12px;
-}
-
-.scratch-label{
-  color:#174d32;
+.scratch-brand{
+  color:#e2c27c;
+  font-size:11px;
   font-weight:900;
-  font-size:15px;
+  letter-spacing:3px;
+}
+
+.scratch-reward{
+  margin-top:16px;
+  color:#fff;
+  font-size:17px;
+  font-weight:900;
   letter-spacing:.7px;
 }
 
 .scratch-instruction{
-  margin-top:9px;
-  color:#8a8a8a;
+  margin-top:10px;
+  color:rgba(255,255,255,.65);
   font-size:12px;
 }
 
@@ -313,177 +393,325 @@ button:disabled{
 }
 
 /* =========================
-   RESULT
+   REWARD RESULT
 ========================= */
 
-.reward-box{
+.reward-card{
   margin-top:22px;
-  padding:22px 16px;
-  border-radius:18px;
+  padding:26px 18px;
+  border-radius:21px;
   background:
     linear-gradient(
       145deg,
-      #fffdf7,
+      #fffdf8,
       #f8f0dc
     );
-  border:1px solid #e4d4af;
+  border:1px solid #e6d8b8;
 }
 
 .reward-label{
-  color:#8d8d8d;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:1.5px;
+  color:#92968f;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .reward-value{
-  margin-top:9px;
-  color:#a17b28;
-  font-size:30px;
+  margin-top:10px;
+  color:var(--gold);
+  font-size:31px;
   font-weight:900;
+  line-height:1.25;
+  word-break:break-word;
+}
+
+.reward-code-label{
+  margin-top:22px;
+  color:#8b918b;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.6px;
 }
 
 .reward-code{
   display:inline-block;
-  margin-top:15px;
-  padding:10px 15px;
-  border-radius:9px;
-  background:#174d32;
+  margin-top:9px;
+  padding:11px 15px;
+  border-radius:10px;
+  background:var(--green);
   color:#fff;
   font-size:13px;
   font-weight:800;
   letter-spacing:1px;
+  word-break:break-all;
 }
 
- .second-order-notice{
-  margin-top:16px;
-  padding:12px 10px;
-  border-radius:11px;
-  background:#eef7f0;
-  border:1px solid #d5e9d9;
-  color:#174d32;
+.reward-note{
+  margin-top:17px;
+  color:var(--green);
   font-size:12px;
-  line-height:1.5;
-}
-
-.reward-terms{
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid #e7ddc6;
-  text-align:left;
-  color:#777;
-  font-size:10px;
-  line-height:1.5;
-}
-
-.reward-terms strong{
-  color:#174d32;
-  font-size:11px;
-}
-
-.reward-terms ul{
-  margin:6px 0 0;
-  padding-left:17px;
-}
-
-.reward-terms li{
-  margin-bottom:2px;
+  line-height:1.55;
 }
 
 /* =========================
-   PREVIEW
+   ONE LAST SECRET
 ========================= */
 
-.preview-link{
-  display:inline-block;
-  margin-top:19px;
-  color:#9b7525;
-  text-decoration:underline;
-  font-size:13px;
-  cursor:pointer;
+.secret-card{
+  margin-top:20px;
+  padding:19px 16px;
+  border-radius:17px;
+  border:1px dashed #d7c28f;
+  background:#fffcf5;
 }
 
-.preview-box{
+.secret-title{
+  color:var(--green);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.secret-text{
+  margin-top:7px;
+  color:#818781;
+  font-size:12px;
+}
+
+.secret-button{
+  width:auto;
+  margin:14px auto 0;
+  padding:10px 16px;
+  background:transparent;
+  color:var(--gold);
+  border:1px solid #d8bd79;
+  box-shadow:none;
+  font-size:11px;
+}
+
+/* =========================
+   OTHER OFFER RESULT
+========================= */
+
+.other-result{
   display:none;
-  margin-top:14px;
-  padding:15px;
-  background:#faf7ef;
-  border:1px solid #e7ddc6;
-  border-radius:12px;
-  color:#555;
-  font-size:13px;
-  line-height:1.5;
+  margin-top:15px;
+  padding:18px 15px;
+  border-radius:16px;
+  background:#f8f5ed;
+  border:1px solid var(--border);
 }
 
-.preview-box strong{
-  color:#a17b28;
-  font-size:18px;
+.other-result-kicker{
+  color:var(--gold);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.7px;
+}
+
+.other-result-value{
+  margin-top:8px;
+  color:var(--green);
+  font-size:20px;
+  font-weight:900;
+}
+
+.other-result-note{
+  margin-top:10px;
+  color:#788078;
+  font-size:11px;
+  line-height:1.55;
 }
 
 /* =========================
    DETAILS
 ========================= */
 
-.details-box{
-  margin-top:25px;
+.form-box{
+  margin-top:22px;
   text-align:left;
 }
 
-.details-box h1,
-.details-box p{
-  text-align:center;
-}
-
-.details-box label{
+.form-box label{
   display:block;
-  margin-top:13px;
-  margin-bottom:5px;
-  color:#174d32;
-  font-size:13px;
-  font-weight:800;
+  margin:17px 0 6px;
+  color:var(--green);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.8px;
 }
 
-.details-box input{
+.form-box input{
   margin-top:0;
 }
 
-.success-box{
-  margin-top:18px;
-  padding:17px;
-  border-radius:14px;
-  background:#e9f6eb;
-  border:1px solid #cde7d0;
-  color:#1b5e20;
-  font-size:13px;
-  line-height:1.5;
+.privacy-note{
+  margin-top:14px;
   text-align:center;
+  color:#8a918a;
+  font-size:11px;
+  line-height:1.55;
 }
 
 /* =========================
-   SMALL TEXT / FOOTER
+   SUCCESS
 ========================= */
 
-.small{
-  color:#999;
-  font-size:11px;
-  line-height:1.45;
-  margin-top:10px;
+.success-card{
+  margin-top:20px;
+  padding:28px 19px;
+  border-radius:21px;
+  background:
+    linear-gradient(
+      145deg,
+      #f3faf4,
+      #e9f5eb
+    );
+  border:1px solid #cfe5d2;
 }
 
-.footer{
-  margin-top:25px;
-  color:#999;
+.success-check{
+  width:58px;
+  height:58px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--green);
+  color:#fff;
+  font-size:28px;
+}
+
+.success-title{
+  color:var(--green);
+  font-size:20px;
+  font-weight:900;
+}
+
+.success-text{
+  margin-top:10px;
+  color:#667168;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.success-code{
+  margin-top:18px;
+  padding:11px;
+  border-radius:10px;
+  background:#fff;
+  color:var(--green);
+  border:1px solid #d5e5d7;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+/* =========================
+   T&C
+========================= */
+
+.terms-link{
+  display:inline-block;
+  margin-top:21px;
+  color:#8f742e;
   font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.terms-link:hover{
+  text-decoration:underline;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(18,37,27,.52);
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:430px;
+  max-height:85vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:22px;
+  padding:25px;
+  text-align:left;
+  box-shadow:0 25px 70px rgba(0,0,0,.22);
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  top:12px;
+  right:13px;
+  width:34px;
+  height:34px;
+  margin:0;
+  padding:0;
+  border-radius:50%;
+  background:#f5f3ee;
+  color:var(--green);
+  box-shadow:none;
+  font-size:20px;
+}
+
+.modal-box h2{
+  margin:0 0 17px;
+  color:var(--green);
+  font-size:20px;
+}
+
+.modal-box ol{
+  margin:0;
+  padding-left:20px;
+  color:#687068;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.modal-box li{
+  margin-bottom:10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:27px;
+  color:#a1a6a0;
+  font-size:10px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:380px){
+@media(max-width:420px){
+
+  body{
+    padding:10px;
+    align-items:flex-start;
+  }
 
   .container{
-    padding:27px 17px 20px;
+    margin-top:5px;
+    padding:30px 18px 22px;
+    border-radius:24px;
   }
 
   .choice-area{
@@ -491,13 +719,15 @@ button:disabled{
   }
 
   .choice-card{
-    min-height:160px;
+    min-height:175px;
   }
 
   .scratch-card{
-    height:220px;
+    height:225px;
   }
+
 }
+
 </style>
 </head>
 
@@ -505,36 +735,44 @@ button:disabled{
 
 <div class="container">
 
-  <div class="logo">VASUGROW</div>
-  <div class="tagline">HARVEST TO HEALTH</div>
+  <div class="brand">
+    <div class="logo">VASUGROW</div>
+    <div class="tagline">HARVEST TO HEALTH</div>
+  </div>
 
 
-  <!-- =================================================
-       STAGE 1 — ORDER ID
-  ================================================== -->
-
+  <!-- STAGE 1 -->
   <section id="orderSection">
 
-    <h1>🎁 Your VasuGrow Reward</h1>
+    <div class="progress">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="section-kicker">EXCLUSIVE REWARD</div>
+
+    <h1>Your reward is waiting.</h1>
 
     <p>
-      Enter the Order ID printed on your VasuGrow order.
+      Enter your Order ID to unlock your special VasuGrow reward.
     </p>
 
     <input
       id="orderId"
       type="text"
-      placeholder="VG-ORD-002"
+      placeholder="Enter your Order ID"
       autocomplete="off"
     >
 
     <button id="continueBtn">
-      CONTINUE
+      UNLOCK MY REWARD →
     </button>
 
     <p class="small">
-      Thank you for choosing VasuGrow.
-      Enter your Order ID to unlock your special surprise.
+      One reward per eligible order.
     </p>
 
     <div id="orderMessage" class="message"></div>
@@ -542,103 +780,103 @@ button:disabled{
   </section>
 
 
-  <!-- =================================================
-       STAGE 2 — CHOOSE ONE
-  ================================================== -->
-
+  <!-- STAGE 2 -->
   <section id="choiceSection" class="hidden">
 
-    <h1>🎁 Your Special Reward</h1>
+    <div class="progress">
+      <span class="active"></span>
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-    <p class="choice-intro">
-      Choose <strong>ONE</strong> reward.
-      Once selected, you cannot change your choice.
+    <div class="section-kicker">STEP 2 OF 5</div>
+
+    <h1>Choose your reward.</h1>
+
+    <p>
+      Select one exclusive reward.
     </p>
 
     <div class="choice-area">
 
-      <!-- GIFT -->
-
       <div
         class="choice-card"
         id="giftChoice"
+        role="button"
+        tabindex="0"
       >
 
-        <div class="choice-icon">
-          🎁
-        </div>
+        <div class="choice-symbol">🎁</div>
 
         <div class="choice-title">
           SURPRISE GIFT
         </div>
 
-        <div class="choice-subtitle">
-          Choose this option<br>
-          to reveal your VasuGrow gift.
+        <div class="choice-text">
+          A special surprise from VasuGrow.
         </div>
 
-        <button
-          type="button"
-          class="choice-button"
-          id="giftButton"
-        >
-          CHOOSE GIFT
-        </button>
+        <div class="choice-select">
+          SELECT →
+        </div>
 
       </div>
 
 
-      <!-- DISCOUNT -->
-
       <div
         class="choice-card"
         id="discountChoice"
+        role="button"
+        tabindex="0"
       >
 
-        <div class="choice-icon">
-          🏷️
-        </div>
+        <div class="choice-symbol">%</div>
 
         <div class="choice-title">
           SPECIAL DISCOUNT
         </div>
 
-        <div class="choice-subtitle">
-          Choose this option<br>
-          to scratch and reveal your discount.
+        <div class="choice-text">
+          Unlock an exclusive saving on your next order.
         </div>
 
-        <button
-          type="button"
-          class="choice-button"
-          id="discountButton"
-        >
-          CHOOSE DISCOUNT
-        </button>
+        <div class="choice-select">
+          SELECT →
+        </div>
 
       </div>
 
     </div>
+
+    <p class="small">
+      Once selected, your choice cannot be changed.
+    </p>
 
     <div id="choiceMessage" class="message"></div>
 
   </section>
 
 
-  <!-- =================================================
-       STAGE 3 — SCRATCH
-  ================================================== -->
-
+  <!-- STAGE 3 -->
   <section id="scratchSection" class="hidden">
 
-    <h1 class="scratch-page-title">
-      🎉 Your Surprise Is Ready!
-    </h1>
+    <div class="progress">
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+    </div>
 
-    <p class="scratch-page-subtitle">
-      Scratch the card to reveal your special reward.
+    <div class="section-kicker">YOUR REWARD IS READY</div>
+
+    <h1>Reveal your reward.</h1>
+
+    <p>
+      Scratch the card to uncover your exclusive surprise.
     </p>
-
 
     <div class="scratch-wrapper">
 
@@ -646,19 +884,19 @@ button:disabled{
 
         <div class="scratch-content">
 
-          <div class="scratch-icon" id="scratchIcon">
-            🏷️
+          <div class="scratch-brand">
+            VASUGROW
           </div>
 
           <div
-            class="scratch-label"
+            class="scratch-reward"
             id="scratchLabel"
           >
-            YOUR DISCOUNT
+            YOUR REWARD
           </div>
 
           <div class="scratch-instruction">
-            Scratch to reveal
+            Your surprise is waiting underneath.
           </div>
 
         </div>
@@ -669,28 +907,31 @@ button:disabled{
 
     </div>
 
-
     <div id="scratchMessage" class="message"></div>
 
   </section>
 
 
-  <!-- =================================================
-       STAGE 4 — RESULT
-  ================================================== -->
-
+  <!-- STAGE 4 -->
   <section id="resultSection" class="hidden">
 
-    <h1>
-      🎉 Congratulations!
-    </h1>
+    <div class="progress">
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+      <span></span>
+    </div>
+
+    <div class="section-kicker">REWARD UNLOCKED</div>
+
+    <h1>Congratulations!</h1>
 
     <p>
-      Your VasuGrow reward is ready.
+      Your exclusive VasuGrow reward has been revealed.
     </p>
 
-
-    <div class="reward-box">
+    <div class="reward-card">
 
       <div class="reward-label">
         YOUR REWARD
@@ -701,79 +942,100 @@ button:disabled{
         class="reward-value"
       ></div>
 
+      <div class="reward-code-label">
+        YOUR REWARD CODE
+      </div>
+
       <div
         id="rewardCode"
         class="reward-code"
       ></div>
 
-      <p class="small">
-        Keep this code safely.
-        You may need it to claim your reward.
-      </p>
-
-      <div class="second-order-notice">
-        ⭐ This reward is valid on your <strong>2nd order only.</strong><br>
-        Use the <strong>same mobile number</strong> on your 2nd order to claim this reward.
-      </div>
-
-      <div class="reward-terms">
-        <strong>Terms &amp; Conditions</strong>
-        <ul>
-          <li>Valid on the 2nd order only.</li>
-          <li>One reward per customer/mobile number.</li>
-          <li>Reward can be redeemed only once.</li>
-          <li>Gift or discount cannot be exchanged for cash.</li>
-          <li>Cannot be combined with another offer.</li>
-          <li>Reward is non-transferable.</li>
-        </ul>
+      <div class="reward-note">
+        Valid on your 2nd order using the same mobile number.
       </div>
 
     </div>
 
 
-    <!-- OTHER OPTION -->
+    <button id="reserveBtn">
+      RESERVE MY REWARD →
+    </button>
 
-    <div
-      id="previewLink"
-      class="preview-link"
-    >
-      Want to see what the other option could have offered?
-      <br>
-      <strong>Check the other offer</strong>
+
+    <!-- ONE LAST SECRET -->
+    <div class="secret-card">
+
+      <div class="secret-title">
+        ONE LAST SECRET... 👀
+      </div>
+
+      <div class="secret-text">
+        Curious what was hidden behind the other choice?
+      </div>
+
+      <button
+        id="secretBtn"
+        class="secret-button"
+      >
+        REVEAL THE SECRET →
+      </button>
+
     </div>
 
+
     <div
-      id="previewBox"
-      class="preview-box"
+      id="otherResult"
+      class="other-result"
     ></div>
 
 
-    <!-- CUSTOMER DETAILS -->
+    <div
+      class="terms-link"
+      id="termsLink1"
+    >
+      ⓘ TERMS & CONDITIONS
+    </div>
 
-    <div class="details-box">
-
-      <h1>
-        📱 Claim Your Reward
-      </h1>
-
-      <p>
-        Enter your details so we can process your reward.
-      </p>
+  </section>
 
 
-      <label>
-        Your Name
+  <!-- STAGE 5 -->
+  <section id="detailsSection" class="hidden">
+
+    <div class="progress">
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+      <span class="active"></span>
+    </div>
+
+    <div class="section-kicker">
+      ONE FINAL STEP
+    </div>
+
+    <h1>Reserve your reward.</h1>
+
+    <p>
+      Enter your details to secure your exclusive reward.
+    </p>
+
+    <div class="form-box">
+
+      <label for="customerName">
+        FULL NAME
       </label>
 
       <input
         id="customerName"
         type="text"
-        placeholder="Enter your name"
+        placeholder="Enter your full name"
+        autocomplete="name"
       >
 
-
-      <label>
-        Mobile Number
+      <label for="customerMobile">
+        MOBILE NUMBER
       </label>
 
       <input
@@ -781,40 +1043,74 @@ button:disabled{
         type="tel"
         maxlength="10"
         inputmode="numeric"
-        placeholder="10-digit mobile number"
+        placeholder="Enter your 10-digit mobile number"
+        autocomplete="tel"
       >
 
-
       <button id="submitBtn">
-        SUBMIT DETAILS
+        SAVE MY REWARD →
       </button>
-
 
       <div
         id="detailsMessage"
         class="message"
       ></div>
 
-
-      <div
-        id="successBox"
-        class="success-box hidden"
-      >
-
-        🎉 Your reward details have been
-        successfully registered.
-
-        <br><br>
-
-        Your reward is reserved for your <strong>2nd order only.</strong>
-        Use the same mobile number when placing your 2nd order.
-
-        <br><br>
-
-        Please keep your reward code safely.
-
+      <div class="privacy-note">
+        🔒 Your details are used only for your reward.
+        Your privacy and information are important to us.
       </div>
 
+    </div>
+
+    <div
+      class="terms-link"
+      id="termsLink2"
+    >
+      ⓘ TERMS & CONDITIONS
+    </div>
+
+  </section>
+
+
+  <!-- STAGE 6 -->
+  <section id="successSection" class="hidden">
+
+    <div class="success-card">
+
+      <div class="success-check">
+        ✓
+      </div>
+
+      <div class="section-kicker">
+        REWARD RESERVED
+      </div>
+
+      <div class="success-title">
+        You're all set!
+      </div>
+
+      <div class="success-text">
+        Your reward has been successfully registered.
+        Place your 2nd VasuGrow order using the same mobile number.
+      </div>
+
+      <div
+        id="successCode"
+        class="success-code"
+      ></div>
+
+      <div class="success-text">
+        Please keep your reward code safely.
+      </div>
+
+    </div>
+
+    <div
+      class="terms-link"
+      id="termsLink3"
+    >
+      ⓘ TERMS & CONDITIONS
     </div>
 
   </section>
@@ -827,10 +1123,64 @@ button:disabled{
 </div>
 
 
+<!-- TERMS MODAL -->
+
+<div
+  id="termsModal"
+  class="modal"
+>
+
+  <div class="modal-box">
+
+    <button
+      id="closeTerms"
+      class="modal-close"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <h2>Terms & Conditions</h2>
+
+    <ol>
+      <li>
+        This reward is valid on your 2nd VasuGrow order only.
+      </li>
+
+      <li>
+        Only one reward is permitted per customer and mobile number.
+      </li>
+
+      <li>
+        The same mobile number must be used while placing the eligible 2nd order.
+      </li>
+
+      <li>
+        Each reward can be redeemed only once.
+      </li>
+
+      <li>
+        Rewards cannot be exchanged for cash or transferred to another person.
+      </li>
+
+      <li>
+        This reward cannot be combined with other promotional offers unless specifically stated by VasuGrow.
+      </li>
+
+      <li>
+        VasuGrow reserves the right to verify customer and order details before reward redemption.
+      </li>
+    </ol>
+
+  </div>
+
+</div>
+
+
 <script>
 
 /* =====================================================
-   CURRENT VASUGROW API
+   VASUGROW API
 ===================================================== */
 
 const API_URL =
@@ -845,6 +1195,9 @@ let currentOrderId = "";
 let selectedOption = "";
 let rewardRevealed = false;
 let scratchInitialized = false;
+let currentRewardCode = "";
+let otherOfferLoaded = false;
+let scratching = false;
 
 
 /* =====================================================
@@ -863,17 +1216,23 @@ document.getElementById("scratchSection");
 const resultSection =
 document.getElementById("resultSection");
 
+const detailsSection =
+document.getElementById("detailsSection");
+
+const successSection =
+document.getElementById("successSection");
+
 const orderIdInput =
 document.getElementById("orderId");
 
 const continueBtn =
 document.getElementById("continueBtn");
 
-const giftButton =
-document.getElementById("giftButton");
+const giftChoice =
+document.getElementById("giftChoice");
 
-const discountButton =
-document.getElementById("discountButton");
+const discountChoice =
+document.getElementById("discountChoice");
 
 const orderMessage =
 document.getElementById("orderMessage");
@@ -890,11 +1249,14 @@ document.getElementById("rewardValue");
 const rewardCode =
 document.getElementById("rewardCode");
 
-const previewLink =
-document.getElementById("previewLink");
+const reserveBtn =
+document.getElementById("reserveBtn");
 
-const previewBox =
-document.getElementById("previewBox");
+const secretBtn =
+document.getElementById("secretBtn");
+
+const otherResult =
+document.getElementById("otherResult");
 
 const customerName =
 document.getElementById("customerName");
@@ -908,11 +1270,20 @@ document.getElementById("submitBtn");
 const detailsMessage =
 document.getElementById("detailsMessage");
 
-const successBox =
-document.getElementById("successBox");
+const successCode =
+document.getElementById("successCode");
 
 const scratchCanvas =
 document.getElementById("scratchCanvas");
+
+const scratchLabel =
+document.getElementById("scratchLabel");
+
+const termsModal =
+document.getElementById("termsModal");
+
+const closeTerms =
+document.getElementById("closeTerms");
 
 
 /* =====================================================
@@ -929,8 +1300,8 @@ function showMessage(element,text,type){
 
   element.style.display =
     "block";
-}
 
+}
 
 function hideMessage(element){
 
@@ -938,6 +1309,81 @@ function hideMessage(element){
     "none";
 
 }
+
+
+/* =====================================================
+   SHOW SECTION
+===================================================== */
+
+function showSection(section){
+
+  const sections = [
+    orderSection,
+    choiceSection,
+    scratchSection,
+    resultSection,
+    detailsSection,
+    successSection
+  ];
+
+  sections.forEach(function(item){
+
+    item.classList.add("hidden");
+
+  });
+
+  section.classList.remove("hidden");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   TERMS MODAL
+===================================================== */
+
+[
+  document.getElementById("termsLink1"),
+  document.getElementById("termsLink2"),
+  document.getElementById("termsLink3")
+].forEach(function(link){
+
+  link.addEventListener(
+    "click",
+    function(){
+
+      termsModal.classList.add("show");
+
+    }
+  );
+
+});
+
+closeTerms.addEventListener(
+  "click",
+  function(){
+
+    termsModal.classList.remove("show");
+
+  }
+);
+
+termsModal.addEventListener(
+  "click",
+  function(e){
+
+    if(e.target === termsModal){
+
+      termsModal.classList.remove("show");
+
+    }
+
+  }
+);
 
 
 /* =====================================================
@@ -949,13 +1395,14 @@ continueBtn.addEventListener(
   checkOrder
 );
 
-
 orderIdInput.addEventListener(
   "keydown",
   function(e){
 
     if(e.key === "Enter"){
+
       checkOrder();
+
     }
 
   }
@@ -969,9 +1416,7 @@ async function checkOrder(){
       .trim()
       .toUpperCase();
 
-
   hideMessage(orderMessage);
-
 
   if(!orderId){
 
@@ -982,15 +1427,13 @@ async function checkOrder(){
     );
 
     return;
+
   }
 
-
-  continueBtn.disabled =
-    true;
+  continueBtn.disabled = true;
 
   continueBtn.innerText =
-    "CHECKING...";
-
+    "VERIFYING...";
 
   try{
 
@@ -999,16 +1442,11 @@ async function checkOrder(){
       "?action=checkOrder&orderId=" +
       encodeURIComponent(orderId);
 
-
     const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-          redirect:"follow"
-        }
-      );
-
+      await fetch(url,{
+        method:"GET",
+        redirect:"follow"
+      });
 
     if(!response.ok){
 
@@ -1018,16 +1456,8 @@ async function checkOrder(){
 
     }
 
-
     const data =
       await response.json();
-
-
-    console.log(
-      "CHECK ORDER:",
-      data
-    );
-
 
     if(!data.success){
 
@@ -1039,8 +1469,8 @@ async function checkOrder(){
       );
 
       return;
-    }
 
+    }
 
     if(data.alreadySelected){
 
@@ -1051,22 +1481,14 @@ async function checkOrder(){
       );
 
       return;
-    }
 
+    }
 
     currentOrderId =
       data.orderId ||
       orderId;
 
-
-    orderSection
-      .classList
-      .add("hidden");
-
-
-    choiceSection
-      .classList
-      .remove("hidden");
+    showSection(choiceSection);
 
   }
   catch(error){
@@ -1082,11 +1504,10 @@ async function checkOrder(){
   }
   finally{
 
-    continueBtn.disabled =
-      false;
+    continueBtn.disabled = false;
 
     continueBtn.innerText =
-      "CONTINUE";
+      "UNLOCK MY REWARD →";
 
   }
 
@@ -1094,10 +1515,10 @@ async function checkOrder(){
 
 
 /* =====================================================
-   STAGE 2 — SELECT GIFT
+   STAGE 2 — SELECT REWARD
 ===================================================== */
 
-giftButton.addEventListener(
+giftChoice.addEventListener(
   "click",
   function(){
 
@@ -1106,12 +1527,7 @@ giftButton.addEventListener(
   }
 );
 
-
-/* =====================================================
-   STAGE 2 — SELECT DISCOUNT
-===================================================== */
-
-discountButton.addEventListener(
+discountChoice.addEventListener(
   "click",
   function(){
 
@@ -1120,34 +1536,59 @@ discountButton.addEventListener(
   }
 );
 
+giftChoice.addEventListener(
+  "keydown",
+  function(e){
 
-/* =====================================================
-   SELECT REWARD
-===================================================== */
+    if(
+      e.key === "Enter" ||
+      e.key === " "
+    ){
+
+      selectReward("GIFT");
+
+    }
+
+  }
+);
+
+discountChoice.addEventListener(
+  "keydown",
+  function(e){
+
+    if(
+      e.key === "Enter" ||
+      e.key === " "
+    ){
+
+      selectReward("DISCOUNT");
+
+    }
+
+  }
+);
+
 
 async function selectReward(option){
 
-  if(rewardRevealed)
+  if(rewardRevealed){
     return;
-
+  }
 
   selectedOption =
     option;
 
+  giftChoice.style.pointerEvents =
+    "none";
 
-  giftButton.disabled =
-    true;
-
-  discountButton.disabled =
-    true;
-
+  discountChoice.style.pointerEvents =
+    "none";
 
   showMessage(
     choiceMessage,
-    "Your choice is being confirmed...",
+    "Confirming your reward choice...",
     "info"
   );
-
 
   try{
 
@@ -1159,16 +1600,11 @@ async function selectReward(option){
       "&option=" +
       encodeURIComponent(option);
 
-
     const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-          redirect:"follow"
-        }
-      );
-
+      await fetch(url,{
+        method:"GET",
+        redirect:"follow"
+      });
 
     if(!response.ok){
 
@@ -1178,24 +1614,16 @@ async function selectReward(option){
 
     }
 
-
     const data =
       await response.json();
 
-
-    console.log(
-      "SELECT OPTION:",
-      data
-    );
-
-
     if(!data.success){
 
-      giftButton.disabled =
-        false;
+      giftChoice.style.pointerEvents =
+        "auto";
 
-      discountButton.disabled =
-        false;
+      discountChoice.style.pointerEvents =
+        "auto";
 
       showMessage(
         choiceMessage,
@@ -1205,51 +1633,28 @@ async function selectReward(option){
       );
 
       return;
+
     }
-
-
-    /*
-     * Save returned reward information
-     */
 
     window.selectedRewardData =
       data;
 
+    hideMessage(choiceMessage);
 
-    /*
-     * IMPORTANT:
-     *
-     * BOTH options now go to the
-     * separate reward stage.
-     *
-     * Discount = scratch discount
-     * Gift = scratch gift
-     */
+    showSection(scratchSection);
 
-    choiceSection
-      .classList
-      .add("hidden");
-
-
-    scratchSection
-      .classList
-      .remove("hidden");
-
-
-    prepareScratchStage(
-      option
-    );
+    prepareScratchStage(option);
 
   }
   catch(error){
 
     console.error(error);
 
-    giftButton.disabled =
-      false;
+    giftChoice.style.pointerEvents =
+      "auto";
 
-    discountButton.disabled =
-      false;
+    discountChoice.style.pointerEvents =
+      "auto";
 
     showMessage(
       choiceMessage,
@@ -1263,56 +1668,34 @@ async function selectReward(option){
 
 
 /* =====================================================
-   PREPARE SCRATCH STAGE
+   PREPARE SCRATCH
 ===================================================== */
 
 function prepareScratchStage(option){
 
-  rewardRevealed =
-    false;
+  rewardRevealed = false;
 
-  scratchInitialized =
-    false;
-
-
-  const icon =
-    document.getElementById("scratchIcon");
-
-  const label =
-    document.getElementById("scratchLabel");
-
+  scratchInitialized = false;
 
   if(option === "DISCOUNT"){
 
-    icon.innerText =
-      "🏷️";
-
-    label.innerText =
-      "YOUR DISCOUNT";
+    scratchLabel.innerText =
+      "YOUR EXCLUSIVE DISCOUNT";
 
   }
   else{
 
-    icon.innerText =
-      "🎁";
-
-    label.innerText =
+    scratchLabel.innerText =
       "YOUR SURPRISE GIFT";
 
   }
-
-
-  /*
-   * Wait until section is visible
-   * before calculating canvas size.
-   */
 
   requestAnimationFrame(
     function(){
 
       setTimeout(
         initializeScratchCard,
-        50
+        80
       );
 
     }
@@ -1330,17 +1713,14 @@ function initializeScratchCard(){
   const canvas =
     scratchCanvas;
 
-
   const parent =
     canvas.parentElement;
-
 
   const width =
     parent.clientWidth;
 
   const height =
     parent.clientHeight;
-
 
   if(
     width <= 0 ||
@@ -1356,10 +1736,8 @@ function initializeScratchCard(){
 
   }
 
-
   const ratio =
     window.devicePixelRatio || 1;
-
 
   canvas.width =
     width * ratio;
@@ -1367,17 +1745,14 @@ function initializeScratchCard(){
   canvas.height =
     height * ratio;
 
-
   canvas.style.width =
     width + "px";
 
   canvas.style.height =
     height + "px";
 
-
   const ctx =
     canvas.getContext("2d");
-
 
   ctx.setTransform(
     ratio,
@@ -1388,11 +1763,6 @@ function initializeScratchCard(){
     0
   );
 
-
-  /*
-   * Scratch coating
-   */
-
   const gradient =
     ctx.createLinearGradient(
       0,
@@ -1401,30 +1771,26 @@ function initializeScratchCard(){
       height
     );
 
-
   gradient.addColorStop(
     0,
-    "#777"
+    "#c5a45d"
   );
 
   gradient.addColorStop(
-    0.5,
-    "#eeeeee"
+    .5,
+    "#f2e0ad"
   );
 
   gradient.addColorStop(
     1,
-    "#888"
+    "#b28b36"
   );
-
 
   ctx.globalCompositeOperation =
     "source-over";
 
-
   ctx.fillStyle =
     gradient;
-
 
   ctx.fillRect(
     0,
@@ -1433,10 +1799,28 @@ function initializeScratchCard(){
     height
   );
 
+  for(
+    let i = 0;
+    i < 40;
+    i++
+  ){
 
-  /*
-   * Scratch text
-   */
+    ctx.fillStyle =
+      "rgba(255,255,255,.10)";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      Math.random() * width,
+      Math.random() * height,
+      Math.random() * 2 + 1,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
 
   ctx.textAlign =
     "center";
@@ -1445,35 +1829,30 @@ function initializeScratchCard(){
     "middle";
 
   ctx.font =
-    "bold 15px Arial";
+    "900 14px Arial";
 
   ctx.fillStyle =
     "#174d32";
 
-
   ctx.fillText(
     "SCRATCH TO REVEAL",
     width / 2,
-    height / 2 - 10
+    height / 2 - 8
   );
-
 
   ctx.font =
     "11px Arial";
 
   ctx.fillStyle =
-    "#555";
-
+    "#5c4a24";
 
   ctx.fillText(
-    "Your surprise is waiting",
+    "Your exclusive reward is waiting",
     width / 2,
-    height / 2 + 16
+    height / 2 + 17
   );
 
-
-  scratchInitialized =
-    true;
+  scratchInitialized = true;
 
 }
 
@@ -1482,16 +1861,11 @@ function initializeScratchCard(){
    SCRATCH EVENTS
 ===================================================== */
 
-let scratching =
-false;
-
-
 function getScratchPosition(e){
 
   const rect =
     scratchCanvas
       .getBoundingClientRect();
-
 
   const point =
     e.touches &&
@@ -1499,9 +1873,7 @@ function getScratchPosition(e){
       ? e.touches[0]
       : e;
 
-
   return {
-
     x:
       point.clientX -
       rect.left,
@@ -1509,7 +1881,6 @@ function getScratchPosition(e){
     y:
       point.clientY -
       rect.top
-
   };
 
 }
@@ -1521,62 +1892,48 @@ function scratch(e){
     rewardRevealed ||
     !scratchInitialized
   ){
-
     return;
-
   }
-
 
   e.preventDefault();
 
-
   const pos =
     getScratchPosition(e);
-
 
   const ctx =
     scratchCanvas
       .getContext("2d");
 
-
   ctx.globalCompositeOperation =
     "destination-out";
 
-
   ctx.beginPath();
-
 
   ctx.arc(
     pos.x,
     pos.y,
-    24,
+    25,
     0,
     Math.PI * 2
   );
 
-
   ctx.fill();
-
 
   checkScratchProgress();
 
 }
 
 
-/* MOUSE */
-
 scratchCanvas.addEventListener(
   "mousedown",
   function(e){
 
-    scratching =
-      true;
+    scratching = true;
 
     scratch(e);
 
   }
 );
-
 
 scratchCanvas.addEventListener(
   "mousemove",
@@ -1591,44 +1948,35 @@ scratchCanvas.addEventListener(
   }
 );
 
-
 scratchCanvas.addEventListener(
   "mouseup",
   function(){
 
-    scratching =
-      false;
+    scratching = false;
 
   }
 );
-
 
 scratchCanvas.addEventListener(
   "mouseleave",
   function(){
 
-    scratching =
-      false;
+    scratching = false;
 
   }
 );
-
-
-/* TOUCH */
 
 scratchCanvas.addEventListener(
   "touchstart",
   function(e){
 
-    scratching =
-      true;
+    scratching = true;
 
     scratch(e);
 
   },
   {passive:false}
 );
-
 
 scratchCanvas.addEventListener(
   "touchmove",
@@ -1644,32 +1992,29 @@ scratchCanvas.addEventListener(
   {passive:false}
 );
 
-
 scratchCanvas.addEventListener(
   "touchend",
   function(){
 
-    scratching =
-      false;
+    scratching = false;
 
   }
 );
 
 
 /* =====================================================
-   CHECK SCRATCH %
+   CHECK SCRATCH PROGRESS
 ===================================================== */
 
 function checkScratchProgress(){
 
-  if(rewardRevealed)
+  if(rewardRevealed){
     return;
-
+  }
 
   const ctx =
     scratchCanvas
       .getContext("2d");
-
 
   const image =
     ctx.getImageData(
@@ -1679,39 +2024,29 @@ function checkScratchProgress(){
       scratchCanvas.height
     ).data;
 
-
-  let transparent =
-    0;
-
-  let total =
-    0;
-
-
-  /*
-   * Sample every 18 pixels
-   * for better performance.
-   */
+  let transparent = 0;
+  let total = 0;
 
   for(
-    let y=0;
-    y<scratchCanvas.height;
-    y+=18
+    let y = 0;
+    y < scratchCanvas.height;
+    y += 18
   ){
 
     for(
-      let x=0;
-      x<scratchCanvas.width;
-      x+=18
+      let x = 0;
+      x < scratchCanvas.width;
+      x += 18
     ){
 
       const index =
-        (y *
-        scratchCanvas.width +
-        x) * 4;
-
+        (
+          y *
+          scratchCanvas.width +
+          x
+        ) * 4;
 
       total++;
-
 
       if(
         image[index + 3] < 100
@@ -1725,14 +2060,8 @@ function checkScratchProgress(){
 
   }
 
-
   const percent =
     (transparent / total) * 100;
-
-
-  /*
-   * Reveal after 28%
-   */
 
   if(percent >= 28){
 
@@ -1749,48 +2078,20 @@ function checkScratchProgress(){
 
 function revealReward(){
 
-  if(rewardRevealed)
+  if(rewardRevealed){
     return;
+  }
 
-
-  rewardRevealed =
-    true;
-
+  rewardRevealed = true;
 
   const data =
     window.selectedRewardData ||
     {};
 
-
-  /*
-   * Remove scratch card
-   */
-
-  scratchSection
-    .classList
-    .add("hidden");
-
-
-  /*
-   * Show result
-   */
-
-  resultSection
-    .classList
-    .remove("hidden");
-
-
-  /*
-   * DISCOUNT
-   */
-
   if(selectedOption === "DISCOUNT"){
 
     let discount =
-      Number(
-        data.discount
-      );
-
+      Number(data.discount);
 
     if(
       discount > 0 &&
@@ -1801,7 +2102,6 @@ function revealReward(){
 
     }
 
-
     rewardValue.innerText =
       Number(
         discount.toFixed(2)
@@ -1809,43 +2109,57 @@ function revealReward(){
       "% OFF";
 
   }
-
-
-  /*
-   * GIFT
-   */
-
   else{
 
     rewardValue.innerText =
-      "🎁 " +
-      (
-        data.gift ||
-        "VasuGrow Premium Gift"
-      );
+      data.gift ||
+      "VasuGrow Surprise Gift";
 
   }
 
-
-  /*
-   * Reward code
-   */
+  currentRewardCode =
+    data.rewardCode ||
+    "";
 
   rewardCode.innerText =
-    "Code: " +
-    (
-      data.rewardCode ||
-      ""
-    );
+    currentRewardCode;
+
+  otherResult.style.display =
+    "none";
+
+  otherOfferLoaded =
+    false;
+
+  secretBtn.disabled =
+    false;
+
+  secretBtn.innerText =
+    "REVEAL THE SECRET →";
+
+  showSection(resultSection);
 
 }
 
 
 /* =====================================================
-   OTHER OFFER PREVIEW
+   RESERVE REWARD
 ===================================================== */
 
-previewLink.addEventListener(
+reserveBtn.addEventListener(
+  "click",
+  function(){
+
+    showSection(detailsSection);
+
+  }
+);
+
+
+/* =====================================================
+   ONE LAST SECRET
+===================================================== */
+
+secretBtn.addEventListener(
   "click",
   showOtherOffer
 );
@@ -1853,13 +2167,21 @@ previewLink.addEventListener(
 
 async function showOtherOffer(){
 
-  previewBox.style.display =
+  if(otherOfferLoaded){
+    return;
+  }
+
+  secretBtn.disabled =
+    true;
+
+  secretBtn.innerText =
+    "REVEALING...";
+
+  otherResult.style.display =
     "block";
 
-
-  previewBox.innerHTML =
-    "Loading preview...";
-
+  otherResult.innerHTML =
+    "Discovering the other secret...";
 
   try{
 
@@ -1867,93 +2189,101 @@ async function showOtherOffer(){
       API_URL +
       "?action=otherOffer" +
       "&orderId=" +
-      encodeURIComponent(
-        currentOrderId
-      );
-
+      encodeURIComponent(currentOrderId);
 
     const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-          redirect:"follow"
-        }
+      await fetch(url,{
+        method:"GET",
+        redirect:"follow"
+      });
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " + response.status
       );
 
+    }
 
     const data =
       await response.json();
 
-
-    console.log(
-      "OTHER OFFER:",
-      data
-    );
-
-
     if(!data.success){
 
-      previewBox.innerText =
+      otherResult.innerText =
         data.message ||
-        "Unable to show preview.";
+        "Unable to reveal the other surprise.";
+
+      secretBtn.style.display =
+        "none";
 
       return;
 
     }
 
+    let otherValue = "";
 
-    /*
-     * Customer selected DISCOUNT
-     *
-     * Show highest-value gift.
-     */
+    if(data.type === "GIFT"){
 
-    if(
-      selectedOption ===
-      "DISCOUNT"
-    ){
-
-      previewBox.innerHTML =
-        "🎁 The other option could have been " +
-        "<strong>" +
-        escapeHTML(
-          data.gift ||
-          "Premium VasuGrow Gift"
-        ) +
-        "</strong>." +
-        "<br><br>" +
-        "This is only a preview. " +
-        "Your selected reward remains unchanged.";
+      otherValue =
+        data.gift ||
+        "A VasuGrow Surprise Gift";
 
     }
-
-
-    /*
-     * Customer selected GIFT
-     *
-     * Show 20% OFF.
-     */
-
     else{
 
-      previewBox.innerHTML =
-        "💰 The other option could have offered " +
-        "<strong>20% OFF</strong> " +
-        "on your next order." +
-        "<br><br>" +
-        "This is only a preview. " +
-        "Your selected reward remains unchanged.";
+      let discount =
+        Number(data.discount);
+
+      if(
+        discount > 0 &&
+        discount < 1
+      ){
+
+        discount *= 100;
+
+      }
+
+      otherValue =
+        Number(
+          discount.toFixed(2)
+        ) +
+        "% OFF";
 
     }
+
+    otherResult.innerHTML =
+      '<div class="other-result-kicker">' +
+      'THE OTHER SURPRISE' +
+      '</div>' +
+
+      '<div class="other-result-value">' +
+      escapeHTML(otherValue) +
+      '</div>' +
+
+      '<div class="other-result-note">' +
+      'But your selected reward remains exclusively reserved for you.' +
+      '</div>';
+
+    otherOfferLoaded =
+      true;
+
+    secretBtn.style.display =
+      "none";
 
   }
   catch(error){
 
     console.error(error);
 
-    previewBox.innerText =
-      "Unable to load preview.";
+    otherResult.innerText =
+      "Unable to reveal the other surprise.";
+
+    secretBtn.disabled =
+      false;
+
+    secretBtn.innerText =
+      "TRY AGAIN →";
 
   }
 
@@ -1973,25 +2303,18 @@ submitBtn.addEventListener(
 async function submitDetails(){
 
   const name =
-    customerName.value
-      .trim();
-
+    customerName.value.trim();
 
   const mobile =
-    customerMobile.value
-      .trim();
+    customerMobile.value.trim();
 
-
-  hideMessage(
-    detailsMessage
-  );
-
+  hideMessage(detailsMessage);
 
   if(!name){
 
     showMessage(
       detailsMessage,
-      "Please enter your name.",
+      "Please enter your full name.",
       "error"
     );
 
@@ -1999,11 +2322,8 @@ async function submitDetails(){
 
   }
 
-
   if(
-    !/^[0-9]{10}$/.test(
-      mobile
-    )
+    !/^[0-9]{10}$/.test(mobile)
   ){
 
     showMessage(
@@ -2016,13 +2336,11 @@ async function submitDetails(){
 
   }
 
-
   submitBtn.disabled =
     true;
 
   submitBtn.innerText =
-    "SUBMITTING...";
-
+    "SAVING...";
 
   try{
 
@@ -2030,73 +2348,58 @@ async function submitDetails(){
       API_URL +
       "?action=submitDetails" +
       "&orderId=" +
-      encodeURIComponent(
-        currentOrderId
-      ) +
+      encodeURIComponent(currentOrderId) +
       "&name=" +
-      encodeURIComponent(
-        name
-      ) +
+      encodeURIComponent(name) +
       "&mobile=" +
-      encodeURIComponent(
-        mobile
-      );
-
+      encodeURIComponent(mobile);
 
     const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-          redirect:"follow"
-        }
+      await fetch(url,{
+        method:"GET",
+        redirect:"follow"
+      });
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " + response.status
       );
 
+    }
 
     const data =
       await response.json();
-
-
-    console.log(
-      "DETAILS:",
-      data
-    );
-
 
     if(!data.success){
 
       showMessage(
         detailsMessage,
         data.message ||
-        "Unable to submit details.",
+        "Unable to save your details.",
         "error"
       );
-
 
       submitBtn.disabled =
         false;
 
       submitBtn.innerText =
-        "SUBMIT DETAILS";
+        "SAVE MY REWARD →";
 
       return;
 
     }
 
+    successCode.innerText =
+      "REWARD CODE: " +
+      currentRewardCode;
 
-    successBox
-      .classList
-      .remove("hidden");
-
-
-    submitBtn.innerText =
-      "DETAILS SUBMITTED";
+    showSection(successSection);
 
   }
   catch(error){
 
     console.error(error);
-
 
     showMessage(
       detailsMessage,
@@ -2104,12 +2407,11 @@ async function submitDetails(){
       "error"
     );
 
-
     submitBtn.disabled =
       false;
 
     submitBtn.innerText =
-      "SUBMIT DETAILS";
+      "SAVE MY REWARD →";
 
   }
 
