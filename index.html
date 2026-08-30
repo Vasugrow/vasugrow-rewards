@@ -219,11 +219,15 @@ button:disabled{
   letter-spacing:.4px;
 }
 
-.choice-subtitle{
+ .choice-subtitle{
   color:#888;
   font-size:11px;
   margin-top:8px;
   line-height:1.4;
+  min-height:31px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .choice-button{
@@ -349,6 +353,41 @@ button:disabled{
   font-size:13px;
   font-weight:800;
   letter-spacing:1px;
+}
+
+ .second-order-notice{
+  margin-top:16px;
+  padding:12px 10px;
+  border-radius:11px;
+  background:#eef7f0;
+  border:1px solid #d5e9d9;
+  color:#174d32;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.reward-terms{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid #e7ddc6;
+  text-align:left;
+  color:#777;
+  font-size:10px;
+  line-height:1.5;
+}
+
+.reward-terms strong{
+  color:#174d32;
+  font-size:11px;
+}
+
+.reward-terms ul{
+  margin:6px 0 0;
+  padding-left:17px;
+}
+
+.reward-terms li{
+  margin-bottom:2px;
 }
 
 /* =========================
@@ -672,6 +711,23 @@ button:disabled{
         You may need it to claim your reward.
       </p>
 
+      <div class="second-order-notice">
+        ⭐ This reward is valid on your <strong>2nd order only.</strong><br>
+        Use the <strong>same mobile number</strong> on your 2nd order to claim this reward.
+      </div>
+
+      <div class="reward-terms">
+        <strong>Terms &amp; Conditions</strong>
+        <ul>
+          <li>Valid on the 2nd order only.</li>
+          <li>One reward per customer/mobile number.</li>
+          <li>Reward can be redeemed only once.</li>
+          <li>Gift or discount cannot be exchanged for cash.</li>
+          <li>Cannot be combined with another offer.</li>
+          <li>Reward is non-transferable.</li>
+        </ul>
+      </div>
+
     </div>
 
 
@@ -747,6 +803,11 @@ button:disabled{
 
         🎉 Your reward details have been
         successfully registered.
+
+        <br><br>
+
+        Your reward is reserved for your <strong>2nd order only.</strong>
+        Use the same mobile number when placing your 2nd order.
 
         <br><br>
 
