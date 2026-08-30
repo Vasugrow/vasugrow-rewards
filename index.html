@@ -31,14 +31,17 @@ html{
 body{
   margin:0;
   min-height:100vh;
+
   font-family:Arial,Helvetica,sans-serif;
 
   background:
     radial-gradient(
-      circle at top,
-      #ffffff 0%,
-      #f7f2e7 48%,
-      #ece4d5 100%
+      circle at 50% -10%,
+      rgba(255,255,255,.98) 0%,
+      rgba(255,255,255,.78) 22%,
+      rgba(247,242,231,.88) 48%,
+      rgba(236,228,213,.96) 78%,
+      #e8dfcf 100%
     );
 
   display:flex;
@@ -50,6 +53,71 @@ body{
   color:var(--text);
 
   position:relative;
+
+  overflow-x:hidden;
+}
+
+
+/* =====================================================
+   PREMIUM BACKGROUND LIGHT
+===================================================== */
+
+body::before{
+  content:"";
+
+  position:fixed;
+
+  width:520px;
+  height:520px;
+
+  top:-250px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.95) 0%,
+      rgba(255,255,255,.55) 32%,
+      rgba(245,234,208,.20) 58%,
+      transparent 72%
+    );
+
+  pointer-events:none;
+
+  z-index:0;
+}
+
+
+/* =====================================================
+   SUBTLE GOLD ATMOSPHERE
+===================================================== */
+
+body::after{
+  content:"";
+
+  position:fixed;
+
+  width:700px;
+  height:700px;
+
+  left:50%;
+  bottom:-560px;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(181,138,50,.10) 0%,
+      rgba(181,138,50,.035) 38%,
+      transparent 70%
+    );
+
+  pointer-events:none;
+
+  z-index:0;
 }
 
 
