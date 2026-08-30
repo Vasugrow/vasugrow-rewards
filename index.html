@@ -56,135 +56,195 @@ body{
 /* =====================================================
    LUXURY GOLD LIGHT REFLECTION
 ===================================================== */
+/* =====================================================
+   PREMIUM REWARD STAR BACKGROUND
+===================================================== */
 
-.luxury-light{
+.star-field{
   position:fixed;
   inset:0;
+
   pointer-events:none;
   overflow:hidden;
+
   z-index:0;
 }
 
-.light-streak{
+.reward-star{
   position:absolute;
 
-  width:340px;
-  height:1px;
+  top:-30px;
 
-  left:-400px;
-  top:25%;
-
-  transform:rotate(-28deg);
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(181,138,50,.12),
-      rgba(245,234,208,.75),
-      rgba(181,138,50,.12),
-      transparent
-    );
-
-  box-shadow:
-    0 0 8px rgba(181,138,50,.15);
-
-  animation:
-    luxurySweep
-    13s
-    ease-in-out
-    infinite;
-}
-
-.light-spark{
-  position:absolute;
-
-  left:-50px;
-  top:calc(25% - 7px);
-
-  color:#d6b45d;
-
-  font-size:12px;
+  color:#c9a653;
 
   opacity:0;
 
   text-shadow:
-    0 0 6px rgba(181,138,50,.45),
-    0 0 14px rgba(181,138,50,.20);
+    0 0 5px rgba(181,138,50,.35),
+    0 0 12px rgba(181,138,50,.18);
 
   animation:
-    luxurySpark
-    13s
+    premiumStarFall
+    var(--fall-duration)
     ease-in-out
     infinite;
+
+  animation-delay:
+    var(--fall-delay);
 }
 
-@keyframes luxurySweep{
 
-  0%{
-    left:-400px;
-    opacity:0;
-  }
+/* STAR POSITIONS */
 
-  15%{
-    opacity:.15;
-  }
-
-  35%{
-    opacity:.45;
-  }
-
-  48%{
-    opacity:.12;
-  }
-
-  55%{
-    left:110%;
-    opacity:0;
-  }
-
-  100%{
-    left:110%;
-    opacity:0;
-  }
-
+.star-1{
+  left:7%;
+  --fall-duration:8s;
+  --fall-delay:0s;
+  font-size:8px;
 }
 
-@keyframes luxurySpark{
+.star-2{
+  left:17%;
+  --fall-duration:11s;
+  --fall-delay:2.5s;
+  font-size:11px;
+}
+
+.star-3{
+  left:29%;
+  --fall-duration:9s;
+  --fall-delay:5s;
+  font-size:7px;
+}
+
+.star-4{
+  left:41%;
+  --fall-duration:12s;
+  --fall-delay:1s;
+  font-size:10px;
+}
+
+.star-5{
+  left:53%;
+  --fall-duration:9.5s;
+  --fall-delay:4s;
+  font-size:8px;
+}
+
+.star-6{
+  left:64%;
+  --fall-duration:11.5s;
+  --fall-delay:7s;
+  font-size:12px;
+}
+
+.star-7{
+  left:73%;
+  --fall-duration:8.5s;
+  --fall-delay:2s;
+  font-size:7px;
+}
+
+.star-8{
+  left:82%;
+  --fall-duration:10s;
+  --fall-delay:6s;
+  font-size:10px;
+}
+
+.star-9{
+  left:91%;
+  --fall-duration:12s;
+  --fall-delay:3.5s;
+  font-size:8px;
+}
+
+.star-10{
+  left:23%;
+  --fall-duration:13s;
+  --fall-delay:9s;
+  font-size:6px;
+}
+
+.star-11{
+  left:58%;
+  --fall-duration:10.5s;
+  --fall-delay:8s;
+  font-size:7px;
+}
+
+.star-12{
+  left:88%;
+  --fall-duration:14s;
+  --fall-delay:10s;
+  font-size:6px;
+}
+
+
+/* FALLING + GENTLE SIDE MOVEMENT */
+
+@keyframes premiumStarFall{
 
   0%{
-    left:-50px;
+    top:-30px;
     opacity:0;
-    transform:scale(.7);
+
+    transform:
+      translateX(0)
+      rotate(0deg)
+      scale(.65);
   }
 
-  18%{
-    opacity:.2;
-  }
-
-  35%{
-    opacity:.75;
-    transform:scale(1.1);
-  }
-
-  45%{
+  10%{
     opacity:.25;
-    transform:scale(.85);
+  }
+
+  25%{
+    opacity:.75;
+  }
+
+  40%{
+    opacity:.9;
+
+    transform:
+      translateX(10px)
+      rotate(90deg)
+      scale(1);
   }
 
   55%{
-    left:110%;
-    opacity:0;
+    opacity:.55;
+
+    transform:
+      translateX(-8px)
+      rotate(180deg)
+      scale(.85);
+  }
+
+  72%{
+    opacity:.3;
+
+    transform:
+      translateX(7px)
+      rotate(270deg)
+      scale(.7);
+  }
+
+  88%{
+    opacity:.08;
   }
 
   100%{
-    left:110%;
+    top:110%;
     opacity:0;
+
+    transform:
+      translateX(-5px)
+      rotate(360deg)
+      scale(.5);
   }
 
 }
-
-
 /* =====================================================
    MAIN CONTAINER
 ===================================================== */
@@ -1300,11 +1360,24 @@ button:disabled{
      LUXURY BACKGROUND LIGHT
 ===================================================== -->
 
-<div class="luxury-light" aria-hidden="true">
+<!-- =====================================================
+     PREMIUM REWARD STAR BACKGROUND
+===================================================== -->
 
-  <span class="light-streak"></span>
+<div class="star-field" aria-hidden="true">
 
-  <span class="light-spark">✦</span>
+  <span class="reward-star star-1">✦</span>
+  <span class="reward-star star-2">✦</span>
+  <span class="reward-star star-3">✦</span>
+  <span class="reward-star star-4">✦</span>
+  <span class="reward-star star-5">✦</span>
+  <span class="reward-star star-6">✦</span>
+  <span class="reward-star star-7">✦</span>
+  <span class="reward-star star-8">✦</span>
+  <span class="reward-star star-9">✦</span>
+  <span class="reward-star star-10">✦</span>
+  <span class="reward-star star-11">✦</span>
+  <span class="reward-star star-12">✦</span>
 
 </div>
 
