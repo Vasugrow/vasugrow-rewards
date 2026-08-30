@@ -74,23 +74,41 @@ body{
   );
 }
 
+
+/* =====================================================
+   VASUGROW OFFICIAL LOGO HEADER
+===================================================== */
+
 .brand{
-  margin-bottom:30px;
+  margin-bottom:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.logo{
-  font-size:29px;
-  font-weight:900;
-  letter-spacing:4px;
-  color:var(--green);
+.logo-wrap{
+  width:150px;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.tagline{
+.company-logo{
+  display:block;
+  max-width:150px;
+  max-height:90px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.brand-trust{
   margin-top:7px;
-  color:var(--gold);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:2.8px;
+  color:#174d32;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 h1{
@@ -391,7 +409,72 @@ button:disabled{
   cursor:crosshair;
   touch-action:none;
 }
+/* =========================
+   REALISTIC SCRATCH PARTICLES
+========================= */
 
+.particle-layer{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  pointer-events:none;
+  overflow:hidden;
+  border-radius:22px;
+}
+
+.scratch-particle{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(
+      135deg,
+      #f7e7b7,
+      #c49a45,
+      #8d6925
+    );
+  box-shadow:
+    0 1px 2px
+    rgba(0,0,0,.18);
+
+  animation:
+    scratchScatter
+    var(--duration)
+    cubic-bezier(.18,.65,.32,1)
+    forwards;
+}
+
+@keyframes scratchScatter{
+
+  0%{
+    opacity:.9;
+
+    transform:
+      translate(0,0)
+      rotate(0deg)
+      scale(1);
+  }
+
+  35%{
+    opacity:.8;
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      translate(
+        var(--move-x),
+        var(--move-y)
+      )
+      rotate(
+        var(--rotation)
+      )
+      scale(.4);
+  }
+
+}
 /* =========================
    REWARD RESULT
 ========================= */
@@ -871,57 +954,74 @@ button:disabled{
 
 
   <!-- STAGE 3 -->
-  <section id="scratchSection" class="hidden">
+ <section id="scratchSection" class="hidden">
 
-    <div class="progress">
-      <span class="active"></span>
-      <span class="active"></span>
-      <span class="active"></span>
-      <span></span>
-      <span></span>
-    </div>
+  <div class="progress">
+    <span class="active"></span>
+    <span class="active"></span>
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+  </div>
 
-    <div class="section-kicker">YOUR REWARD IS READY</div>
+  <div class="section-kicker">
+    YOUR REWARD IS READY
+  </div>
 
-    <h1>Reveal your reward.</h1>
+  <h1>Reveal your reward.</h1>
 
-    <p>
-      Scratch the card to uncover your exclusive surprise.
-    </p>
+  <p>
+    Scratch the card to uncover your exclusive surprise.
+  </p>
 
-    <div class="scratch-wrapper">
+  <div class="scratch-wrapper">
 
-      <div class="scratch-card">
+    <div class="scratch-card">
 
-        <div class="scratch-content">
+      <!-- REWARD UNDER THE SCRATCH LAYER -->
+      <div class="scratch-content">
 
-          <div class="scratch-brand">
-            VASUGROW
-          </div>
-
-          <div
-            class="scratch-reward"
-            id="scratchLabel"
-          >
-            YOUR REWARD
-          </div>
-
-          <div class="scratch-instruction">
-            Your surprise is waiting underneath.
-          </div>
-
+        <!-- Small official brand identity -->
+        <div class="scratch-brand">
+          VASUGROW
         </div>
 
-        <canvas id="scratchCanvas"></canvas>
+        <div
+          class="scratch-reward"
+          id="scratchLabel"
+        >
+          YOUR REWARD
+        </div>
+
+        <div class="scratch-instruction">
+          Your exclusive surprise is waiting underneath.
+        </div>
 
       </div>
 
+      <!-- ACTUAL SCRATCH SURFACE -->
+      <canvas
+        id="scratchCanvas"
+        aria-label="Scratch card"
+      ></canvas>
+
+      <!-- REALISTIC SCRATCH PARTICLES / FLAKES -->
+      <div
+        id="particleLayer"
+        class="particle-layer"
+        aria-hidden="true"
+      ></div>
+
     </div>
 
-    <div id="scratchMessage" class="message"></div>
+  </div>
 
-  </section>
+  <div
+    id="scratchMessage"
+    class="message"
+  ></div>
 
+</section>
 
   <!-- STAGE 4 -->
   <section id="resultSection" class="hidden">
@@ -1286,6 +1386,9 @@ document.getElementById("successCode");
 
 const scratchCanvas =
 document.getElementById("scratchCanvas");
+
+const particleLayer =
+document.getElementById("particleLayer");
 
 const scratchLabel =
 document.getElementById("scratchLabel");
@@ -1810,11 +1913,143 @@ function initializeScratchCard(){
     height
   );
 
+  /* Fine scratch surface texture */
+
   for(
     let i = 0;
-    i < 40;
+    i < 500;
     i++
   ){
+
+    const size =
+      Math.random() * 1.8;
+
+    ctx.fillStyle =
+      Math.random() > .5
+        ? "rgba(255,255,255,.055)"
+        : "rgba(90,62,18,.045)";
+
+    ctx.fillRect(
+      Math.random() * width,
+      Math.random() * height,
+      size,
+      size
+    );
+
+  }
+
+
+  /* Soft metallic particles */
+
+  for(
+    let i = 0;
+    i < 70;
+    i++
+  ){
+
+    ctx.fillStyle =
+      "rgba(255,255,255,.08)";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      Math.random() * width,
+      Math.random() * height,
+      Math.random() * 1.8 + .4,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  /* Scratch card text */
+
+  ctx.textAlign =
+    "center";
+
+  ctx.textBaseline =
+    "middle";
+
+  ctx.font =
+    "900 14px Arial";
+
+  ctx.fillStyle =
+    "#174d32";
+
+  ctx.fillText(
+    "SCRATCH TO REVEAL",
+    width / 2,
+    height / 2 - 8
+  );
+
+  ctx.font =
+    "11px Arial";
+
+  ctx.fillStyle =
+    "#5c4a24";
+
+  ctx.fillText(
+    "Your exclusive reward is waiting",
+    width / 2,
+    height / 2 + 17
+  );
+
+  scratchInitialized = true;
+
+}
+  /* Fine scratch surface texture */
+
+for(
+  let i = 0;
+  i < 500;
+  i++
+){
+
+  const size =
+    Math.random() * 1.8;
+
+  ctx.fillStyle =
+    Math.random() > .5
+      ? "rgba(255,255,255,.055)"
+      : "rgba(90,62,18,.045)";
+
+  ctx.fillRect(
+    Math.random() * width,
+    Math.random() * height,
+    size,
+    size
+  );
+
+}
+
+
+/* Soft metallic particles */
+
+for(
+  let i = 0;
+  i < 70;
+  i++
+){
+
+  ctx.fillStyle =
+    "rgba(255,255,255,.08)";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    Math.random() * width,
+    Math.random() * height,
+    Math.random() * 1.8 + .4,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+}
 
     ctx.fillStyle =
       "rgba(255,255,255,.10)";
@@ -1896,7 +2131,111 @@ function getScratchPosition(e){
 
 }
 
+function createScratchParticles(x,y){
 
+  if(!particleLayer){
+    return;
+  }
+
+  const count = 4;
+
+  for(
+    let i = 0;
+    i < count;
+    i++
+  ){
+
+    const particle =
+      document.createElement("span");
+
+    particle.className =
+      "scratch-particle";
+
+    const angle =
+      Math.random() *
+      Math.PI *
+      2;
+
+    const distance =
+      8 +
+      Math.random() *
+      28;
+
+    const moveX =
+      Math.cos(angle) *
+      distance;
+
+    const moveY =
+      Math.sin(angle) *
+      distance;
+
+    const size =
+      2 +
+      Math.random() *
+      3;
+
+    const rotation =
+      Math.floor(
+        Math.random() *
+        360
+      ) - 180;
+
+    const duration =
+      350 +
+      Math.random() *
+      300;
+
+    particle.style.left =
+      x + "px";
+
+    particle.style.top =
+      y + "px";
+
+    particle.style.width =
+      size + "px";
+
+    particle.style.height =
+      Math.max(
+        2,
+        size * .7
+      ) + "px";
+
+    particle.style.setProperty(
+      "--move-x",
+      moveX + "px"
+    );
+
+    particle.style.setProperty(
+      "--move-y",
+      moveY + "px"
+    );
+
+    particle.style.setProperty(
+      "--rotation",
+      rotation + "deg"
+    );
+
+    particle.style.setProperty(
+      "--duration",
+      duration + "ms"
+    );
+
+    particleLayer.appendChild(
+      particle
+    );
+
+    setTimeout(
+      function(){
+
+        particle.remove();
+
+      },
+      duration + 100
+    );
+
+  }
+
+}
 function scratch(e){
 
   if(
@@ -1918,22 +2257,27 @@ function scratch(e){
   ctx.globalCompositeOperation =
     "destination-out";
 
-  ctx.beginPath();
+ctx.beginPath();
 
-  ctx.arc(
-    pos.x,
-    pos.y,
-    25,
-    0,
-    Math.PI * 2
-  );
+ctx.arc(
+  pos.x,
+  pos.y,
+  25,
+  0,
+  Math.PI * 2
+);
 
   ctx.fill();
+
+  /* Realistic scratch flakes */
+  createScratchParticles(
+    pos.x,
+    pos.y
+  );
 
   checkScratchProgress();
 
 }
-
 
 scratchCanvas.addEventListener(
   "mousedown",
@@ -1942,6 +2286,14 @@ scratchCanvas.addEventListener(
     scratching = true;
 
     scratch(e);
+
+  }
+);
+  scratchCanvas.addEventListener(
+  "touchcancel",
+  function(){
+
+    scratching = false;
 
   }
 );
